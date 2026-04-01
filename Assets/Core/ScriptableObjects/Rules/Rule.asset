@@ -18,4 +18,4 @@ MonoBehaviour:
   effectsOnPass:
   - {fileID: 11400000, guid: ecaa0df543e6bd542a781b6e9543853d, type: 2}
   effectsOnFail:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ca3582bb439fa86488783225b3f0ada5, type: 2}

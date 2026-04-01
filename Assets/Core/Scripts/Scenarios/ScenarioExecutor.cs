@@ -26,8 +26,12 @@ public class ScenarioExecutor : MonoBehaviour
     //timer ---------------
     private float tickTimerMax = 0.2f;
     private float tickTimer = 0;
-    private int Tick;
+    private int Tick = 0;
     private UnityEvent<ScenarioExecutor> OnTick = new();
+
+    //blackboard --------------
+    public SerializedDictionary<string, BlackboardValue> BlackboardVariables = new();
+
 
     private void Awake()
     {
@@ -38,7 +42,6 @@ public class ScenarioExecutor : MonoBehaviour
     public void BeginScenario(ScenarioObject scenario)
     {
         //clean up previous scenario?
-
         tickTimer = 0;
         Tick = 0;
         runtimeState.timeElapsed = 0;
@@ -46,6 +49,8 @@ public class ScenarioExecutor : MonoBehaviour
         //Activate new scenario
         activeScenario = scenario;
         runtimeState = new ScenarioState(activeScenario.initialState);
+
+        SetupBlackboard();
     }
 
     private void Update()
@@ -84,6 +89,7 @@ public class ScenarioExecutor : MonoBehaviour
         }
     }
 
+    //--Flags-- 
     public bool GetFlag(String name)
     {
         if (!activeScenario)
@@ -109,5 +115,27 @@ public class ScenarioExecutor : MonoBehaviour
         //: maybe make a list of valid flags?
         ActiveFlags[name] = value;
         return true;
+    }
+
+    //--blackboard
+    private void SetupBlackboard()
+    {
+        BlackboardVariables.Clear();
+        BlackboardVariables["time_elapsed"] = new FloatValue(() => runtimeState.timeElapsed);
+    }
+    public BlackboardValue GetBlackboardValue(String name)
+    {
+        if (!activeScenario)
+        {
+            Debug.LogError("No scenario Loaded");
+            return null;
+        }
+
+        if (BlackboardVariables.TryGetValue(name, out var b))
+        {
+            return b;
+        }
+        Debug.LogError("Blackboard variable doesnt exist: '" + name + "', Have you registered it?");
+        return null;
     }
 }
