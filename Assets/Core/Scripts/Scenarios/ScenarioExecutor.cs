@@ -66,7 +66,11 @@ public class ScenarioExecutor : MonoBehaviour
         {
             if (item.Evaluate(this))
             {
-                item.ApplyEffects(this);
+                item.ApplyPassEffects(this);
+            }
+            else
+            {
+                item.ApplyFailEffects(this);
             }
         }
     }

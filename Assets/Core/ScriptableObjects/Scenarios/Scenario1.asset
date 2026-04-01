@@ -30,6 +30,8 @@ MonoBehaviour:
         Value: 0
       - Key: wow
         Value: 0
+      - Key: PISSSSS
+        Value: 1
     vitals:
       heartRate: 0
       bloodOxygenSaturation: 0
@@ -40,4 +42,5 @@ MonoBehaviour:
   ActiveHotspots:
     _serializedList: []
   globalRules:
-    rules: []
+    rules:
+    - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}

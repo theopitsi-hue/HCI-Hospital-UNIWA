@@ -9,7 +9,7 @@ public class CheckFlagCondition : Condition
 
     public override bool Evaluate(ScenarioExecutor scenarioExecutor)
     {
-        Debug.Log("Checking: " + flagName + " result:" + scenarioExecutor.GetFlag(flagName));
+        //Debug.Log("Checking: " + flagName + " result:" + scenarioExecutor.GetFlag(flagName));
         return scenarioExecutor.GetFlag(flagName) && scenarioExecutor.GetFlag(flagName) == requiredValue;
     }
 }
