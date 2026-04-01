@@ -38,7 +38,7 @@ public class ScenarioMeta
 [Serializable]
 public class ScenarioState
 {
-    public int timeElapsed = 0;
+    public float timeElapsed = 0;
     public int currentScore = 0;
 
     public SerializedDictionary<string, bool> flags = new();

@@ -1,12 +1,16 @@
 using System;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScenarioExecutor : MonoBehaviour
 {
     [SerializeField]
     private ScenarioObject toPlayScenario;
+
+    // RUNTIME ---------------------
     [SerializeField]
+    [HideInInspector]
     private ScenarioObject activeScenario;
 
     //pull data from the active scenario, for convinience.
@@ -19,17 +23,65 @@ public class ScenarioExecutor : MonoBehaviour
     [SerializedDictionary]
     public SerializedDictionary<string, bool> ActiveFlags => runtimeState.flags;
 
+    //timer ---------------
+    private float tickTimerMax = 0.2f;
+    private float tickTimer = 0;
+    private int Tick;
+    private UnityEvent<ScenarioExecutor> OnTick = new();
+
     private void Awake()
     {
         BeginScenario(toPlayScenario);
+        OnTick.AddListener(OnTickUpdate);
     }
 
     public void BeginScenario(ScenarioObject scenario)
     {
-        //clean up previous scenario? dunno
+        //clean up previous scenario?
 
+        tickTimer = 0;
+        Tick = 0;
+        runtimeState.timeElapsed = 0;
+
+        //Activate new scenario
         activeScenario = scenario;
         runtimeState = new ScenarioState(activeScenario.initialState);
+    }
+
+    private void Update()
+    {
+        UpdateTick();
+        UpdateRules();
+    }
+    //called when the system ticks. Currently 20 times a second.
+    private void OnTickUpdate(ScenarioExecutor executor)
+    {
+    }
+
+    private void UpdateRules()
+    {
+        foreach (var item in GlobalRules.rules)
+        {
+            if (item.Evaluate(this))
+            {
+                item.ApplyPassEffects(this);
+            }
+            else
+            {
+                item.ApplyFailEffects(this);
+            }
+        }
+    }
+    private void UpdateTick()
+    {
+        tickTimer += Time.deltaTime;
+        runtimeState.timeElapsed += Time.deltaTime;
+        while (tickTimer >= tickTimerMax)
+        {
+            tickTimer -= tickTimerMax;
+            Tick++;
+            OnTick?.Invoke(this);
+        }
     }
 
     public bool GetFlag(String name)
@@ -58,26 +110,4 @@ public class ScenarioExecutor : MonoBehaviour
         ActiveFlags[name] = value;
         return true;
     }
-
-    //todo: make a heartbeat so we dont check every frame
-    private void UpdateRules()
-    {
-        foreach (var item in GlobalRules.rules)
-        {
-            if (item.Evaluate(this))
-            {
-                item.ApplyPassEffects(this);
-            }
-            else
-            {
-                item.ApplyFailEffects(this);
-            }
-        }
-    }
-
-    private void Update()
-    {
-        UpdateRules();
-    }
-
 }
