@@ -8,8 +8,7 @@ public class Rule : ScriptableObject
 {
     public string id;
     public List<Condition> conditions = new();
-    public List<Effect> effectsOnPass = new();
-    public List<Effect> effectsOnFail = new();
+    public List<Effect> effects = new();
 
     public bool Evaluate(ScenarioExecutor scenarioExecutor)
     {
@@ -25,7 +24,7 @@ public class Rule : ScriptableObject
 
     public void ApplyPassEffects(ScenarioExecutor scenarioExecutor)
     {
-        foreach (var con in effectsOnPass)
+        foreach (var con in effects)
         {
             con.Apply(scenarioExecutor);
         }
@@ -33,9 +32,9 @@ public class Rule : ScriptableObject
 
     public void ApplyFailEffects(ScenarioExecutor scenarioExecutor)
     {
-        foreach (var con in effectsOnFail)
+        foreach (var con in effects)
         {
-            con.Apply(scenarioExecutor);
+            con.ApplyFailed(scenarioExecutor);
         }
     }
 }

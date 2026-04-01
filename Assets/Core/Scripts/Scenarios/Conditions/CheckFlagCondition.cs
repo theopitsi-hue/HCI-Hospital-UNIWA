@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CheckFlagCondition", menuName = "Scenario/CheckFlagCondition", order = 0)]
 public class CheckFlagCondition : Condition
 {
+    [Header("CheckFlagCondition")]
     public string flagName;
     public bool requiredValue;
 
