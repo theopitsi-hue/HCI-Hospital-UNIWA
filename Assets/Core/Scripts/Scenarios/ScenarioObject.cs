@@ -64,33 +64,7 @@ public class GlobalRules
     public List<Rule> rules = new();
 }
 
-[Serializable]
-public class Rule
-{
-    public string id;
-    public List<Condition> conditions = new();
-    public List<Effect> effects = new();
 
-    public bool Evaluate()
-    {
-        foreach (var con in conditions)
-        {
-            if (!con.Evaluate())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void ApplyEffects()
-    {
-        foreach (var con in effects)
-        {
-            con.Apply();
-        }
-    }
-}
 
 [Serializable]
 public class Condition
@@ -114,5 +88,11 @@ public class Effect
     {
 
     }
+}
 
+public class LogInfo
+{
+    public bool LoggingEnabled = true;
+    public List<String> logEventTypes = new();
+    public string exportFormat = "JSON";
 }
