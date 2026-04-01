@@ -234,8 +234,68 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 106826609}
+  - {fileID: 452816734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &452816733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 452816734}
+  - component: {fileID: 452816735}
+  m_Layer: 0
+  m_Name: ScenarioExecutor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &452816734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452816733}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 189028352}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &452816735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452816733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad8fd231beb58e48be8ae8d473ab363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeScenario: {fileID: 11400000, guid: 4202e59bd7e665742b7e9c5bb41956ee, type: 2}
+  runtimeState:
+    timeElapsed: 0
+    currentScore: 0
+    flags:
+      _serializedList:
+      - Key: test
+        Value: 1
+    vitals:
+      heartRate: 0
+      bloodOxygenSaturation: 0
+      respiratoryRate: 0
+      bloodPressureSystolic: 0
+      bloodPressureDiastolic: 0
+      bodyTemperature: 0
 --- !u!1 &950662025
 GameObject:
   m_ObjectHideFlags: 0

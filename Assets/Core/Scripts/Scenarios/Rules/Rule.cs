@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
-public class Rule
+[CreateAssetMenu(fileName = "Rule", menuName = "Scenario/Rule", order = 0)]
+public class Rule : ScriptableObject
 {
     public string id;
     public List<Condition> conditions = new();
     public List<Effect> effects = new();
 
-    public bool Evaluate()
+    public bool Evaluate(ScenarioExecutor scenarioExecutor)
     {
         foreach (var con in conditions)
         {
-            if (!con.Evaluate())
+            if (!con.Evaluate(scenarioExecutor))
             {
                 return false;
             }
@@ -20,11 +22,11 @@ public class Rule
         return true;
     }
 
-    public void ApplyEffects()
+    public void ApplyEffects(ScenarioExecutor scenarioExecutor)
     {
         foreach (var con in effects)
         {
-            con.Apply();
+            con.Apply(scenarioExecutor);
         }
     }
 }

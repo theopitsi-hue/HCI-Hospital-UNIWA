@@ -9,13 +9,17 @@ using NaughtyAttributes;
 using Unity.VisualScripting;
 
 [SerializeField]
-[CreateAssetMenu(fileName = "ScenarioObject", menuName = "ScenarioObject", order = 0)]
+[CreateAssetMenu(fileName = "ScenarioObject", menuName = "Scenario/ScenarioObject", order = 0)]
 public class ScenarioObject : ScriptableObject
 {
-    private const int schema_version = 0;
-    public ScenarioMeta scenario_meta;
-    public InitialState initial_state;
-    public GlobalRules global_rules;
+    private const int _schema_version = 0;
+    public ScenarioMeta scenarioMeta;
+    public ScenarioState initialState;
+    public SerializedDictionary<string, bool> ActiveHotspots = new();
+    public GlobalRules globalRules;
+    public LogInfo logInfo;
+
+
 }
 
 
@@ -25,69 +29,54 @@ public class ScenarioMeta
     public string id;
     public string title;
     public string description;
-    [Label("Estimated Duration Minutes")]
-    public string estimated_duration_minutes;
+    public string estimatedDurationMinutes;
     public string difficulty;
 
-    [Label("Learning Goals")]
-    public List<String> learning_goals = new();
+    public List<String> learningGoals = new();
 }
 
 [Serializable]
-public class InitialState
+public class ScenarioState
 {
-    [Label("Time Elapsed")]
-    public int time_elapsed = 0;
-    [Label("Current Score")]
-    public int current_score = 0;
+    public int timeElapsed = 0;
+    public int currentScore = 0;
 
     public SerializedDictionary<string, bool> flags = new();
 
     public Vitals vitals;
 
+    public ScenarioState(int timeElapsed, int currentScore, SerializedDictionary<string, bool> flags, Vitals vitals)
+    {
+        this.timeElapsed = timeElapsed;
+        this.currentScore = currentScore;
+        this.flags = flags;
+        this.vitals = vitals;
+    }
+
+    public ScenarioState(ScenarioState other)
+    {
+        this.timeElapsed = other.timeElapsed;
+        this.currentScore = other.currentScore;
+        this.flags = other.flags;
+        this.vitals = other.vitals;
+    }
 }
 
 [Serializable]
 public class Vitals
 {
-    public int hr;
-    public int spo2;
-    public int rr;
-    public int bp_big; //megalh piesh
-    public int bp_small; //mikrh piesh
-    public int temp;
+    public int heartRate;
+    public int bloodOxygenSaturation;
+    public int respiratoryRate;
+    public int bloodPressureSystolic;   // large pressure (bp_big)
+    public int bloodPressureDiastolic;  // small pressure (bp_small)
+    public int bodyTemperature;
 }
 
 [Serializable]
 public class GlobalRules
 {
     public List<Rule> rules = new();
-}
-
-
-
-[Serializable]
-public class Condition
-{
-    public string id;
-
-    /// <returns>True if this condition is met.</returns>
-    public virtual bool Evaluate()
-    {
-        return false;
-    }
-}
-
-[Serializable]
-public class Effect
-{
-    public string id;
-    public string type;
-
-    public virtual void Apply()
-    {
-
-    }
 }
 
 public class LogInfo

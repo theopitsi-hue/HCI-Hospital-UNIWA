@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa0e0a100d1c844b9a72dd173c7cb6c, type: 3}
   m_Name: Scenario1
   m_EditorClassIdentifier: 
-  scenario_meta:
+  scenarioMeta:
     id: 
     title: 
     description: 
-    estimated_duration_minutes: 
+    estimatedDurationMinutes: 
     difficulty: 
-    learning_goals:
-    - 
-  initial_state:
-    time_elapsed: 0
-    current_score: 0
+    learningGoals: []
+  initialState:
+    timeElapsed: 0
+    currentScore: 0
     flags:
       _serializedList:
-      - Key: a
-        Value: 1
+      - Key: test
+        Value: 0
+      - Key: puss
+        Value: 0
+      - Key: wow
+        Value: 0
     vitals:
-      hr: 0
-      spo2: 0
-      rr: 0
-      bp_big: 0
-      bp_low: 0
-      temp: 0
-  global_rules:
-    rules:
-    - id: 
-      conditions: []
-      effects:
-      - type: a
+      heartRate: 0
+      bloodOxygenSaturation: 0
+      respiratoryRate: 0
+      bloodPressureSystolic: 0
+      bloodPressureDiastolic: 0
+      bodyTemperature: 0
+  ActiveHotspots:
+    _serializedList: []
+  globalRules:
+    rules: []
