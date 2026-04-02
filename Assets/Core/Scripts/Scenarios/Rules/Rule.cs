@@ -14,7 +14,7 @@ public class Rule : ScriptableObject
     {
         foreach (var con in conditions)
         {
-            if (!con.Evaluate(scenarioExecutor))
+            if (con && !con.Evaluate(scenarioExecutor))
             {
                 return false;
             }
@@ -26,7 +26,8 @@ public class Rule : ScriptableObject
     {
         foreach (var con in effects)
         {
-            con.Apply(scenarioExecutor);
+            if (con != null)
+                con.Apply(scenarioExecutor);
         }
     }
 
@@ -34,7 +35,8 @@ public class Rule : ScriptableObject
     {
         foreach (var con in effects)
         {
-            con.ApplyFailed(scenarioExecutor);
+            if (con != null)
+                con.ApplyFailed(scenarioExecutor);
         }
     }
 }
