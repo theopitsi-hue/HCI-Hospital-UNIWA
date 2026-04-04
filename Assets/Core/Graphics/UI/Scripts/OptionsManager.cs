@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OptionsManager : MonoBehaviour
 {
@@ -37,5 +38,10 @@ public class OptionsManager : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void QuitLevel(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
