@@ -25,6 +25,13 @@ namespace CottageCooking
         void Awake()
         {
             controller = GetComponent<CharacterController>();
+
+        }
+
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         void Update()
@@ -38,8 +45,6 @@ namespace CottageCooking
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-
-
                 if (Cursor.lockState == CursorLockMode.Locked)
                 {
                     Cursor.lockState = CursorLockMode.None;
