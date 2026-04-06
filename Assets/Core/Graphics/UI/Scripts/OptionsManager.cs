@@ -8,6 +8,16 @@ public class OptionsManager : MonoBehaviour
     public GameObject OptionsPanel;
     private bool isPaused = false;
 
+    private void Start()
+    {
+        // arxizei klisto
+        if (OptionsPanel != null && OptionsPanel.activeSelf)
+        {
+            OptionsPanel.SetActive(false);
+            isPaused = false;
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -28,19 +38,20 @@ public class OptionsManager : MonoBehaviour
         OptionsPanel.SetActive(false);
         Time.timeScale = 1f; //συνεχιζει τον χρονο
         isPaused = false;
-        
+
     }
 
     void Pause()
     {
-        OptionsPanel.SetActive(true); 
+        OptionsPanel.SetActive(true);
         Time.timeScale = 0f; //σταματαει τον χρονο
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    public void QuitLevel(){
+    public void QuitLevel()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }

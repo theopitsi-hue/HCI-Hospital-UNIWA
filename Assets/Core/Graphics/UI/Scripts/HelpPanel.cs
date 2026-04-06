@@ -7,6 +7,16 @@ public class HelpPanel : MonoBehaviour
     public GameObject HelpPanelObj;
     private bool isPaused = false;
 
+    private void Start()
+    {
+        // arxizei klisto
+        if (HelpPanelObj != null && HelpPanelObj.activeSelf)
+        {
+            HelpPanelObj.SetActive(false);
+            isPaused = false;
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.H))
@@ -27,12 +37,12 @@ public class HelpPanel : MonoBehaviour
         HelpPanelObj.SetActive(false);
         Time.timeScale = 1f; //συνεχιζει τον χρονο
         isPaused = false;
-        
+
     }
 
     void Pause()
     {
-        HelpPanelObj.SetActive(true); 
+        HelpPanelObj.SetActive(true);
         Time.timeScale = 0f; //σταματαει τον χρονο
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
