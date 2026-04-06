@@ -8,6 +8,7 @@ public class Rule : ScriptableObject
 {
     public string id;
     public List<Condition> conditions = new();
+    [SerializeReference, SubclassSelector]
     public List<Effect> effects = new();
 
     public bool Evaluate(ScenarioExecutor scenarioExecutor)

@@ -20,65 +20,61 @@ public class CheckBBValue : Condition
 
     public override bool Evaluate(ScenarioExecutor scenarioExecutor)
     {
-        switch (comparisonMode)
+        if (left.TryGetValue(out var lv) && left.TryGetValue(out var rv))
         {
-            case ComparisonMode.NUMBER:
-                {
-                    var lv = left.Get();
-                    var rv = right.Get();
+            switch (comparisonMode)
+            {
+                case ComparisonMode.NUMBER:
+                    {
+                        if (lv is not FloatValue fl || rv is not FloatValue fr)
+                            throw new System.Exception("CheckBBValue: NUMBER mode requires both left and right to be FloatValue (Blackboard keys).");
 
-                    if (lv is not FloatValue fl || rv is not FloatValue fr)
-                        throw new System.Exception("CheckBBValue: NUMBER mode requires both left and right to be FloatValue (Blackboard keys).");
+                        float leftValue = (float)fl.GetValue();
+                        float rightValue = (float)fr.GetValue();
 
-                    float leftValue = (float)fl.GetValue();
-                    float rightValue = (float)fr.GetValue();
+                        return CompareNumber(leftValue, rightValue);
+                    }
 
-                    return CompareNumber(leftValue, rightValue);
-                }
+                case ComparisonMode.BOOL:
+                    {
+                        if (lv is not BoolValue bl || rv is not BoolValue br)
+                            throw new System.Exception("CheckBBValue: BOOL mode requires both left and right to be BoolValue (Blackboard keys).");
 
-            case ComparisonMode.BOOL:
-                {
-                    var lv = left.Get();
-                    var rv = right.Get();
+                        bool leftValue = (bool)bl.GetValue();
+                        bool rightValue = (bool)br.GetValue();
 
-                    if (lv is not BoolValue bl || rv is not BoolValue br)
-                        throw new System.Exception("CheckBBValue: BOOL mode requires both left and right to be BoolValue (Blackboard keys).");
+                        return CompareBool(leftValue, rightValue);
+                    }
 
-                    bool leftValue = (bool)bl.GetValue();
-                    bool rightValue = (bool)br.GetValue();
+                case ComparisonMode.FLAT_NUMBER:
+                    {
 
-                    return CompareBool(leftValue, rightValue);
-                }
+                        if (lv is not FloatValue fl)
+                            throw new System.Exception("CheckBBValue: FLAT_NUMBER mode requires left to be FloatValue.");
 
-            case ComparisonMode.FLAT_NUMBER:
-                {
-                    var lv = left.Get();
+                        float leftValue = (float)fl.GetValue();
+                        float rightValue = rightNum;
 
-                    if (lv is not FloatValue fl)
-                        throw new System.Exception("CheckBBValue: FLAT_NUMBER mode requires left to be FloatValue.");
+                        return CompareNumber(leftValue, rightValue);
+                    }
 
-                    float leftValue = (float)fl.GetValue();
-                    float rightValue = rightNum;
+                case ComparisonMode.FLAT_BOOL:
+                    {
 
-                    return CompareNumber(leftValue, rightValue);
-                }
+                        if (lv is not BoolValue bl)
+                            throw new System.Exception("CheckBBValue: FLAT_BOOL mode requires left to be BoolValue.");
 
-            case ComparisonMode.FLAT_BOOL:
-                {
-                    var lv = left.Get();
+                        bool leftValue = (bool)bl.GetValue();
+                        bool rightValue = rightBool;
 
-                    if (lv is not BoolValue bl)
-                        throw new System.Exception("CheckBBValue: FLAT_BOOL mode requires left to be BoolValue.");
+                        return CompareBool(leftValue, rightValue);
+                    }
 
-                    bool leftValue = (bool)bl.GetValue();
-                    bool rightValue = rightBool;
-
-                    return CompareBool(leftValue, rightValue);
-                }
-
-            default:
-                throw new System.Exception($"CheckBBValue: Unknown comparison mode {comparisonMode}");
+                default:
+                    throw new System.Exception($"CheckBBValue: Unknown comparison mode {comparisonMode}");
+            }
         }
+        return false;
     }
 
     private bool CompareNumber(float left, float right)
@@ -172,7 +168,7 @@ public class CheckBBValue : Condition
 
         var result = ScriptableObject.CreateInstance<CheckBBValue>();
 
-        result.left = BlackboardKey.Get(key);
+        result.left = BlackboardKey.Find(key);
 
         if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
         {
