@@ -41,7 +41,7 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        if (hovering != null && Input.GetMouseButtonDown(0))
+        if (hovering != null && Input.GetMouseButtonDown(0) && Cursor.visible == false)
         {
             hovering.TriggerInteraction();
         }
