@@ -77,6 +77,16 @@ public class Vitals
 public class GlobalRules
 {
     public List<Rule> rules = new();
+    public List<Rule> triggerDisabled = new();
+
+    public void Disable(Rule item)
+    {
+        if (rules.Remove(item))
+        {
+            triggerDisabled.Add(item);
+            Debug.Log("Disabled rule with id:" + item);
+        }
+    }
 }
 
 public class LogInfo

@@ -1,13 +1,14 @@
 
 using System;
+using System.ComponentModel;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Effect : ScriptableObject
+public abstract class Effect
 {
-
     [Header("Effect")]
-    public string id;
+    [Tooltip("Run this effect only when the condition fails.")]
+    public bool runOnFail;
 
     public virtual void Apply(ScenarioExecutor exec)
     {

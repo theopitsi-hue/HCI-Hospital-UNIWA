@@ -1,5 +1,7 @@
 using System;
 using AYellowpaper.SerializedCollections;
+using Unity.IO.LowLevel.Unsafe;
+using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,8 +22,6 @@ public class ScenarioExecutor : MonoBehaviour
 
     [SerializeField]
     private ScenarioState runtimeState;
-    [SerializedDictionary]
-    public SerializedDictionary<string, bool> ActiveFlags => runtimeState.flags;
 
     //timer ---------------
     private float tickTimerMax = 0.2f;
@@ -29,9 +29,8 @@ public class ScenarioExecutor : MonoBehaviour
     private int Tick = 0;
     private UnityEvent<ScenarioExecutor> OnTick = new();
 
-    //blackboard --------------
-    public SerializedDictionary<string, BlackboardValue> BlackboardVariables = new();
-
+    //blackboard ---
+    public Blackboard blackboard = new();
 
     private void Awake()
     {
@@ -50,7 +49,8 @@ public class ScenarioExecutor : MonoBehaviour
         activeScenario = scenario;
         runtimeState = new ScenarioState(activeScenario.initialState);
 
-        SetupBlackboard();
+
+        AddBlackboardValues();
     }
 
     private void Update()
@@ -61,15 +61,23 @@ public class ScenarioExecutor : MonoBehaviour
     //called when the system ticks. Currently 20 times a second.
     private void OnTickUpdate(ScenarioExecutor executor)
     {
+        //print(blackboard.GetValue("HeartRate").GetValue().ToString());
+        //print(blackboard.GetValue("TimeElapsed").GetValue().ToString());
     }
 
     private void UpdateRules()
     {
-        foreach (var item in GlobalRules.rules)
+        for (int i = GlobalRules.rules.Count - 1; i >= 0; i--)
         {
+            var item = GlobalRules.rules[i];
+
             if (item.Evaluate(this))
             {
                 item.ApplyPassEffects(this);
+                if (item.TriggerOnce)
+                {
+                    GlobalRules.Disable(item);
+                }
             }
             else
             {
@@ -77,6 +85,7 @@ public class ScenarioExecutor : MonoBehaviour
             }
         }
     }
+
     private void UpdateTick()
     {
         tickTimer += Time.deltaTime;
@@ -89,53 +98,32 @@ public class ScenarioExecutor : MonoBehaviour
         }
     }
 
-    //--Flags-- 
-    public bool GetFlag(String name)
-    {
-        if (!activeScenario)
-        {
-            Debug.LogError("No scenario Loaded");
-            return false;
-        }
-
-        if (ActiveFlags.TryGetValue(name, out var b))
-        {
-            return b;
-        }
-        Debug.LogError("Flag doesnt exist: " + name);
-        return false;
-    }
-    public bool SetFlag(String name, bool value)
-    {
-        if (!activeScenario)
-        {
-            Debug.LogError("No scenario Loaded");
-            return false;
-        }
-        //: maybe make a list of valid flags?
-        ActiveFlags[name] = value;
-        return true;
-    }
-
     //--blackboard
-    private void SetupBlackboard()
-    {
-        BlackboardVariables.Clear();
-        BlackboardVariables["time_elapsed"] = new FloatValue(() => runtimeState.timeElapsed);
-    }
-    public BlackboardValue GetBlackboardValue(String name)
-    {
-        if (!activeScenario)
-        {
-            Debug.LogError("No scenario Loaded");
-            return null;
-        }
 
-        if (BlackboardVariables.TryGetValue(name, out var b))
+    private void AddBlackboardValues()
+    {
+        Debug.Log("Created blackboard variables.");
+        blackboard.SetValue(BB.TimeElapsed, new RemoteFloatValue(() =>
         {
-            return b;
+            return runtimeState.timeElapsed;
+        },
+        (ignored) => { }
+        ));
+
+        blackboard.SetValue(BB.HeartRate, new RemoteFloatValue(() =>
+           {
+               return runtimeState.vitals.heartRate;
+           }, x =>
+           {
+               runtimeState.vitals.heartRate = (int)x;
+               print("SET HEARTRATE");
+           }
+           ));
+
+
+        foreach (var fl in runtimeState.flags)
+        {
+            blackboard.SetValue(fl.Key, new BoolValue(fl.Value));
         }
-        Debug.LogError("Blackboard variable doesnt exist: '" + name + "', Have you registered it?");
-        return null;
     }
 }

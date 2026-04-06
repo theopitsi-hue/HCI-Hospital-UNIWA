@@ -2,28 +2,16 @@
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "ChangeFlagEffect", menuName = "Scenario/ChangeFlagEffect", order = 0)]
 public class ChangeFlagEffect : Effect
 {
+    public BlackboardKey flag;
 
-    [Space]
-    [Header("Flag Change")]
-    public string flagName;
-    public bool value;
-
-    [Header("Settings")]
-    public bool flipOnConditionFails;
+    public float floatValue = 0;
+    public bool boolValue = false;
 
     public override void Apply(ScenarioExecutor exec)
     {
-        exec.SetFlag(flagName, value);
-    }
-
-    public override void ApplyFailed(ScenarioExecutor exec)
-    {
-        if (flipOnConditionFails)
-        {
-            exec.SetFlag(flagName, !value);
-        }
+        Debug.Log("Changed flag:" + flag.name + " to value: " + (flag.type == BlackboardValueType.BOOL ? boolValue : floatValue));
+        GameManager.Instance.sceneExecutor.blackboard.GetValue(flag).SetValue(flag.type == BlackboardValueType.BOOL ? boolValue : floatValue);
     }
 }
