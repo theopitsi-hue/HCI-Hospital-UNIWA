@@ -11,6 +11,7 @@ public class RemoteFloatValue : FloatValue
     public RemoteFloatValue(Func<float> getter, Action<float> setter)
     {
         this.getter = getter;
+        this.setter = setter;
     }
 
     public override object GetValue() => getter();

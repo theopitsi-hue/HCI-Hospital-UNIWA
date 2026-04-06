@@ -1,77 +1,95 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(CheckBBValue))]
-public class CheckBBValueEditor : Editor
+[CustomPropertyDrawer(typeof(CheckFlagCondition), true)]
+public class CheckBBValueDrawer : PropertyDrawer
 {
-    SerializedProperty comparisonMode;
-    SerializedProperty left;
-    SerializedProperty right;
-    SerializedProperty rightNum;
-    SerializedProperty rightBool;
-    SerializedProperty numberComparisonType;
-    SerializedProperty booleanComparisonType;
-
-    void OnEnable()
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        comparisonMode = serializedObject.FindProperty("comparisonMode");
-        left = serializedObject.FindProperty("left");
-        right = serializedObject.FindProperty("right");
-        rightNum = serializedObject.FindProperty("rightNum");
-        rightBool = serializedObject.FindProperty("rightBool");
-        numberComparisonType = serializedObject.FindProperty("numberComparisonType");
-        booleanComparisonType = serializedObject.FindProperty("booleanComparisonType");
-    }
+        EditorGUI.BeginProperty(position, label, property);
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
+        float line = EditorGUIUtility.singleLineHeight;
+        float y = position.y;
 
-        // Optional mode selector (keep or remove if you want fully implicit UI)
-        EditorGUILayout.PropertyField(comparisonMode);
+        // Draw label
+        Rect labelRect = new Rect(position.x, y, position.width, line);
+        EditorGUI.LabelField(labelRect, label);
+        y += line + 2;
 
-        EditorGUILayout.Space(4);
+        SerializedProperty comparisonMode = property.FindPropertyRelative("comparisonMode");
+        SerializedProperty left = property.FindPropertyRelative("left");
+        SerializedProperty right = property.FindPropertyRelative("right");
+        SerializedProperty rightNum = property.FindPropertyRelative("rightNum");
+        SerializedProperty rightBool = property.FindPropertyRelative("rightBool");
+        SerializedProperty numberComparisonType = property.FindPropertyRelative("numberComparisonType");
+        SerializedProperty booleanComparisonType = property.FindPropertyRelative("booleanComparisonType");
+
+        if (comparisonMode == null || left == null)
+        {
+            EditorGUI.LabelField(new Rect(position.x, y, position.width, line),
+                "Missing serialized fields");
+            EditorGUI.EndProperty();
+            return;
+        }
 
         var mode = (ComparisonMode)comparisonMode.enumValueIndex;
 
-        EditorGUILayout.BeginHorizontal();
+        var r = new Rect(position.x, position.y + 12, position.width / 5, position.height);
+        EditorGUI.BeginProperty(r, GUIContent.none, left);
+        EditorGUI.PropertyField(r, comparisonMode, GUIContent.none);
+        EditorGUI.EndProperty();
+        y += EditorGUIUtility.singleLineHeight + 4 + 12 + 5;
 
-        // LEFT SIDE (always BlackboardKey)
-        EditorGUILayout.PropertyField(left, GUIContent.none);
+        // LEFT
+        Rect row = new Rect(position.x, y, position.width / 3f, line);
+        EditorGUI.BeginProperty(row, GUIContent.none, left);
+        EditorGUI.PropertyField(row, left, GUIContent.none);
+        EditorGUI.EndProperty();
 
-        // COMPARATOR (depends on mode)
-        if (mode == ComparisonMode.NUMBER || mode == ComparisonMode.FLAT_NUMBER)
+        BlackboardValueType leftType = BlackboardValueType.BOOL;
+
+        if (left == null || left.objectReferenceValue == null)
+            leftType = BlackboardValueType.BOOL;
+
+        if (left.objectReferenceValue is BlackboardKey key)
+            leftType = key.type;
+
+        bool isNumber = leftType == BlackboardValueType.FLOAT;
+        bool isBool = leftType == BlackboardValueType.BOOL;
+
+        Rect compRect = new Rect(position.x + position.width / 3f, y, position.width / 3f, line);
+        Rect rRow = new Rect(position.x + (position.width / 3f) * 2f, y, position.width / 3f, line);
+        // Comparator
+        if (isNumber)
         {
-            EditorGUILayout.PropertyField(numberComparisonType, GUIContent.none, GUILayout.Width(100));
+            EditorGUI.PropertyField(compRect, numberComparisonType, GUIContent.none);
         }
-        else
+        else if (isBool)
         {
-            EditorGUILayout.PropertyField(booleanComparisonType, GUIContent.none, GUILayout.Width(100));
+            EditorGUI.PropertyField(compRect, booleanComparisonType, GUIContent.none);
         }
 
-        // RIGHT SIDE (dynamic input)
         switch (mode)
         {
-            case ComparisonMode.NUMBER:
-            case ComparisonMode.BOOL:
-                EditorGUILayout.PropertyField(right, GUIContent.none);
+            case ComparisonMode.VARIABLE:
+                EditorGUI.PropertyField(rRow, right, GUIContent.none);
                 break;
 
-            case ComparisonMode.FLAT_NUMBER:
-                EditorGUILayout.PropertyField(rightNum, GUIContent.none);
-                break;
-
-            case ComparisonMode.FLAT_BOOL:
-                EditorGUILayout.PropertyField(rightBool, GUIContent.none);
+            case ComparisonMode.FLAT:
+                if (isNumber)
+                    EditorGUI.PropertyField(rRow, rightNum, GUIContent.none);
+                else if (isBool)
+                    EditorGUI.PropertyField(rRow, rightBool, GUIContent.none);
                 break;
         }
 
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.Space(4);
-
-        serializedObject.ApplyModifiedProperties();
+        EditorGUI.EndProperty();
     }
 
-
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        return EditorGUIUtility.singleLineHeight * 4 + 8;
+    }
 }
+#endif

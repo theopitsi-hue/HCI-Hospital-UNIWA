@@ -61,7 +61,8 @@ public class ScenarioExecutor : MonoBehaviour
     //called when the system ticks. Currently 20 times a second.
     private void OnTickUpdate(ScenarioExecutor executor)
     {
-
+        print(blackboard.GetValue("HeartRate").GetValue().ToString());
+        //print(blackboard.GetValue("TimeElapsed").GetValue().ToString());
     }
 
     private void UpdateRules()
@@ -102,6 +103,16 @@ public class ScenarioExecutor : MonoBehaviour
         },
         (ignored) => { }
         ));
+
+        blackboard.SetValue(BB.HeartRate, new RemoteFloatValue(() =>
+           {
+               return runtimeState.vitals.heartRate;
+           }, x =>
+           {
+               runtimeState.vitals.heartRate = (int)x;
+               print("SET HEARTRATE");
+           }
+           ));
 
 
         foreach (var fl in runtimeState.flags)

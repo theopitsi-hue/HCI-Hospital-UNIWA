@@ -1,11 +1,10 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[System.Serializable]
-public class Condition : ScriptableObject
+[Serializable]
+public class Condition
 {
-    [Header("Condition")]
-    public string id;
-
     /// <returns>True if this condition is met.</returns>
     public virtual bool Evaluate(ScenarioExecutor scenarioExecutor)
     {

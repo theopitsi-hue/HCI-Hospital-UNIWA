@@ -52,66 +52,25 @@ public class SubclassSelectorDrawer : PropertyDrawer
         if (property.managedReferenceValue != null)
         {
             Rect fieldRect = new Rect(
-                position.x,
-                position.y + lineHeight + 2,
-                position.width,
-                EditorGUI.GetPropertyHeight(property, true)
-            );
+                           position.x,
+                           position.y + lineHeight + 2,
+                           position.width,
+                           EditorGUI.GetPropertyHeight(property, true)
+                       );
+
 
             if (property.managedReferenceValue is ChangeFlagEffect eff)
             {
-                var flagProp = property.FindPropertyRelative("flag");
-                var floatProp = property.FindPropertyRelative("floatValue");
-                var boolProp = property.FindPropertyRelative("boolValue");
-
-                bool showValueFields = flagProp != null;
-                bool showFloatValue = false;
-                bool showBoolValue = false;
-                BlackboardValueType key = BlackboardValueType.BOOL;
-
-                if (flagProp.objectReferenceValue != null)
-                {
-                    key = (flagProp.objectReferenceValue as BlackboardKey).type;
-                    showFloatValue = key == BlackboardValueType.FLOAT;
-                    showBoolValue = key == BlackboardValueType.BOOL;
-                }
-
-                var iterator = property.Copy();
-                var end = property.GetEndProperty();
-
-                iterator.NextVisible(true);
-
-                float y = fieldRect.y;
-
-                while (!SerializedProperty.EqualContents(iterator, end))
-                {
-                    float h = EditorGUI.GetPropertyHeight(iterator, true);
-
-                    Rect r = new Rect(fieldRect.x, y, fieldRect.width, h);
-
-
-                    if (iterator.name == "boolValue" && showBoolValue)
-                    {
-                        EditorGUI.PropertyField(r, iterator, true);
-                        y += h + 2;
-                    }
-                    if (iterator.name == "floatValue" && showFloatValue)
-                    {
-                        EditorGUI.PropertyField(r, iterator, true);
-                        y += h + 2;
-                    }
-
-                    if (!(iterator.name == "boolValue" || iterator.name == "floatValue"))
-                    {
-                        EditorGUI.PropertyField(r, iterator, true);
-
-                        y += h + 2;
-                    }
-
-                    iterator.NextVisible(false);
-                }
-
+                var dr = new SetBBValueEditor();
+                dr.OnGUI(position, property, label);
             }
+            else
+            if (property.managedReferenceValue is CheckFlagCondition c)
+            {
+                var dr = new CheckBBValueDrawer();
+                dr.OnGUI(position, property, label);
+            }
+
             else
             {
                 EditorGUI.PropertyField(fieldRect, property, true);
@@ -124,9 +83,20 @@ public class SubclassSelectorDrawer : PropertyDrawer
         if (property.managedReferenceValue == null)
             return EditorGUIUtility.singleLineHeight;
 
+        if (property.managedReferenceValue is CheckFlagCondition)
+        {
+            var dr = new CheckBBValueDrawer();
+            return dr.GetPropertyHeight(property, label);
+        }
+        else if (property.managedReferenceValue is ChangeFlagEffect)
+        {
+            var dr = new SetBBValueEditor();
+            return dr.GetPropertyHeight(property, label);
+        }
+
         return EditorGUIUtility.singleLineHeight +
-               2 +
-               EditorGUI.GetPropertyHeight(property, true);
+       2 +
+       EditorGUI.GetPropertyHeight(property, true);
     }
 
     private Type GetFieldType()
