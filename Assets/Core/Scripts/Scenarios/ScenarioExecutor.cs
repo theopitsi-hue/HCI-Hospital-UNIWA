@@ -61,17 +61,23 @@ public class ScenarioExecutor : MonoBehaviour
     //called when the system ticks. Currently 20 times a second.
     private void OnTickUpdate(ScenarioExecutor executor)
     {
-        print(blackboard.GetValue("HeartRate").GetValue().ToString());
+        //print(blackboard.GetValue("HeartRate").GetValue().ToString());
         //print(blackboard.GetValue("TimeElapsed").GetValue().ToString());
     }
 
     private void UpdateRules()
     {
-        foreach (var item in GlobalRules.rules)
+        for (int i = GlobalRules.rules.Count - 1; i >= 0; i--)
         {
+            var item = GlobalRules.rules[i];
+
             if (item.Evaluate(this))
             {
                 item.ApplyPassEffects(this);
+                if (item.TriggerOnce)
+                {
+                    GlobalRules.Disable(item);
+                }
             }
             else
             {

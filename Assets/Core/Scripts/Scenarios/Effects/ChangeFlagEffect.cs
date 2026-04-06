@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 [System.Serializable]
 public class ChangeFlagEffect : Effect
 {
@@ -8,6 +11,7 @@ public class ChangeFlagEffect : Effect
 
     public override void Apply(ScenarioExecutor exec)
     {
+        Debug.Log("Changed flag:" + flag.name + " to value: " + (flag.type == BlackboardValueType.BOOL ? boolValue : floatValue));
         GameManager.Instance.sceneExecutor.blackboard.GetValue(flag).SetValue(flag.type == BlackboardValueType.BOOL ? boolValue : floatValue);
     }
 }

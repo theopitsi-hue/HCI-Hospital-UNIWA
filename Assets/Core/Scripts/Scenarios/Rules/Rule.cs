@@ -8,8 +8,11 @@ public class Rule : ScriptableObject
 {
     public string id;
 
-    // [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again.")]
-    // public bool triggerOnce = true;
+    [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again. NEEDS the rule to have an ID in order to work properly.")]
+    [SerializeField]
+    private bool triggerOnce = true;
+
+    public bool TriggerOnce => triggerOnce && id != null && id != "";
 
     [SerializeReference, SubclassSelector]
     public List<Condition> conditions = new();
@@ -52,5 +55,31 @@ public class Rule : ScriptableObject
                 con.ApplyFailed(scenarioExecutor);
             }
         }
+    }
+
+    // public override bool Equals(object obj)
+    // {
+    //     if (ReferenceEquals(this, obj))
+    //         return true;
+
+    //     if (obj is not Rule other)
+    //         return false;
+
+    //     // Both null or empty IDs are never considered equal
+    //     if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(other.id))
+    //         return false;
+
+    //     return id == other.id;
+    // }
+
+    // public override int GetHashCode()
+    // {
+    //     // Stable hash even if id is null/empty
+    //     return string.IsNullOrEmpty(id) ? 0 : id.GetHashCode();
+    // }
+
+    public override string ToString()
+    {
+        return "Rule(id:" + id + ")";
     }
 }
