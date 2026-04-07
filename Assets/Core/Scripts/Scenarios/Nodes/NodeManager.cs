@@ -35,6 +35,8 @@ public class NodeManager
         }
         if (activeNode != null && newNode.id == activeNode.id)
         {
+            Debug.LogWarning("NodeManager:GoToNode - Cannot transition to a node thats already active.");
+
             return;
         }
         activeNode?.OnExit(exec);

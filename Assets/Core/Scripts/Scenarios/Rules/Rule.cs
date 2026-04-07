@@ -28,7 +28,7 @@ public class Rule
                 return false;
             }
         }
-        Debug.Log("Rule condition PASSED: " + id);
+        //        Debug.Log("Rule condition PASSED: " + id);
         return true;
     }
 
@@ -42,7 +42,7 @@ public class Rule
             }
         }
 
-        Debug.Log("Applied rule effects: " + id);
+        // Debug.Log("Applied rule effects: " + id);
     }
 
     public void ApplyFailEffects(ScenarioExecutor scenarioExecutor)
