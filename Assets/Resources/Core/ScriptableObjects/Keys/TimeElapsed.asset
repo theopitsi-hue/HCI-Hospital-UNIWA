@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8010ac0c696abfb4f84f1926e6078346, type: 3}
   m_Name: TimeElapsed
   m_EditorClassIdentifier: 
-  variableKey: TimeElapsed
+  type: 1

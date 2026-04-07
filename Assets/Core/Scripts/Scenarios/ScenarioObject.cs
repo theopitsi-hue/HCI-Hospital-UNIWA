@@ -86,6 +86,7 @@ public class Vitals
 public class GlobalRules
 {
     public List<Rule> rules = new();
+    [HideInInspector]
     public List<Rule> triggerDisabled = new();
 
     public void Disable(Rule item)

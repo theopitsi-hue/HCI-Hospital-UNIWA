@@ -121,10 +121,44 @@ public class ScenarioExecutor : MonoBehaviour
            }, x =>
            {
                runtimeState.vitals.heartRate = (int)x;
-               print("SET HEARTRATE");
            }
            ));
 
+        blackboard.SetValue(BB.BloodOxygenSat, new RemoteFloatValue(() =>
+           {
+               return runtimeState.vitals.bloodOxygenSaturation;
+           }, x =>
+           {
+               runtimeState.vitals.bloodOxygenSaturation = (int)x;
+           }
+           ));
+
+        blackboard.SetValue(BB.BloodPressDiastolic, new RemoteFloatValue(() =>
+                   {
+                       return runtimeState.vitals.bloodPressureDiastolic;
+                   }, x =>
+                   {
+                       runtimeState.vitals.bloodPressureDiastolic = (int)x;
+                   }
+                   ));
+
+        blackboard.SetValue(BB.BloodPressSystolic, new RemoteFloatValue(() =>
+            {
+                return runtimeState.vitals.bloodPressureSystolic;
+            }, x =>
+            {
+                runtimeState.vitals.bloodPressureSystolic = (int)x;
+            }
+            ));
+
+        blackboard.SetValue(BB.Temperature, new RemoteFloatValue(() =>
+       {
+           return runtimeState.vitals.bodyTemperature;
+       }, x =>
+       {
+           runtimeState.vitals.bodyTemperature = (int)x;
+       }
+       ));
 
         foreach (var fl in runtimeState.flags)
         {

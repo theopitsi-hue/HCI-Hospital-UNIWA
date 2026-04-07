@@ -21,32 +21,33 @@ MonoBehaviour:
     learningGoals: []
   initialState:
     timeElapsed: 0
-    currentScore: 0
+    currentScore: 100
     flags:
       _serializedList:
-      - Key: test
+      - Key: AssessmentComplete
         Value: 0
-      - Key: puss
+      - Key: OxygenAdjusted
         Value: 0
-      - Key: wow
+      - Key: Documentation1Complete
         Value: 0
-      - Key: PISSSSS
-        Value: 1
+      - Key: EscalationComplete
+        Value: 0
+      - Key: Documentation2Complete
+        Value: 0
     vitals:
-      heartRate: 200
-      bloodOxygenSaturation: 0
-      respiratoryRate: 0
-      bloodPressureSystolic: 0
-      bloodPressureDiastolic: 0
-      bodyTemperature: 0
+      heartRate: 110
+      bloodOxygenSaturation: 88
+      respiratoryRate: 24
+      bloodPressureSystolic: 125
+      bloodPressureDiastolic: 80
+      bodyTemperature: 37
   ActiveHotspots:
     _serializedList: []
   globalRules:
     rules: []
-    triggerDisabled:
-    - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}
-    - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}
+    triggerDisabled: []
   nodemap:
+    entryNodeID: n1_start
     nodes:
       _serializedList:
       - Key: n1_start
@@ -56,13 +57,37 @@ MonoBehaviour:
           - rid: 6451473715938459648
           onExitEffects: []
           nodeTransitionRules:
-          - {fileID: 0}
-      - Key: 
+          - id: a
+            triggerOnce: 1
+            conditions:
+            - rid: 6451473715938459657
+            effects:
+            - rid: 6451473715938459651
+      - Key: n2_tst
         Value:
-          id: 
+          id: n2_tst
           onEnterEffects: []
           onExitEffects: []
-          nodeTransitionRules: []
+          nodeTransitionRules:
+          - id: 
+            triggerOnce: 0
+            conditions:
+            - rid: 6451473715938459658
+            effects:
+            - rid: 6451473715938459654
+      - Key: n3_tst
+        Value:
+          id: n3_tst
+          onEnterEffects:
+          - rid: 6451473715938459648
+          onExitEffects: []
+          nodeTransitionRules:
+          - id: 
+            triggerOnce: 0
+            conditions:
+            - rid: 6451473715938459659
+            effects:
+            - rid: 6451473715938459655
   references:
     version: 2
     RefIds:
@@ -70,3 +95,30 @@ MonoBehaviour:
       type: {class: NotifyUIEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
+    - rid: 6451473715938459651
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n2_tst
+    - rid: 6451473715938459654
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n3_tst
+    - rid: 6451473715938459655
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n1_start
+    - rid: 6451473715938459657
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 5
+    - rid: 6451473715938459658
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 5
+    - rid: 6451473715938459659
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 5
