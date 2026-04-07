@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-[CreateAssetMenu(fileName = "Rule", menuName = "Scenario/Rule", order = 0)]
-public class Rule : ScriptableObject
+public class Rule
 {
     public string id;
 
