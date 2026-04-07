@@ -13,7 +13,28 @@ MonoBehaviour:
   m_Name: Rule
   m_EditorClassIdentifier: 
   id: change
+  triggerOnce: 1
   conditions:
-  - {fileID: 11400000, guid: d3f519ba025d35d469eef3c60077a32b, type: 2}
+  - rid: 6451473684442382341
   effects:
-  - {fileID: 11400000, guid: ecaa0df543e6bd542a781b6e9543853d, type: 2}
+  - rid: 6451473684442382344
+  references:
+    version: 2
+    RefIds:
+    - rid: 6451473684442382341
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: 241bb55b3751d224ab1240cb86ad9ad9, type: 2}
+        right: {fileID: 11400000, guid: 241bb55b3751d224ab1240cb86ad9ad9, type: 2}
+        rightNum: 10
+        rightBool: 0
+        numberComparisonType: 2
+        booleanComparisonType: 0
+    - rid: 6451473684442382344
+      type: {class: ChangeFlagEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+        floatValue: 200
+        boolValue: 0

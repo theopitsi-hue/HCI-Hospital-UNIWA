@@ -33,7 +33,7 @@ MonoBehaviour:
       - Key: PISSSSS
         Value: 1
     vitals:
-      heartRate: 0
+      heartRate: 200
       bloodOxygenSaturation: 0
       respiratoryRate: 0
       bloodPressureSystolic: 0
@@ -42,5 +42,7 @@ MonoBehaviour:
   ActiveHotspots:
     _serializedList: []
   globalRules:
-    rules:
+    rules: []
+    triggerDisabled:
+    - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}
     - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}
