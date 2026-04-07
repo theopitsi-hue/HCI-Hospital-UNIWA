@@ -1,4 +1,6 @@
 using System;
+using System.Data.Common;
+using System.Linq;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
@@ -8,9 +10,14 @@ public class NodeManager
     private SerializedDictionary<string, Node> nodeMap = new();
     private Node activeNode;
 
-    public void LoadScenarioNodes(SerializedDictionary<string, Node> nodeMap)
+    public void LoadScenarioNodes(ScenarioExecutor exec, Nodemap nodemap)
     {
+        foreach (var item in nodemap.nodes)
+        {
+            nodeMap.Add(item.Key, item.Value);
+        }
 
+        TryTransition(exec, nodemap.entryNodeID);
     }
 
     public void Update(ScenarioExecutor exec)
@@ -23,16 +30,30 @@ public class NodeManager
     {
         if (newNode == null)
         {
-            Debug.LogError("NodeManager:GoToNode - Next node is null.");
+            Debug.LogError("NodeManager:GoToNode - Next node '" + newNode + "' is null.");
             return;
         }
-        activeNode.OnExit(exec);
+        if (activeNode != null && newNode.id == activeNode.id)
+        {
+            return;
+        }
+        activeNode?.OnExit(exec);
         activeNode = newNode;
-        activeNode.OnEnter(exec);
+        activeNode?.OnEnter(exec);
+
+        Debug.Log("Entered node:" + newNode.id);
     }
 
     public bool Exists(String id)
     {
         return nodeMap.ContainsKey(id);
+    }
+
+    public void TryTransition(ScenarioExecutor exec, string nodeID)
+    {
+        if (Exists(nodeID) && nodeMap.TryGetValue(nodeID, out var node))
+        {
+            GoToNode(exec, node);
+        }
     }
 }

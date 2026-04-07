@@ -27,6 +27,7 @@ public class ScenarioObject : ScriptableObject
 [Serializable]
 public class Nodemap
 {
+    public string entryNodeID = "";
     public SerializedDictionary<string, Node> nodes = new();
 
 }

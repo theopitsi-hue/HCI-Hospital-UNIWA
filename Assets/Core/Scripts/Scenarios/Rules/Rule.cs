@@ -24,7 +24,7 @@ public class Rule
         {
             if (!con.Evaluate(scenarioExecutor))
             {
-                Debug.Log("Rule condition FAILED: " + id);
+                //Debug.Log("Rule condition FAILED: " + id);
                 return false;
             }
         }

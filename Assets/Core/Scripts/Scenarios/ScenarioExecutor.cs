@@ -50,7 +50,7 @@ public class ScenarioExecutor : MonoBehaviour
 
         //Activate new scenario
         activeScenario = scenario;
-        nodeManager.LoadScenarioNodes(activeScenario.nodemap.nodes);
+        nodeManager.LoadScenarioNodes(this, activeScenario.nodemap);
         runtimeState = new ScenarioState(activeScenario.initialState);
 
 
@@ -61,6 +61,7 @@ public class ScenarioExecutor : MonoBehaviour
     {
         UpdateTick();
         UpdateRules();
+        nodeManager.Update(this);//move to tick update?
     }
     //called when the system ticks. Currently 20 times a second.
     private void OnTickUpdate(ScenarioExecutor executor)
