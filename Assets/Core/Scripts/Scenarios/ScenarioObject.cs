@@ -18,10 +18,18 @@ public class ScenarioObject : ScriptableObject
     public SerializedDictionary<string, bool> ActiveHotspots = new();
     public GlobalRules globalRules;
     public LogInfo logInfo;
+    public Nodemap nodemap;
 
 
 }
 
+
+[Serializable]
+public class Nodemap
+{
+    public SerializedDictionary<string, Node> nodes = new();
+
+}
 
 [Serializable]
 public class ScenarioMeta

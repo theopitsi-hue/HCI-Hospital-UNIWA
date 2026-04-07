@@ -46,3 +46,27 @@ MonoBehaviour:
     triggerDisabled:
     - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}
     - {fileID: 11400000, guid: 3d198d7611fa6d74ea8ce5880892a115, type: 2}
+  nodemap:
+    nodes:
+      _serializedList:
+      - Key: n1_start
+        Value:
+          id: n1_start
+          onEnterEffects:
+          - rid: 6451473715938459648
+          onExitEffects: []
+          nodeTransitionRules:
+          - {fileID: 0}
+      - Key: 
+        Value:
+          id: 
+          onEnterEffects: []
+          onExitEffects: []
+          nodeTransitionRules: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6451473715938459648
+      type: {class: NotifyUIEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0

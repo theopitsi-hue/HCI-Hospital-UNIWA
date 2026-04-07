@@ -32,6 +32,9 @@ public class ScenarioExecutor : MonoBehaviour
     //blackboard ---
     public Blackboard blackboard = new();
 
+    //Nodemap
+    public NodeManager nodeManager = new();
+
     private void Awake()
     {
         BeginScenario(toPlayScenario);
@@ -47,6 +50,7 @@ public class ScenarioExecutor : MonoBehaviour
 
         //Activate new scenario
         activeScenario = scenario;
+        nodeManager.LoadScenarioNodes(activeScenario.nodemap.nodes);
         runtimeState = new ScenarioState(activeScenario.initialState);
 
 

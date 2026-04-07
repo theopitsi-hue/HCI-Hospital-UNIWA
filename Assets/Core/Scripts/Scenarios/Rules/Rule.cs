@@ -56,28 +56,6 @@ public class Rule : ScriptableObject
             }
         }
     }
-
-    // public override bool Equals(object obj)
-    // {
-    //     if (ReferenceEquals(this, obj))
-    //         return true;
-
-    //     if (obj is not Rule other)
-    //         return false;
-
-    //     // Both null or empty IDs are never considered equal
-    //     if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(other.id))
-    //         return false;
-
-    //     return id == other.id;
-    // }
-
-    // public override int GetHashCode()
-    // {
-    //     // Stable hash even if id is null/empty
-    //     return string.IsNullOrEmpty(id) ? 0 : id.GetHashCode();
-    // }
-
     public override string ToString()
     {
         return "Rule(id:" + id + ")";
