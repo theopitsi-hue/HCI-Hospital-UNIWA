@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScenarioWrapper
 {
     public Scenario scenario;
+    public Intro intro;
 }
 
 [System.Serializable]
@@ -18,4 +19,10 @@ public class Scenario
     public string difficulty = "";
     public string[] learning_goals;
 
+}
+
+[System.Serializable]
+public class Intro
+{
+    public string[] messages;
 }

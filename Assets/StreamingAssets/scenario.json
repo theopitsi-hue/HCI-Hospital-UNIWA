@@ -1,209 +1,252 @@
-{ 
-  "schema_version": "1.0", 
-  "scenario": { 
-    "id": "trauma_center_one", 
-    "title": "operation glory to the motherland", 
-    "description": " testing", 
-    "estimated_duration_minutes": 10, 
-    "difficulty": "Expert", 
-    "learning_goals": [ 
-    "learning the basics",
-    "επισκευη κόκαλου χεριού",
-    "τηρηση του ορκου του υποκράτη"
-    ] 
-  }, 
- 
-  "initial_state": { 
-    "time_elapsed": 0,  
-    "flags": { 
-      
-      "stage1": false, 
-      "hand_repaired":false,
-      "escalation_complete": false,
-      "documentation_1_complete": false,
-      "documentation_2_complete": false 
-    }, 
-    "vitals": { 
-     "heart_beat": 100
-    }, 
-    "ui": { 
-      "active_hotspots": [ 
-        "hs_tools", 
-        "hs_patient", 
-        "hs_monitor",
-        "hs_vitals",
-        "hs_Doctor"
-      ], 
-      "monitor_alert": true 
-    } 
-  }, 
- 
-  "hotspots": [ 
-    { "id": "hs_tools", "label": "Κύκλος εργαλείων" }, 
-    { "id": "hs_patient", "label": "Ασθενής" }, 
-    { "id": "hs_Doctor", "label": "συμβουλές" },
-    {"id": "hs_monitor", "label":"οθόνη" },
-    {"id":"hs_vitals", "label":"η ζωή του ασθενή"}
-  ], 
- 
-  "ehr_config": { 
-    "forms": { 
-      "patient_form": { 
-        "title": "φορμα ασθενή",
-        "fields": ["Doctor","Date","patient Name" ,"patient gender","age","allergies","history"] 
-      }
-      
-    } 
-  }, 
- 
-  "rules": { 
-    "global_rules": [ 
-      { 
-        "id": "final vitals alarms", 
-        "condition": { 
-          "vitals.heart_beat": { "lt": 20 } 
-        }, 
-        "effects": [ 
-          { "type": "ui_visual", "target": "hs_monitor", "state": "blinking_red" }, 
-          { "type": "ui_visual", "target": "hs_monitor", "state": "becomes_red" } 
-        ] 
-      },
-      {
-        "id": "medium vitals", 
-        "condition": { 
-          "vitals.heart_beat": { "lt": 45 } 
-        }, 
-        "effects": [ 
-          { "type": "ui_visual", "target": "hs_monitor", "state": "becomes_orange" } 
-        ] 
-      },
-    {
-        "id": "full vitals", 
-        "condition": { 
-          "vitals.heart_beat": { "lt": 100 } 
-        }, 
-        "effects": [ 
-          { "type": "ui_visual", "target": "hs_monitor", "state": "becomes_green" } 
-        ] 
-      }
-      
-    ] 
-  }, 
- 
-  "nodes": [ 
-    { 
-      "id": "node1", 
-      "type": "message", 
-      "description": "Βρίσκεσαι στο ΚΑΤ, Ο ασθενής έχει σπασμένο το δεξί του χέρι", 
-      "next_node_id": "node2" 
-    }, 
- 
-    { 
-      "id": "node2", 
-      "type": "decision", 
-      "text": "Τι θα κάνεις", 
-      "options": [ 
-        { 
-          "id": "opt_correct", 
-          "label": "Έλεγχος της φόρμας του ασθενή", 
-          "target_hotspot": "hs_patient", 
-          "effects": { 
-            "toast": "Ο γιατρος εντυπωσιάστηκε μαζί σου" 
-          }, 
-          "next_node_id": "node3" 
-        }, 
-        { 
-          "id": "opt_inco", 
-          "label": "Ρώτα το chatgpt για οδηγίες", 
-          "effects": {  
-            "toast": "O γιατρός απογοητεύτηκε απο εσένα " 
-          }, 
-          "next_node_id": "node3" 
-        } 
-      ]
-    }, 
- 
-    {
-        "id":"node3",
-        "type":"message",
-        "text":"Ελέγχεις το χέρι του ασθενή",
-        "next_node_id":"node4"
+{
+    "schema_version": "1.0",
+    "scenario": {
+        "id": "trauma_center_one",
+        "title": "operation glory to the motherland",
+        "description": " testing",
+        "estimated_duration_minutes": 10,
+        "difficulty": "Expert",
+        "learning_goals": [
+            "learning the basics",
+            "επισκευη κόκαλου χεριού",
+            "τηρηση του ορκου του υποκράτη"
+        ]
     },
 
-    { 
-      "id": "node4", 
-      "type": "decision", 
-      "text": "Ποια θα είναι η πρώτη σου ενέργεια στο χειρουργείο", 
-      "options": [ 
-        { 
-          "id": "surg_first_correct_opt", 
-          "label": "Επιλέγεις το antibiotic Gel και το νυστέρι", 
-          "target_hotspot": "hs_patient", 
-          "effects": {  
-            "toast": "Άνοιξες το χέρι του ασθενή με επιτυχία" 
-          }, 
-          "next_node_id": "node5" 
-        }, 
-        { 
-          "id": "surg_first_wrong_opt", 
-          "label": "Παίρνεις μόνο το νυστέρι", 
-          "target_hotspot": "hs_patient", 
-          "effects": { 
-            "vitals_update": { "heart_beat":90 },  
-            "toast": "H επιλογή σου να μην πάρεις το GEL πόνεσε τον ασθενή" 
-          }, 
-          "next_node_id": "node5" 
-        } 
-      ] 
-    }, 
- 
-    { 
-      "id": "node5", 
-      "type": "decision", 
-      "text": "Βλέπεις τα κομμάτια του σπασμένου κοκάλου ",
-      "options":[
-        {
-            "id":"surg_second_correct_opt",
-            "label":"Μαζεύεις τα κομμάτια με προσοχή",
-            "target_hotspot": "hs_patient",
-            "effects":{
-                "toast": "Καθάρισες τον ασθενή με επιτυχία"
-            },
-        "next_node_id":"node7"
+    "intro": {
+        "messages": [
+            "welcome to our hospital",
+            "i am your host not brasidas"
+        ]
+    },
+
+    "initial_state": {
+        "time_elapsed": 0,
+        "flags": {
+
+            "stage1": false,
+            "hand_repaired": false,
+            "escalation_complete": false,
+            "documentation_1_complete": false,
+            "documentation_2_complete": false
+        },
+        "vitals": {
+            "heart_beat": 100
+        },
+        "ui": {
+            "active_hotspots": [
+                "hs_tools",
+                "hs_patient",
+                "hs_monitor",
+                "hs_vitals",
+                "hs_Doctor"
+            ],
+            "monitor_alert": true
         }
-       ]
-    }, 
- 
- 
-    { 
-      "id": "node7", 
-      "type": "message", 
-      "text": "Βάζεις GEL στα καταληλα σημεία", 
-      "state_update":{"escalation_complete": true},
-      "next_node_id":"node8"
-      
-    }, 
- 
-    { 
-      "id": "node8", 
-      "type":"message",
-      "text":"Ο ασθενής σώθηκε",
-      "state_update":{"hand_repaired": true},
-      "next_node_id": "nodend" 
-    }, 
- 
-    { 
-      "id": "nodend", 
-      "type": "end", 
-      "text": "Μπραβο γιατρέ Βρασιδα!!!!", 
-      "state_update":{"stage1": true}
-    } 
-  ], 
- 
-  "logging": { 
-    "enabled": true, 
-    "log_events": ["NODE_ENTER", "HOTSPOT_INTERACTION", "OPTION_SELECTED", 
-"EHR_SUBMIT", "VITALS_CHANGE"], 
-    "export_format": "JSON" 
-  } 
+    },
+
+    "hotspots": [
+        {
+            "id": "hs_tools",
+            "label": "Κύκλος εργαλείων"
+        },
+        {
+            "id": "hs_patient",
+            "label": "Ασθενής"
+        },
+        {
+            "id": "hs_Doctor",
+            "label": "συμβουλές"
+        },
+        {
+            "id": "hs_monitor",
+            "label": "οθόνη"
+        },
+        {
+            "id": "hs_vitals",
+            "label": "η ζωή του ασθενή"
+        }
+    ],
+
+    "ehr_config": {
+        "forms": {
+            "patient_form": {
+                "title": "φορμα ασθενή",
+                "fields": [ "Doctor", "Date", "patient Name", "patient gender", "age", "allergies", "history" ]
+            }
+
+        }
+    },
+
+    "rules": {
+        "global_rules": [
+            {
+                "id": "final vitals alarms",
+                "condition": {
+                    "vitals.heart_beat": { "lt": 20 }
+                },
+                "effects": [
+                    {
+                        "type": "ui_visual",
+                        "target": "hs_monitor",
+                        "state": "blinking_red"
+                    },
+                    {
+                        "type": "ui_visual",
+                        "target": "hs_monitor",
+                        "state": "becomes_red"
+                    }
+                ]
+            },
+            {
+                "id": "medium vitals",
+                "condition": {
+                    "vitals.heart_beat": { "lt": 45 }
+                },
+                "effects": [
+                    {
+                        "type": "ui_visual",
+                        "target": "hs_monitor",
+                        "state": "becomes_orange"
+                    }
+                ]
+            },
+            {
+                "id": "full vitals",
+                "condition": {
+                    "vitals.heart_beat": { "lt": 100 }
+                },
+                "effects": [
+                    {
+                        "type": "ui_visual",
+                        "target": "hs_monitor",
+                        "state": "becomes_green"
+                    }
+                ]
+            }
+
+        ]
+    },
+
+    "nodes": [
+        {
+            "id": "node1",
+            "type": "message",
+            "description": "Βρίσκεσαι στο ΚΑΤ, Ο ασθενής έχει σπασμένο το δεξί του χέρι",
+            "next_node_id": "node2"
+        },
+
+        {
+            "id": "node2",
+            "type": "decision",
+            "text": "Τι θα κάνεις",
+            "options": [
+                {
+                    "id": "opt_correct",
+                    "label": "Έλεγχος της φόρμας του ασθενή",
+                    "target_hotspot": "hs_patient",
+                    "effects": {
+                        "toast": "Ο γιατρος εντυπωσιάστηκε μαζί σου"
+                    },
+                    "next_node_id": "node3"
+                },
+                {
+                    "id": "opt_inco",
+                    "label": "Ρώτα το chatgpt για οδηγίες",
+                    "effects": {
+                        "toast": "O γιατρός απογοητεύτηκε απο εσένα "
+                    },
+                    "next_node_id": "node3"
+                }
+            ]
+        },
+
+        {
+            "id": "node3",
+            "type": "message",
+            "text": "Ελέγχεις το χέρι του ασθενή",
+            "next_node_id": "node4"
+        },
+
+        {
+            "id": "node4",
+            "type": "decision",
+            "text": "Ποια θα είναι η πρώτη σου ενέργεια στο χειρουργείο",
+            "options": [
+                {
+                    "id": "surg_first_correct_opt",
+                    "label": "Επιλέγεις το antibiotic Gel και το νυστέρι",
+                    "target_hotspot": "hs_patient",
+                    "effects": {
+                        "toast": "Άνοιξες το χέρι του ασθενή με επιτυχία"
+                    },
+                    "next_node_id": "node5"
+                },
+                {
+                    "id": "surg_first_wrong_opt",
+                    "label": "Παίρνεις μόνο το νυστέρι",
+                    "target_hotspot": "hs_patient",
+                    "effects": {
+                        "vitals_update": { "heart_beat": 90 },
+                        "toast": "H επιλογή σου να μην πάρεις το GEL πόνεσε τον ασθενή"
+                    },
+                    "next_node_id": "node5"
+                }
+            ]
+        },
+
+        {
+            "id": "node5",
+            "type": "decision",
+            "text": "Βλέπεις τα κομμάτια του σπασμένου κοκάλου ",
+            "options": [
+                {
+                    "id": "surg_second_correct_opt",
+                    "label": "Μαζεύεις τα κομμάτια με προσοχή",
+                    "target_hotspot": "hs_patient",
+                    "effects": {
+                        "toast": "Καθάρισες τον ασθενή με επιτυχία"
+                    },
+                    "next_node_id": "node7"
+                }
+            ]
+        },
+
+
+        {
+            "id": "node7",
+            "type": "message",
+            "text": "Βάζεις GEL στα καταληλα σημεία",
+            "state_update": { "escalation_complete": true },
+            "next_node_id": "node8"
+
+        },
+
+        {
+            "id": "node8",
+            "type": "message",
+            "text": "Ο ασθενής σώθηκε",
+            "state_update": { "hand_repaired": true },
+            "next_node_id": "nodend"
+        },
+
+        {
+            "id": "nodend",
+            "type": "end",
+            "text": "Μπραβο γιατρέ Βρασιδα!!!!",
+            "state_update": { "stage1": true }
+        }
+    ],
+
+    "logging": {
+        "enabled": true,
+        "log_events": [
+            "NODE_ENTER",
+            "HOTSPOT_INTERACTION",
+            "OPTION_SELECTED",
+            "EHR_SUBMIT",
+            "VITALS_CHANGE"
+        ],
+        "export_format": "JSON"
+    }
 }
