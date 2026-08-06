@@ -20,7 +20,7 @@ public class ScenarioObject : ScriptableObject
     public LogInfo logInfo;
     public Nodemap nodemap;
 
-
+    public int numvber;
 }
 
 
@@ -102,6 +102,6 @@ public class GlobalRules
 public class LogInfo
 {
     public bool LoggingEnabled = true;
-    public List<String> logEventTypes = new();
+    public List<string> logEventTypes = new();
     public string exportFormat = "JSON";
 }

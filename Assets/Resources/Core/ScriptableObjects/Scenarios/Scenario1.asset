@@ -62,7 +62,7 @@ MonoBehaviour:
             conditions:
             - rid: 6451473715938459657
             effects:
-            - rid: 6451473715938459651
+            - rid: 328780582471598081
       - Key: n2_tst
         Value:
           id: n2_tst
@@ -88,18 +88,19 @@ MonoBehaviour:
             - rid: 6451473715938459659
             effects:
             - rid: 6451473715938459655
+  numvber: 0
   references:
     version: 2
     RefIds:
-    - rid: 6451473715938459648
-      type: {class: NotifyUIEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-    - rid: 6451473715938459651
+    - rid: 328780582471598081
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
         nodeID: n2_tst
+    - rid: 6451473715938459648
+      type: {class: NotifyUIEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
     - rid: 6451473715938459654
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
