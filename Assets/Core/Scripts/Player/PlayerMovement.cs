@@ -38,29 +38,29 @@ namespace CottageCooking
         {
             HandleLook();
             HandleMove();
-            HandleMouseLock();
+            //HandleMouseLock();
         }
 
-        void HandleMouseLock()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (Cursor.lockState == CursorLockMode.Locked)
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                }
-            }
-        }
+        // void HandleMouseLock()
+        // {
+        //     if (Input.GetKeyDown(KeyCode.Escape))
+        //     {
+        //         if (Cursor.lockState == CursorLockMode.Locked)
+        //         {
+        //             Cursor.lockState = CursorLockMode.None;
+        //             Cursor.visible = true;
+        //         }
+        //         else
+        //         {
+        //             Cursor.lockState = CursorLockMode.Locked;
+        //             Cursor.visible = false;
+        //         }
+        //     }
+        // }
 
         void HandleLook()
         {
-            if (Cursor.lockState != CursorLockMode.Locked) return;
+            if (Cursor.lockState != CursorLockMode.Locked || Cursor.visible) return;
 
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;

@@ -19,8 +19,6 @@ public class ScenarioObject : ScriptableObject
     public GlobalRules globalRules;
     public LogInfo logInfo;
     public Nodemap nodemap;
-
-    public int numvber;
 }
 
 
