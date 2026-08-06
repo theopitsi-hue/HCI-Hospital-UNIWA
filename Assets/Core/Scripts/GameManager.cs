@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public ScenarioExecutor sceneExecutor;
     public UIManager uiManager;
     public Camera mainMenuCamera;
+    public PlayerScenarioData playerData;
 
     public string loadedLevelScene;
 
@@ -54,5 +56,6 @@ public class GameManager : MonoBehaviour
         uiManager.ActivateOnly(UIManager.UIType.MainMenu);
         SceneManager.UnloadSceneAsync(loadedLevelScene);
         loadedLevelScene = null;
+        playerData.Clear();
     }
 }

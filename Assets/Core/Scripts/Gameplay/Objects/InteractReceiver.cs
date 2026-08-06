@@ -6,20 +6,24 @@ using UnityEngine.Events;
 
 public class InteractReceiver : MonoBehaviour
 {
+    private bool _interactable = true;
+
     public UnityEvent onInteracted;
     public UnityEvent OnHoverEnter;
     public UnityEvent OnHoverExit;
 
     private void Awake()
     {
-        tag = "Interactable";
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        if (_interactable)
+        {
+            tag = "Interactable";
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
     }
 
     public void TriggerInteraction()
     {
         onInteracted?.Invoke();
-        Debug.Log("BAM");
     }
 
     public void TriggerHoverExit()
@@ -33,4 +37,16 @@ public class InteractReceiver : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Outline1");
         OnHoverEnter?.Invoke();
     }
+
+    public bool SetInteractable(bool interactable)
+    {
+        _interactable = interactable;
+        if (_interactable)
+        {
+            tag = "Interactable";
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+        return _interactable;
+    }
+
 }

@@ -85,13 +85,13 @@ namespace CottageCooking
 
 
 
-            if (controller.isGrounded && velocity.y < 0)
-                velocity.y = -2f;
+            // if (controller.isGrounded && velocity.y < 0)
+            //     velocity.y = -2f;
 
-            if (controller.isGrounded && Input.GetButtonDown("Jump"))
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            // if (controller.isGrounded && Input.GetButtonDown("Jump"))
+            //     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
-            velocity.y += gravity * Time.deltaTime;
+            // velocity.y += gravity * Time.deltaTime;
 
             controller.Move(((move * speed) + velocity) * Time.deltaTime);
         }

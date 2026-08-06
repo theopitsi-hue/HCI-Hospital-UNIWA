@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
         Settings,
         Help,
         Machines,
-        HUD
+        HUD,
+        Form
     }
 
     [Serializable]
