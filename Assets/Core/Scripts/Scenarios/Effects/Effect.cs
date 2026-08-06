@@ -1,10 +1,11 @@
 
 using System;
 using System.ComponentModel;
+using Newtonsoft.Json;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Effect
+public abstract class Effect //: IJsonSerializable<Effect>
 {
     [Header("Effect")]
     [Tooltip("Run this effect only when the condition fails.")]
@@ -18,6 +19,7 @@ public abstract class Effect
     //called when the condition fails
     public virtual void ApplyFailed(ScenarioExecutor exec)
     {
-
     }
+
+
 }

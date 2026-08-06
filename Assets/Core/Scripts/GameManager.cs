@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public Camera mainMenuCamera;
     public PlayerScenarioData playerData;
+    public ScenarioLoader loader;
 
     public string loadedLevelScene;
 
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
 
-
+        loader.LoadAllScenarios();
         mainMenuCamera.gameObject.SetActive(true);
         DontDestroyOnLoad(gameObject);
         uiManager.Initialize();

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Scenario1
   m_EditorClassIdentifier: 
   scenarioMeta:
-    id: 
-    title: 
-    description: 
-    estimatedDurationMinutes: 
-    difficulty: 
-    learningGoals: []
+    id: example_01
+    title: Example 1
+    description: The first example
+    estimatedDurationMinutes: 10
+    difficulty: Easy
+    levelName: assetTest
+    learningGoals:
+    - How to do stuff
   initialState:
     timeElapsed: 0
     currentScore: 100

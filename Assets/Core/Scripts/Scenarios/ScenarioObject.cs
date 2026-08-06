@@ -19,6 +19,19 @@ public class ScenarioObject : ScriptableObject
     public GlobalRules globalRules;
     public LogInfo logInfo;
     public Nodemap nodemap;
+
+    public string Serialize()
+    {
+        return JsonUtility.ToJson(this);
+    }
+    public static ScenarioObject FromJson(string json)
+    {
+        ScenarioObject scenario = ScriptableObject.CreateInstance<ScenarioObject>();
+        //todo: add more validity checks
+        JsonUtility.FromJsonOverwrite(json, scenario);
+
+        return scenario;
+    }
 }
 
 
@@ -38,6 +51,7 @@ public class ScenarioMeta
     public string description;
     public string estimatedDurationMinutes;
     public string difficulty;
+    public string levelName;
 
     public List<String> learningGoals = new();
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Rule
 {
+    [SerializeField]
     public string id;
 
     [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again. NEEDS the rule to have an ID in order to work properly.")]

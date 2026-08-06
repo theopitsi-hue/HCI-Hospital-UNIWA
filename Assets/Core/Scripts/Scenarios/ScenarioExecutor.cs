@@ -37,7 +37,9 @@ public class ScenarioExecutor : MonoBehaviour
 
     private void Awake()
     {
-        BeginScenario(toPlayScenario);
+        //print(toPlayScenario.Serialize());
+
+        //BeginScenario(toPlayScenario);
         OnTick.AddListener(OnTickUpdate);
     }
 
@@ -53,12 +55,13 @@ public class ScenarioExecutor : MonoBehaviour
         nodeManager.LoadScenarioNodes(this, activeScenario.nodemap);
         runtimeState = new ScenarioState(activeScenario.initialState);
 
-
         AddBlackboardValues();
     }
 
     private void Update()
     {
+        if (activeScenario == null) return;
+
         UpdateTick();
         UpdateRules();
         nodeManager.Update(this);//move to tick update?
