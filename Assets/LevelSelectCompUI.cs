@@ -9,6 +9,7 @@ public class LevelSelectCompUI : MonoBehaviour
 {
     public Button button;
     public TextMeshProUGUI text;
+    public ScenarioObject scenarioObject;
 
     private string levelName;
 
@@ -17,8 +18,9 @@ public class LevelSelectCompUI : MonoBehaviour
     {
         this.text.text = scenario.scenarioMeta.id + "\nDifficulty: " + scenario.scenarioMeta.difficulty;
         this.levelName = scenario.scenarioMeta.levelName;
+        scenarioObject = scenario;
         button.onClick.AddListener(UnityFuckingSucksWHyCanINotUseALambdaForThis);
     }
 
-    public void UnityFuckingSucksWHyCanINotUseALambdaForThis() { GameManager.Instance.StartLevel(levelName); }
+    public void UnityFuckingSucksWHyCanINotUseALambdaForThis() { GameManager.Instance.StartLevel(levelName, scenarioObject); }
 }

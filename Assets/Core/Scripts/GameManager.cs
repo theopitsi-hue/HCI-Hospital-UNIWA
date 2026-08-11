@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         uiManager.ActivateOnly(UIManager.UIType.MainMenu);
     }
 
-    public void StartLevel(string levelName)
+    public void StartLevel(string levelName, ScenarioObject scenarioObject)
     {
         mainMenuCamera.gameObject.SetActive(false);
         print("Entering level: " + levelName);
@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
 
         uiManager.ActivateOnly(UIManager.UIType.HUD);
+
+        sceneExecutor.BeginScenario(scenarioObject);
     }
 
     public void QuitLevel()

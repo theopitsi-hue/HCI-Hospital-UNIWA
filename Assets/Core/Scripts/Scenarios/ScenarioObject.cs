@@ -19,6 +19,7 @@ public class ScenarioObject : ScriptableObject
     public GlobalRules globalRules;
     public LogInfo logInfo;
     public Nodemap nodemap;
+    public Textmap textmap;
 
     public string Serialize()
     {
@@ -34,6 +35,12 @@ public class ScenarioObject : ScriptableObject
     }
 }
 
+[Serializable]
+public class Textmap
+{
+    public SerializedDictionary<int, string> dialogue = new();
+
+}
 
 [Serializable]
 public class Nodemap

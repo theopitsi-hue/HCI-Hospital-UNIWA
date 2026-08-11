@@ -90,6 +90,11 @@ MonoBehaviour:
             - rid: 6451473715938459659
             effects:
             - rid: 6451473715938459655
+  textmap:
+    dialogue:
+      _serializedList:
+      - Key: 0
+        Value: wah wah wah
   references:
     version: 2
     RefIds:

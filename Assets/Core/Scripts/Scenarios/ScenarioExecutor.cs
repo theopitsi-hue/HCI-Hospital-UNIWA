@@ -19,6 +19,7 @@ public class ScenarioExecutor : MonoBehaviour
     private ScenarioMeta Metadata => activeScenario.scenarioMeta;
     private GlobalRules GlobalRules => activeScenario.globalRules;
     private LogInfo LogInfo => activeScenario.logInfo;
+    private Textmap Dialogue => activeScenario.textmap;
 
     [SerializeField]
     private ScenarioState runtimeState;
@@ -45,6 +46,9 @@ public class ScenarioExecutor : MonoBehaviour
 
     public void BeginScenario(ScenarioObject scenario)
     {
+        //
+        print("Starting: " + scenario.name);
+
         //clean up previous scenario?
         tickTimer = 0;
         Tick = 0;
