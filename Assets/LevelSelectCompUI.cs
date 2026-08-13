@@ -18,9 +18,8 @@ public class LevelSelectCompUI : MonoBehaviour
     {
         this.text.text = scenario.scenarioMeta.id + "\nDifficulty: " + scenario.scenarioMeta.difficulty;
         this.levelName = scenario.scenarioMeta.levelName;
-        scenarioObject = scenario;
-        button.onClick.AddListener(UnityFuckingSucksWHyCanINotUseALambdaForThis);
+        button.onClick.AddListener(listenerCreator);
     }
 
-    public void UnityFuckingSucksWHyCanINotUseALambdaForThis() { GameManager.Instance.StartLevel(levelName, scenarioObject); }
+    public void listenerCreator() { GameManager.Instance.StartLevel(levelName); }
 }
