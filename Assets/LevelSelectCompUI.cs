@@ -21,5 +21,5 @@ public class LevelSelectCompUI : MonoBehaviour
         button.onClick.AddListener(listenerCreator);
     }
 
-    public void listenerCreator() { GameManager.Instance.StartLevel(levelName); }
+    public void listenerCreator() { GameManager.Instance.StartLevel(levelName , scenarioObject); }
 }
