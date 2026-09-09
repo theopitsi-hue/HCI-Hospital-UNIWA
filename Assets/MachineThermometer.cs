@@ -18,7 +18,13 @@ public class MachineThermometer : MonoBehaviour
 
     public void OnInteracted()
     {
-        GameManager.Instance.playerData.AddKnownValue(key);
+        if (!GameManager.Instance.playerData.KnowsValue(key))
+        {
+            GameManager.Instance.playerData.AddKnownValue(key);
+            print("Lever: " + key.name);
+            GameManager.Instance.uiManager.SentToast("Temperature has been recorded. Fill it in the EHR field.", Color.white);
+        }
         print("Lever: " + key.name);
+
     }
 }

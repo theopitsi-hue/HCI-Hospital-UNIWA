@@ -35,6 +35,13 @@ public class UIManager : MonoBehaviour
 
     private readonly Dictionary<UIType, UIEntry> uiDictionary = new();
 
+    [SerializeField] public ToastFeed toastFeed;
+
+    public void SentToast(string text, Color color)
+    {
+        toastFeed.SpawnToast(text, color);
+    }
+
     public void Initialize()
     {
         if (Instance == null)
