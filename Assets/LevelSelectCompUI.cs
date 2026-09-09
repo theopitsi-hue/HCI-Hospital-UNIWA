@@ -13,13 +13,14 @@ public class LevelSelectCompUI : MonoBehaviour
 
     private string levelName;
 
-
+    ScenarioObject scenario;
     public void Initialize(ScenarioObject scenario)
     {
+        this.scenario = scenario;
         this.text.text = scenario.scenarioMeta.id + "\nDifficulty: " + scenario.scenarioMeta.difficulty;
         this.levelName = scenario.scenarioMeta.levelName;
         button.onClick.AddListener(listenerCreator);
     }
 
-    public void listenerCreator() { GameManager.Instance.StartLevel(levelName , scenarioObject); }
+    public void listenerCreator() { GameManager.Instance.StartLevel(levelName, scenario); }
 }
