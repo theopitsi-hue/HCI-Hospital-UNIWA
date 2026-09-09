@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.uiManager.IsActive(UIManager.UIType.Notice))
         {
             if (!GameManager.Instance.uiManager.IsActive(UIManager.UIType.PauseMenu))
             {

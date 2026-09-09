@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class UIManager : MonoBehaviour
         Machines,
         HUD,
         Form,
-        Dialogue
+        Dialogue,
+        Notice
     }
 
     [Serializable]
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
         [Header("Cursor")]
         public bool showCursor = true;
         public bool lockCursor = false;
+
     }
 
     [Header("Assign UI Objects")]
@@ -36,10 +39,25 @@ public class UIManager : MonoBehaviour
     private readonly Dictionary<UIType, UIEntry> uiDictionary = new();
 
     [SerializeField] public ToastFeed toastFeed;
+    [SerializeField] public NoticeUI noticeUI;
 
-    public void SentToast(string text, Color color)
+    public void SendUIToast(string text, Color color)
     {
         toastFeed.SpawnToast(text, color);
+    }
+
+    public void SendUINotice(string title, string message, UnityAction callback)
+    {
+        ActivateOnly(UIType.Notice);
+
+        noticeUI.Setup(title, message, () =>
+        {
+            callback.Invoke();
+            Debug.Log("Notice btn clicked");
+            Deactivate(UIType.Notice);
+
+            ActivateOnly(UIType.HUD);
+        });
     }
 
     public void Initialize()

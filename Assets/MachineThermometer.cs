@@ -22,7 +22,7 @@ public class MachineThermometer : MonoBehaviour
         {
             GameManager.Instance.playerData.AddKnownValue(key);
             print("Lever: " + key.name);
-            GameManager.Instance.uiManager.SentToast("Temperature has been recorded. Fill it in the EHR field.", Color.white);
+            GameManager.Instance.uiManager.SendUIToast("Temperature has been recorded. Fill it in the EHR field.", Color.white);
         }
         print("Lever: " + key.name);
 

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Effect //: IJsonSerializable<Effect>
+public abstract class Effect
 {
     [Header("Effect")]
     [Tooltip("Run this effect only when the condition fails.")]

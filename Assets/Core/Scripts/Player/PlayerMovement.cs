@@ -30,12 +30,16 @@ namespace CottageCooking
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            // Cursor.lockState = CursorLockMode.Locked;
+            // Cursor.visible = false;
         }
 
         void Update()
         {
+            if (!GameManager.Instance.uiManager.IsActive(UIManager.UIType.HUD))
+            {
+                return;
+            }
             HandleLook();
             HandleMove();
             //HandleMouseLock();

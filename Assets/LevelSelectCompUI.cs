@@ -17,7 +17,7 @@ public class LevelSelectCompUI : MonoBehaviour
     public void Initialize(ScenarioObject scenario)
     {
         this.scenario = scenario;
-        this.text.text = scenario.scenarioMeta.id + "\nDifficulty: " + scenario.scenarioMeta.difficulty;
+        this.text.text = scenario.scenarioMeta.title + "\nDifficulty: " + scenario.scenarioMeta.difficulty;
         this.levelName = scenario.scenarioMeta.levelName;
         button.onClick.AddListener(listenerCreator);
     }

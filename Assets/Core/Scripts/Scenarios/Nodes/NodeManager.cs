@@ -17,7 +17,6 @@ public class NodeManager
             nodeMap.Add(item.Key, item.Value);
         }
 
-        TryTransition(exec, nodemap.entryNodeID);
     }
 
     public void Update(ScenarioExecutor exec)

@@ -54,12 +54,15 @@ public class ScenarioExecutor : MonoBehaviour
         Tick = 0;
         runtimeState.timeElapsed = 0;
 
+
         //Activate new scenario
         activeScenario = scenario;
         nodeManager.LoadScenarioNodes(this, activeScenario.nodemap);
         runtimeState = new ScenarioState(activeScenario.initialState);
 
         AddBlackboardValues();
+
+        nodeManager.TryTransition(this, activeScenario.nodemap.entryNodeID);
     }
 
     private void Update()

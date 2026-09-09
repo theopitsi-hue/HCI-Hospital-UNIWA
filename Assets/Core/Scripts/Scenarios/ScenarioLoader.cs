@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -52,14 +53,18 @@ public class ScenarioLoader : MonoBehaviour
             string json = File.ReadAllText(file);
 
             ScenarioObject scenario = ScenarioObject.FromJson(json);
-
+            scenario.scenarioMeta.title += " (JSON)";
             AddScenario(scenario);
             Debug.Log("Loaded: " + Path.GetFileName(file));
         }
 
+
         foreach (var scenario in editorScenarios)
         {
-            AddScenario(scenario);
+            var runtime = Instantiate(scenario);
+            runtime.scenarioMeta.title += " (EDITOR)";
+            runtime.scenarioMeta.id += "_e";
+            AddScenario(runtime);
         }
 
         onScenariosLoaded?.Invoke();
