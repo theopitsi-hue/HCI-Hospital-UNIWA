@@ -14,11 +14,15 @@ public class UIManager : MonoBehaviour
         PauseMenu,
         Settings,
         Help,
-        Machines,
+        Machines, //DEPRECATED
         HUD,
         Form,
         Dialogue,
-        Notice
+        Notice,
+        m_ECG,
+        m_Thermometer,
+        m_oxygen_reader,
+        m_pressure_reader
     }
 
     [Serializable]

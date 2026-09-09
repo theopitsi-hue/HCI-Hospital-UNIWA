@@ -55,41 +55,16 @@ MonoBehaviour:
       - Key: n1_start
         Value:
           id: n1_start
+          onEnterEffects:
+          - rid: 3445855366584467470
+          onExitEffects: []
+          nodeTransitionRules: []
+      - Key: n2
+        Value:
+          id: n2
           onEnterEffects: []
           onExitEffects: []
-          nodeTransitionRules:
-          - id: a
-            triggerOnce: 0
-            conditions:
-            - rid: 3445855366584467468
-            effects:
-            - rid: 3445855366584467469
-      - Key: n2_tst
-        Value:
-          id: n2_tst
-          onEnterEffects:
-          - rid: 3445855366584467466
-          onExitEffects: []
-          nodeTransitionRules:
-          - id: 
-            triggerOnce: 0
-            conditions:
-            - rid: 6451473715938459658
-            effects:
-            - rid: 6451473715938459654
-      - Key: n3_tst
-        Value:
-          id: n3_tst
-          onEnterEffects:
-          - rid: 3445855366584467459
-          onExitEffects: []
-          nodeTransitionRules:
-          - id: 
-            triggerOnce: 0
-            conditions:
-            - rid: 6451473715938459659
-            effects:
-            - rid: 6451473715938459655
+          nodeTransitionRules: []
   textmap:
     dialogue:
       _serializedList:
@@ -98,48 +73,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 3445855366584467459
-      type: {class: NotifyUIEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        toastText: AAAAAAAAAAAAAAAAA
-    - rid: 3445855366584467466
+    - rid: 3445855366584467470
       type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        noticeTitle: aaa
-        noticeText: bbbb
+        noticeTitle: Introduction
+        noticeText: The first example scenario, hypoxia stuff!
         onButtonPressedEffects:
-        - rid: 3445855366584467467
-    - rid: 3445855366584467467
+        - rid: 3445855366584467471
+    - rid: 3445855366584467471
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        nodeID: n1_start
-    - rid: 3445855366584467468
-      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
-      data:
-        waitTime: 4
-    - rid: 3445855366584467469
-      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        nodeID: n2_tst
-    - rid: 6451473715938459654
-      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        nodeID: n3_tst
-    - rid: 6451473715938459655
-      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        nodeID: n1_start
-    - rid: 6451473715938459658
-      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
-      data:
-        waitTime: 5
-    - rid: 6451473715938459659
-      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
-      data:
-        waitTime: 5
+        nodeID: n2

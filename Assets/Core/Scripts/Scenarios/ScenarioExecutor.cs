@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using AYellowpaper.SerializedCollections;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.Profiling;
@@ -130,7 +131,7 @@ public class ScenarioExecutor : MonoBehaviour
                return runtimeState.vitals.heartRate;
            }, x =>
            {
-               runtimeState.vitals.heartRate = (int)x;
+               runtimeState.vitals.heartRate = x;
            }
            ));
 
@@ -139,7 +140,7 @@ public class ScenarioExecutor : MonoBehaviour
                return runtimeState.vitals.bloodOxygenSaturation;
            }, x =>
            {
-               runtimeState.vitals.bloodOxygenSaturation = (int)x;
+               runtimeState.vitals.bloodOxygenSaturation = x;
            }
            ));
 
@@ -148,7 +149,7 @@ public class ScenarioExecutor : MonoBehaviour
                        return runtimeState.vitals.bloodPressureDiastolic;
                    }, x =>
                    {
-                       runtimeState.vitals.bloodPressureDiastolic = (int)x;
+                       runtimeState.vitals.bloodPressureDiastolic = x;
                    }
                    ));
 
@@ -157,7 +158,7 @@ public class ScenarioExecutor : MonoBehaviour
                 return runtimeState.vitals.bloodPressureSystolic;
             }, x =>
             {
-                runtimeState.vitals.bloodPressureSystolic = (int)x;
+                runtimeState.vitals.bloodPressureSystolic = x;
             }
             ));
 
@@ -166,7 +167,7 @@ public class ScenarioExecutor : MonoBehaviour
            return runtimeState.vitals.bodyTemperature;
        }, x =>
        {
-           runtimeState.vitals.bodyTemperature = (int)x;
+           runtimeState.vitals.bodyTemperature = x;
        }
        ));
 
@@ -174,5 +175,30 @@ public class ScenarioExecutor : MonoBehaviour
         {
             blackboard.SetValue(fl.Key, new BoolValue(fl.Value));
         }
+    }
+
+    public void ChangeValueOverTime(BlackboardKey key, float floatValueChange, float timeUntilApex)
+    {
+        StartCoroutine(IncreaseValue(key, floatValueChange, timeUntilApex));
+    }
+
+    private IEnumerator IncreaseValue(BlackboardKey key, float amount, float duration)
+    {
+        FloatValue floatValue = (FloatValue)blackboard.GetValue(key);
+        float startValue = (float)floatValue.GetValue();
+        float targetValue = startValue + amount;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            float t = elapsed / duration;
+            floatValue.SetValue((float)Mathf.Lerp(startValue, targetValue, t));
+
+            yield return null;
+        }
+
+        floatValue.SetValue((float)targetValue);
     }
 }

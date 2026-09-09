@@ -1385,7 +1385,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: edf15e07185e87747bca888530183e3b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.057
+      value: -5.954
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: edf15e07185e87747bca888530183e3b,
         type: 3}
@@ -1912,8 +1912,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.7664617, z: 1}
+  m_Center: {x: 0.0000000043368202, y: 0.87672347, z: 0.00000009012798}
 --- !u!23 &661279510
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1973,10 +1973,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 661279505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0839f9166837cef4780d5e33419203db, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
+  uiType: 11
 --- !u!1 &680325332
 GameObject:
   m_ObjectHideFlags: 0

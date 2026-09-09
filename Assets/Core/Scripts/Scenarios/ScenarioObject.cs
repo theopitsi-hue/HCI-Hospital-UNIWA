@@ -93,12 +93,12 @@ public class ScenarioState
 [Serializable]
 public class Vitals
 {
-    public int heartRate;
-    public int bloodOxygenSaturation;
-    public int respiratoryRate;
-    public int bloodPressureSystolic;   // large pressure (bp_big)
-    public int bloodPressureDiastolic;  // small pressure (bp_small)
-    public int bodyTemperature;
+    public float heartRate;
+    public float bloodOxygenSaturation;
+    public float respiratoryRate;
+    public float bloodPressureSystolic;   // large pressure (bp_big)
+    public float bloodPressureDiastolic;  // small pressure (bp_small)
+    public float bodyTemperature;
 }
 
 [Serializable]
