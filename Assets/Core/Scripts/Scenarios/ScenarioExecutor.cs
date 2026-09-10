@@ -171,6 +171,25 @@ public class ScenarioExecutor : MonoBehaviour
        }
        ));
 
+        blackboard.SetValue(BB.SkinState, new RemoteFloatValue(() =>
+                  {
+                      return runtimeState.vitals.skinType;
+                  }, x =>
+                  {
+                      runtimeState.vitals.skinType = (int)x;
+                  }
+                  ));
+
+        blackboard.SetValue(BB.BreathRate, new RemoteFloatValue(() =>
+       {
+           return runtimeState.vitals.breathRate;
+       }, x =>
+       {
+           runtimeState.vitals.breathRate = x;
+       }
+       ));
+
+
         foreach (var fl in runtimeState.flags)
         {
             blackboard.SetValue(fl.Key, new BoolValue(fl.Value));

@@ -21,4 +21,14 @@ public class ThermometerUI : MachineUI
         float val = (float)v.GetValue();
         temperatureText.text = val.ToString("F1");
     }
+
+
+    public void OnButtonClick()
+    {
+        if (!GameManager.Instance.playerData.KnowsValue(keys[0]))
+        {
+            GameManager.Instance.playerData.AddKnownValue(keys[0]);
+            GameManager.Instance.uiManager.SendUIToast("Temperature has been recorded. Fill it in the EHR field.", Color.white);
+        }
+    }
 }

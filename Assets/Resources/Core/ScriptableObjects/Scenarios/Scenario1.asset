@@ -64,6 +64,20 @@ MonoBehaviour:
           id: n2
           onEnterEffects: []
           onExitEffects: []
+          nodeTransitionRules:
+          - id: 
+            triggerOnce: 0
+            conditions:
+            - rid: 3445855366584467472
+            effects:
+            - rid: 3445855366584467473
+      - Key: n3
+        Value:
+          id: n3
+          onEnterEffects:
+          - rid: 3445855366584467474
+          - rid: 3445855366584467476
+          onExitEffects: []
           nodeTransitionRules: []
   textmap:
     dialogue:
@@ -86,3 +100,26 @@ MonoBehaviour:
       data:
         runOnFail: 0
         nodeID: n2
+    - rid: 3445855366584467472
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 5
+    - rid: 3445855366584467473
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n3
+    - rid: 3445855366584467474
+      type: {class: DeltaBlackboardFloatEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
+        floatValueChange: 4
+        timeUntilApex: 20
+    - rid: 3445855366584467476
+      type: {class: ChangeFlagEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
+        floatValue: 1
+        boolValue: 0

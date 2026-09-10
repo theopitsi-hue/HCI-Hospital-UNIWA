@@ -99,6 +99,8 @@ public class Vitals
     public float bloodPressureSystolic;   // large pressure (bp_big)
     public float bloodPressureDiastolic;  // small pressure (bp_small)
     public float bodyTemperature;
+    public int skinType;
+    public float breathRate;
 }
 
 [Serializable]
