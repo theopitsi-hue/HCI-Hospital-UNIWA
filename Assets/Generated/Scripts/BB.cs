@@ -5,6 +5,7 @@ public static class BB
     public static readonly string BloodPressDiastolic = "BloodPressDiastolic";
     public static readonly string BloodPressSystolic = "BloodPressSystolic";
     public static readonly string BreathRate = "BreathRate";
+    public static readonly string hasActiveDocumentationGate = "hasActiveDocumentationGate";
     public static readonly string HeartRate = "HeartRate";
     public static readonly string SkinState = "SkinState";
     public static readonly string Temperature = "Temperature";

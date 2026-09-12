@@ -96,6 +96,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void GoToHUD()
+    {
+        ActivateOnly(UIType.HUD);
+    }
     public void CloseAll()
     {
         foreach (UIEntry entry in uiDictionary.Values)

@@ -5,19 +5,6 @@ using UnityEngine.UI;
 
 public class FormUI : MonoBehaviour
 {
-    public Button cancel, confirm;
-    public GameObject form;
-    public GameObject formContainer;
+    public Button submit;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

@@ -5,6 +5,7 @@ using Unity.IO.LowLevel.Unsafe;
 using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.tvOS;
 
 public class ScenarioExecutor : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class ScenarioExecutor : MonoBehaviour
     private ScenarioMeta Metadata => activeScenario.scenarioMeta;
     private RuleManager GlobalRuleManager => activeScenario.globalRules;
     private LogInfo LogInfo => activeScenario.logInfo;
-    private Textmap Dialogue => activeScenario.textmap;
+    private Textmap Dialogue => activeScenario.staticData.textmap;
+    public ScenarioStaticData activeStaticData => activeScenario.staticData;
 
     [SerializeField]
     private ScenarioState runtimeState;
@@ -36,6 +38,11 @@ public class ScenarioExecutor : MonoBehaviour
 
     //Nodemap
     public NodeManager nodeManager = new();
+
+    //docu gate
+    private bool hasActiveGate = false;
+    public bool HasActiveDocumentationGate => hasActiveGate;
+
 
     private void Awake()
     {
@@ -173,6 +180,15 @@ public class ScenarioExecutor : MonoBehaviour
        }
        ));
 
+        blackboard.SetValue(BB.hasActiveDocumentationGate, new RemoteBoolVariable(() =>
+                 {
+                     return hasActiveGate;
+                 }, ignored =>
+                 {
+
+                 }
+                 ));
+
 
         foreach (var fl in runtimeState.flags)
         {
@@ -204,4 +220,48 @@ public class ScenarioExecutor : MonoBehaviour
 
         floatValue.SetValue((float)targetValue);
     }
+
+    public void SetActiveDocumentationGate(DocumentationGate gate)
+    {
+        runtimeState.activeDocumentationGate = gate;
+        hasActiveGate = true;
+
+        Debug.Log("Set docu gate: " + gate);
+    }
+
+    public DocumentationGate GetActiveDocumentationGate()
+    {
+        return runtimeState.activeDocumentationGate;
+    }
+
+    public void ClearActiveDocumentationGate(DocumentationGate gate, bool completed = false)
+    {
+        runtimeState.activeDocumentationGate = null;
+        hasActiveGate = false;
+
+        if (completed)
+            runtimeState.MarkGateCompleted(gate);
+
+    }
+
+    public bool IsGateCompleted(DocumentationGate gate)
+    {
+        return runtimeState.IsGateCompleted(gate);
+    }
+
+    public bool TryGetDocumentationGate(string name, out DocumentationGate gate)
+    {
+        if (activeStaticData.documentationGates.TryGetValue(name, out gate))
+        {
+
+            return true;
+        }
+        else
+        {
+            Debug.LogError($"No such documentation gate found: '{name}', are you sure it exists in the scenario's static data?");
+
+            return false;
+        }
+    }
+
 }

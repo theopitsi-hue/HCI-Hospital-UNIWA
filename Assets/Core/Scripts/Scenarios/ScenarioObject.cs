@@ -7,6 +7,7 @@ using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using NaughtyAttributes;
 using Unity.VisualScripting;
+using System.Text;
 
 [SerializeField]
 [CreateAssetMenu(fileName = "ScenarioObject", menuName = "Scenario/ScenarioObject", order = 0)]
@@ -15,11 +16,16 @@ public class ScenarioObject : ScriptableObject
     private const int _schema_version = 0;
     public ScenarioMeta scenarioMeta;
     public ScenarioState initialState;
+    //initial active hotspots
     public SerializedDictionary<string, bool> ActiveHotspots = new();
     public RuleManager globalRules;
     public LogInfo logInfo;
+    //tree shaped diagram that handles transition logic
     public Nodemap nodemap;
-    public Textmap textmap;
+
+    //static scenario data that gets referenced elsewhere
+    //like documentation gates and dialogue/options
+    public ScenarioStaticData staticData;
 
     public string Serialize()
     {
@@ -36,8 +42,38 @@ public class ScenarioObject : ScriptableObject
 }
 
 [Serializable]
+public class ScenarioStaticData
+{
+    [SerializeField]
+    public SerializedDictionary<string, DocumentationGate> documentationGates;
+    public Textmap textmap;
+}
+
+[Serializable]
+public class DocumentationGate
+{
+    public string name;
+    public List<BlackboardKey> requiredFields;
+
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+        sb.Append($"Gate(\'{name}\',");
+        foreach (var item in requiredFields)
+        {
+            sb.Append(item.name);
+            sb.Append(",");
+        }
+        sb.Remove(sb.Length - 1, 1);
+        sb.Append(")");
+        return sb.ToString();
+    }
+}
+
+[Serializable]
 public class Textmap
 {
+    //todo embelish this
     public SerializedDictionary<int, string> dialogue = new();
 
 }
@@ -72,6 +108,21 @@ public class ScenarioState
     public SerializedDictionary<string, bool> flags = new();
 
     public Vitals vitals;
+
+    public DocumentationGate activeDocumentationGate;
+    private HashSet<string> completedGates = new();
+
+    public void MarkGateCompleted(DocumentationGate gate)
+    {
+        Debug.Log("Completed documentation gate: " + gate);
+        completedGates.Add(gate.name);
+    }
+
+    public bool IsGateCompleted(DocumentationGate gate)
+    {
+        return completedGates.Contains(gate.name);
+    }
+
 
     public ScenarioState(int timeElapsed, int currentScore, SerializedDictionary<string, bool> flags, Vitals vitals)
     {
@@ -130,7 +181,7 @@ public class RuleManager
             }
         }
     }
-    
+
     public void Disable(Rule item)
     {
         if (rules.Remove(item))

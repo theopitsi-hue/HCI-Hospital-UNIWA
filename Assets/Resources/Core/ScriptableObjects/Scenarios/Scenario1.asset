@@ -43,6 +43,11 @@ MonoBehaviour:
       bloodPressureSystolic: 125
       bloodPressureDiastolic: 80
       bodyTemperature: 37
+      skinType: 0
+      breathRate: 0
+    activeDocumentationGate:
+      name: 
+      requiredFields: []
   ActiveHotspots:
     _serializedList: []
   globalRules:
@@ -65,8 +70,7 @@ MonoBehaviour:
           onEnterEffects: []
           onExitEffects: []
           nodeTransitionRules:
-          - id: 
-            triggerOnce: 0
+          - triggerOnce: 0
             conditions:
             - rid: 3445855366584467472
             effects:
@@ -77,13 +81,33 @@ MonoBehaviour:
           onEnterEffects:
           - rid: 3445855366584467474
           - rid: 3445855366584467476
+          - rid: 3445855439314747404
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747401
+            effects:
+            - rid: 3445855439314747402
+            - rid: 3445855439314747403
+      - Key: n4
+        Value:
+          id: n4
+          onEnterEffects: []
           onExitEffects: []
           nodeTransitionRules: []
-  textmap:
-    dialogue:
+  staticData:
+    documentationGates:
       _serializedList:
-      - Key: 0
-        Value: wah wah wah
+      - Key: gate1
+        Value:
+          name: 
+          requiredFields:
+          - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+          - {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
+    textmap:
+      dialogue:
+        _serializedList: []
   references:
     version: 2
     RefIds:
@@ -123,3 +147,23 @@ MonoBehaviour:
         flag: {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
         floatValue: 1
         boolValue: 0
+    - rid: 3445855439314747401
+      type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
+      data:
+        gateName: gate1
+    - rid: 3445855439314747402
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n4
+    - rid: 3445855439314747403
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: Documentation gate complete!
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855439314747404
+      type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        documentationGateName: gate1
