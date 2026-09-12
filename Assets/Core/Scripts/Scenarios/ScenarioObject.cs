@@ -16,7 +16,7 @@ public class ScenarioObject : ScriptableObject
     public ScenarioMeta scenarioMeta;
     public ScenarioState initialState;
     public SerializedDictionary<string, bool> ActiveHotspots = new();
-    public GlobalRules globalRules;
+    public RuleManager globalRules;
     public LogInfo logInfo;
     public Nodemap nodemap;
     public Textmap textmap;
@@ -104,12 +104,33 @@ public class Vitals
 }
 
 [Serializable]
-public class GlobalRules
+public class RuleManager
 {
     public List<Rule> rules = new();
     [HideInInspector]
     public List<Rule> triggerDisabled = new();
 
+    public void EvaluateAll(ScenarioExecutor exec)
+    {
+        for (int i = rules.Count - 1; i >= 0; i--)
+        {
+            var item = rules[i];
+
+            if (item.Evaluate(exec))
+            {
+                item.ApplyPassEffects(exec);
+                if (item.TriggerOnce)
+                {
+                    Disable(item);
+                }
+            }
+            else
+            {
+                item.ApplyFailEffects(exec);
+            }
+        }
+    }
+    
     public void Disable(Rule item)
     {
         if (rules.Remove(item))

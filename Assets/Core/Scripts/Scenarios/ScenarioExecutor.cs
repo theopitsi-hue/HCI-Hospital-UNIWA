@@ -18,7 +18,7 @@ public class ScenarioExecutor : MonoBehaviour
 
     //pull data from the active scenario, for convinience.
     private ScenarioMeta Metadata => activeScenario.scenarioMeta;
-    private GlobalRules GlobalRules => activeScenario.globalRules;
+    private RuleManager GlobalRuleManager => activeScenario.globalRules;
     private LogInfo LogInfo => activeScenario.logInfo;
     private Textmap Dialogue => activeScenario.textmap;
 
@@ -83,23 +83,7 @@ public class ScenarioExecutor : MonoBehaviour
 
     private void UpdateRules()
     {
-        for (int i = GlobalRules.rules.Count - 1; i >= 0; i--)
-        {
-            var item = GlobalRules.rules[i];
-
-            if (item.Evaluate(this))
-            {
-                item.ApplyPassEffects(this);
-                if (item.TriggerOnce)
-                {
-                    GlobalRules.Disable(item);
-                }
-            }
-            else
-            {
-                item.ApplyFailEffects(this);
-            }
-        }
+        GlobalRuleManager.EvaluateAll(this);
     }
 
     private void UpdateTick()

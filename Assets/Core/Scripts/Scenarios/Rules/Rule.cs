@@ -5,10 +5,10 @@ using UnityEngine;
 [Serializable]
 public class Rule
 {
-    [SerializeField]
-    public string id;
+    // [SerializeField]
+    private string id;
 
-    [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again. NEEDS the rule to have an ID in order to work properly.")]
+    [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again.")]
     [SerializeField]
     private bool triggerOnce = true;
 
@@ -18,6 +18,11 @@ public class Rule
     public List<Condition> conditions = new();
     [SerializeReference, SubclassSelector]
     public List<Effect> effects = new();
+
+    public Rule()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     public bool Evaluate(ScenarioExecutor scenarioExecutor)
     {

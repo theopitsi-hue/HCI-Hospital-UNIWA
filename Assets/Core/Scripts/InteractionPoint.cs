@@ -14,6 +14,9 @@ public class InteractionPoint : MonoBehaviour
     [SerializeField]
     public List<BlackboardKey> onClickObservations = new();
 
+    [SerializeField]
+    public RuleManager ruleManager = new();
+
     private void Awake()
     {
         rec = GetComponent<InteractReceiver>();
@@ -36,6 +39,8 @@ public class InteractionPoint : MonoBehaviour
                 GameManager.Instance.uiManager.SendUIToast($"{key.name} has been recorded. Fill it in the EHR field.", Color.white);
             }
         }
+
+        ruleManager.EvaluateAll(GameManager.Instance.sceneExecutor);
 
     }
 }
