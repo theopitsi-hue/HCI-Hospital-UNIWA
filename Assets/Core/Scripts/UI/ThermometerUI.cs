@@ -5,7 +5,7 @@ public class ThermometerUI : MachineUI
 {
     [SerializeField] private TMP_Text temperatureText;
 
-    public override void Setup(Machine machine)
+    public override void Setup(InteractionPoint machine)
     {
         base.Setup(machine);
         Debug.Log(machine.name);

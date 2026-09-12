@@ -1023,7 +1023,8 @@ GameObject:
   - component: {fileID: 403506527}
   - component: {fileID: 403506526}
   - component: {fileID: 403506525}
-  - component: {fileID: 403506524}
+  - component: {fileID: 403506529}
+  - component: {fileID: 403506528}
   m_Layer: 0
   m_Name: BloodPressure
   m_TagString: Untagged
@@ -1046,19 +1047,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 610348298}
   m_LocalEulerAnglesHint: {x: 1.591, y: -157.245, z: 1.242}
---- !u!114 &403506524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403506522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3965e66507b64843bb3002dfa2f1e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiPanelName: 
 --- !u!65 &403506525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1078,8 +1066,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.4536085, y: 1.0239761, z: 0.24709506}
+  m_Center: {x: -0.00000047474845, y: 0.51161957, z: 0.02212112}
 --- !u!23 &403506526
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1130,6 +1118,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403506522}
   m_Mesh: {fileID: 7240493346068470835, guid: 33214f9d37d795441875ba08bbe38a7c, type: 3}
+--- !u!114 &403506528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403506522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiType: 13
+  onClickObservations: []
+--- !u!114 &403506529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403506522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc989ca255995f46b1769c9b8a53d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &423427243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,8 +1958,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.7664617, z: 1}
-  m_Center: {x: 0.0000000043368202, y: 0.87672347, z: 0.00000009012798}
+  m_Size: {x: 0.4337289, y: 1.7322005, z: 0.42141098}
+  m_Center: {x: -0.0000013851153, y: 0.86610013, z: -0.015495152}
 --- !u!23 &661279510
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2000,6 +2023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiType: 11
+  onClickObservations: []
 --- !u!1 &680325332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,7 +3006,7 @@ GameObject:
   - component: {fileID: 900299324}
   - component: {fileID: 900299323}
   - component: {fileID: 900299322}
-  - component: {fileID: 900299321}
+  - component: {fileID: 900299326}
   m_Layer: 0
   m_Name: TI HRMachine anoiti olokliro domatio thelei
   m_TagString: Untagged
@@ -3005,19 +3029,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 610348298}
   m_LocalEulerAnglesHint: {x: 0.829, y: -198.184, z: 0.026}
---- !u!114 &900299321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900299319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3965e66507b64843bb3002dfa2f1e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiPanelName: HR
 --- !u!114 &900299322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3033,7 +3044,7 @@ MonoBehaviour:
   onInteracted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 900299321}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InteractionBridge, Assembly-CSharp
         m_MethodName: OpenUI
         m_Mode: 1
@@ -3070,8 +3081,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7390755, y: 1.4586565, z: 0.98543507}
-  m_Center: {x: 0.009652735, y: 0.73754305, z: 0.016337544}
+  m_Size: {x: 0.66712147, y: 1.3711239, z: 1.020629}
+  m_Center: {x: -0.008325177, y: 0.685562, z: -0.0010615289}
 --- !u!23 &900299324
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3122,6 +3133,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900299319}
   m_Mesh: {fileID: 8575602911497088702, guid: b70e83a925d96a54fb3f0533124b6a0b, type: 3}
+--- !u!114 &900299326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900299319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiType: 10
+  onClickObservations: []
 --- !u!1 &921473339
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,8 +3378,9 @@ GameObject:
   - component: {fileID: 935505296}
   - component: {fileID: 935505294}
   - component: {fileID: 935505298}
+  - component: {fileID: 935505299}
   m_Layer: 6
-  m_Name: Sphere (2)
+  m_Name: skinInteraction2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3469,6 +3495,21 @@ CapsuleCollider:
   m_Height: 1.9999999
   m_Direction: 1
   m_Center: {x: 0, y: -0.00000023841858, z: 0}
+--- !u!114 &935505299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935505292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiType: 0
+  onClickObservations:
+  - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
 --- !u!1001 &965427492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4781,7 +4822,7 @@ GameObject:
   - component: {fileID: 1503740936}
   - component: {fileID: 1503740935}
   - component: {fileID: 1503740934}
-  - component: {fileID: 1503740933}
+  - component: {fileID: 1503740938}
   m_Layer: 0
   m_Name: O2Machine
   m_TagString: Untagged
@@ -4804,19 +4845,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 610348298}
   m_LocalEulerAnglesHint: {x: -1.3, y: 181.419, z: -89.328}
---- !u!114 &1503740933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503740931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3965e66507b64843bb3002dfa2f1e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiPanelName: 
 --- !u!114 &1503740934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4857,8 +4885,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23786202, y: 0.35460544, z: 0.07608113}
-  m_Center: {x: 0.06260516, y: 0.06320449, z: -0.0673518}
+  m_Size: {x: 0.12942287, y: 0.2650848, z: 0.032276124}
+  m_Center: {x: 0.000000026733971, y: 0.13182728, z: -0.000000050782518}
 --- !u!23 &1503740936
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4909,6 +4937,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503740931}
   m_Mesh: {fileID: -667378291169968554, guid: 8e2067e9391ba0340be613d24391da10, type: 3}
+--- !u!114 &1503740938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503740931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiType: 12
+  onClickObservations: []
 --- !u!1 &1516892657
 GameObject:
   m_ObjectHideFlags: 0
@@ -5287,8 +5329,9 @@ GameObject:
   - component: {fileID: 1830716915}
   - component: {fileID: 1830716914}
   - component: {fileID: 1830716913}
+  - component: {fileID: 1830716917}
   m_Layer: 6
-  m_Name: Sphere (1)
+  m_Name: skinInteraction1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5401,6 +5444,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830716911}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1830716917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830716911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiType: 0
+  onClickObservations:
+  - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
 --- !u!1 &1842214869
 GameObject:
   m_ObjectHideFlags: 0

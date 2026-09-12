@@ -7,7 +7,7 @@ public abstract class MachineUI : MonoBehaviour
     protected List<BlackboardKey> keys;
     protected float tick;
 
-    public virtual void Setup(Machine machine)
+    public virtual void Setup(InteractionPoint machine)
     {
         DoUITick();
     }
