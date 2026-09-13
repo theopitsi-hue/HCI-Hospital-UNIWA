@@ -110,14 +110,14 @@ public class ScenarioExecutor : MonoBehaviour
     private void AddBlackboardValues()
     {
         Debug.Log("Created blackboard variables.");
-        blackboard.SetValue(BB.TimeElapsed, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.TimeElapsed, new RemoteFloatValue(() =>
         {
             return runtimeState.timeElapsed;
         },
         (ignored) => { }
         ));
 
-        blackboard.SetValue(BB.HeartRate, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.HeartRate, new RemoteFloatValue(() =>
            {
                return runtimeState.vitals.heartRate;
            }, x =>
@@ -126,7 +126,7 @@ public class ScenarioExecutor : MonoBehaviour
            }
            ));
 
-        blackboard.SetValue(BB.BloodOxygenSat, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.BloodOxygenSat, new RemoteFloatValue(() =>
            {
                return runtimeState.vitals.bloodOxygenSaturation;
            }, x =>
@@ -135,7 +135,7 @@ public class ScenarioExecutor : MonoBehaviour
            }
            ));
 
-        blackboard.SetValue(BB.BloodPressDiastolic, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.BloodPressDiastolic, new RemoteFloatValue(() =>
                    {
                        return runtimeState.vitals.bloodPressureDiastolic;
                    }, x =>
@@ -144,7 +144,7 @@ public class ScenarioExecutor : MonoBehaviour
                    }
                    ));
 
-        blackboard.SetValue(BB.BloodPressSystolic, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.BloodPressSystolic, new RemoteFloatValue(() =>
             {
                 return runtimeState.vitals.bloodPressureSystolic;
             }, x =>
@@ -153,7 +153,7 @@ public class ScenarioExecutor : MonoBehaviour
             }
             ));
 
-        blackboard.SetValue(BB.Temperature, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.Temperature, new RemoteFloatValue(() =>
        {
            return runtimeState.vitals.bodyTemperature;
        }, x =>
@@ -162,7 +162,7 @@ public class ScenarioExecutor : MonoBehaviour
        }
        ));
 
-        blackboard.SetValue(BB.SkinState, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.SkinState, new RemoteFloatValue(() =>
                   {
                       return runtimeState.vitals.skinType;
                   }, x =>
@@ -171,7 +171,7 @@ public class ScenarioExecutor : MonoBehaviour
                   }
                   ));
 
-        blackboard.SetValue(BB.BreathRate, new RemoteFloatValue(() =>
+        blackboard.RegisterValue(BB.BreathRate, new RemoteFloatValue(() =>
        {
            return runtimeState.vitals.breathRate;
        }, x =>
@@ -180,7 +180,7 @@ public class ScenarioExecutor : MonoBehaviour
        }
        ));
 
-        blackboard.SetValue(BB.hasActiveDocumentationGate, new RemoteBoolVariable(() =>
+        blackboard.RegisterValue(BB.hasActiveDocumentationGate, new RemoteBoolVariable(() =>
                  {
                      return hasActiveGate;
                  }, ignored =>
@@ -189,23 +189,41 @@ public class ScenarioExecutor : MonoBehaviour
                  }
                  ));
 
-
-        foreach (var fl in runtimeState.flags)
+        blackboard.RegisterValue(BB.OxygenTankFuel, new RemoteFloatValue(() =>
         {
-            blackboard.SetValue(fl.Key, new BoolValue(fl.Value));
+            return runtimeState.vitals.oxygenTankFuel;
+        }, x =>
+        {
+            runtimeState.vitals.oxygenTankFuel = x;
+        }
+      ));
+
+        foreach (var hs in activeScenario.ActiveHotspots)
+        {
+            blackboard.RegisterValue(hs.Key, new BoolValue(hs.Value));
+        }
+
+        foreach (var fl in runtimeState.initialBoolKeys)
+        {
+            blackboard.RegisterValue(fl.Key, new BoolValue(fl.Value));
+        }
+
+        foreach (var ft in runtimeState.initialNumberKeys)
+        {
+            blackboard.RegisterValue(ft.Key, new FloatValue(ft.Value));
         }
     }
 
-    public void ChangeValueOverTime(BlackboardKey key, float floatValueChange, float timeUntilApex)
+    public void ChangeValueOverTime(BlackboardKey key, float floatValueChange, float timeUntilApex, bool total = false)
     {
-        StartCoroutine(IncreaseValue(key, floatValueChange, timeUntilApex));
+        StartCoroutine(IncreaseValue(key, floatValueChange, timeUntilApex, total));
     }
 
-    private IEnumerator IncreaseValue(BlackboardKey key, float amount, float duration)
+    private IEnumerator IncreaseValue(BlackboardKey key, float amount, float duration, bool set)
     {
         FloatValue floatValue = (FloatValue)blackboard.GetValue(key);
         float startValue = (float)floatValue.GetValue();
-        float targetValue = startValue + amount;
+        float targetValue = set ? amount : (startValue + amount);
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -253,7 +271,6 @@ public class ScenarioExecutor : MonoBehaviour
     {
         if (activeStaticData.documentationGates.TryGetValue(name, out gate))
         {
-
             return true;
         }
         else
@@ -264,4 +281,8 @@ public class ScenarioExecutor : MonoBehaviour
         }
     }
 
+    public bool CanUseHotSpot(string interactionName)
+    {
+        return (bool)blackboard.GetValue(interactionName).GetValue();
+    }
 }

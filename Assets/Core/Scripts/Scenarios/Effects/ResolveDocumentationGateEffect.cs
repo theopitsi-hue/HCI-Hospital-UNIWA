@@ -10,7 +10,7 @@ public class ResolveDocumentationGateEffect : Effect
         //try load the requested gate
         if (exec.TryGetDocumentationGate(documentationGateName, out var gate))
         {
-            exec.SetActiveDocumentationGate(gate);
+            //exec.SetActiveDocumentationGate(gate);
             exec.ClearActiveDocumentationGate(gate, true);
         }
     }

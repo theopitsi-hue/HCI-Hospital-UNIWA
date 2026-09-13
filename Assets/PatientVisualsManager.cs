@@ -8,6 +8,7 @@ public class PatientVisualsManager : MonoBehaviour
     [SerializeField] private int[] materialSlots;
 
     [SerializeField] private Color hypoxiaColor = Color.blue;
+    [SerializeField] private Color paleColor = Color.white;
     [SerializeField] private float transitionDuration = 3f;
 
     private Coroutine tintCoroutine;
@@ -33,6 +34,10 @@ public class PatientVisualsManager : MonoBehaviour
         else if (val == 1)
         {
             newColor = hypoxiaColor;
+        }
+        else if (val == 2)
+        {
+            newColor = paleColor;
         }
         else
         {

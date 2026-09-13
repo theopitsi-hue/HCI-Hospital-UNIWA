@@ -35,7 +35,7 @@ public class Rule
             }
         }
         //        Debug.Log("Rule condition PASSED: " + id);
-        return true;
+        return conditions.Count == 0 ? false : true;
     }
 
     public void ApplyPassEffects(ScenarioExecutor scenarioExecutor)

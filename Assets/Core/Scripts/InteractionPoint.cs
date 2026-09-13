@@ -8,6 +8,9 @@ using UnityEngine;
 public class InteractionPoint : MonoBehaviour
 {
     [SerializeField]
+    public string interactionName;
+
+    [SerializeField]
     public UIManager.UIType uiType;
     InteractReceiver rec;
 
@@ -17,6 +20,9 @@ public class InteractionPoint : MonoBehaviour
     [SerializeField]
     public RuleManager ruleManager = new();
 
+    [SerializeReference, SubclassSelector]
+    [Tooltip("Effects to trigger when clicking this.")]
+    public List<Effect> justRun = new();
     private void Awake()
     {
         rec = GetComponent<InteractReceiver>();
@@ -26,6 +32,15 @@ public class InteractionPoint : MonoBehaviour
 
     public virtual void OnInteracted()
     {
+        if (!interactionName.Equals("_"))
+        {
+            if (!GameManager.Instance.sceneExecutor.CanUseHotSpot(interactionName))
+            {
+                GameManager.Instance.uiManager.SendUIToast("You cant use this right now.", Color.white);
+                return;
+            }
+        }
+
         if (uiType != UIManager.UIType.None)
         {
             GameManager.Instance.uiManager.ActivateOnly(uiType);
@@ -42,5 +57,11 @@ public class InteractionPoint : MonoBehaviour
 
         ruleManager.EvaluateAll(GameManager.Instance.sceneExecutor);
 
+
+        foreach (var item in justRun)
+        {
+            Debug.Log("bro1");
+            item.Apply(GameManager.Instance.sceneExecutor);
+        }
     }
 }

@@ -8,9 +8,9 @@ public class InteractReceiver : MonoBehaviour
 {
     private bool _interactable = true;
 
-    public UnityEvent onInteracted;
-    public UnityEvent OnHoverEnter;
-    public UnityEvent OnHoverExit;
+    public UnityEvent onInteracted = new();
+    public UnityEvent OnHoverEnter = new();
+    public UnityEvent OnHoverExit = new();
 
     private void Awake()
     {

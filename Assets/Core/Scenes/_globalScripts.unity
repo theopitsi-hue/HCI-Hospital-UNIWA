@@ -23949,7 +23949,9 @@ MonoBehaviour:
   runtimeState:
     timeElapsed: 0
     currentScore: 0
-    flags:
+    initialBoolKeys:
+      _serializedList: []
+    initialNumberKeys:
       _serializedList: []
     vitals:
       heartRate: 0
@@ -23961,6 +23963,7 @@ MonoBehaviour:
       skinType: 0
       breathRate: 0
     activeDocumentationGate:
+      name: 
       requiredFields: []
   blackboard:
     BlackboardVariables:

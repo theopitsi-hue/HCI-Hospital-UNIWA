@@ -24,34 +24,60 @@ MonoBehaviour:
   initialState:
     timeElapsed: 0
     currentScore: 100
-    flags:
+    initialBoolKeys:
       _serializedList:
-      - Key: AssessmentComplete
+      - Key: OxygenMaskInUse
         Value: 0
-      - Key: OxygenAdjusted
+      - Key: DoctorCalled
         Value: 0
-      - Key: Documentation1Complete
-        Value: 0
-      - Key: EscalationComplete
-        Value: 0
-      - Key: Documentation2Complete
-        Value: 0
+    initialNumberKeys:
+      _serializedList:
+      - Key: OxygenTankFuel
+        Value: 20
     vitals:
-      heartRate: 110
-      bloodOxygenSaturation: 88
-      respiratoryRate: 24
-      bloodPressureSystolic: 125
-      bloodPressureDiastolic: 80
-      bodyTemperature: 37
+      heartRate: 74
+      bloodOxygenSaturation: 98
+      respiratoryRate: 15
+      bloodPressureSystolic: 110
+      bloodPressureDiastolic: 70
+      bodyTemperature: 36
       skinType: 0
-      breathRate: 0
+      breathRate: 17
+      oxygenTankFuel: 25
     activeDocumentationGate:
       name: 
       requiredFields: []
   ActiveHotspots:
-    _serializedList: []
+    _serializedList:
+    - Key: OxygenTank
+      Value: 0
+    - Key: OxygenTank_Replacement
+      Value: 0
+    - Key: EHR_computer
+      Value: 1
+    - Key: OxygenMask
+      Value: 0
+    - Key: Call_Doctor
+      Value: 0
+    - Key: ECGMonitor
+      Value: 1
+    - Key: PressureReader
+      Value: 1
+    - Key: OxygenReader
+      Value: 1
+    - Key: Thermometer
+      Value: 1
+    - Key: PatientMouth
+      Value: 1
+    - Key: PatientSkin
+      Value: 1
   globalRules:
-    rules: []
+    rules:
+    - triggerOnce: 0
+      conditions:
+      - rid: 3445855439314747469
+      effects:
+      - rid: 3445855439314747477
     triggerDisabled: []
   nodemap:
     entryNodeID: n1_start
@@ -67,12 +93,13 @@ MonoBehaviour:
       - Key: n2
         Value:
           id: n2
-          onEnterEffects: []
+          onEnterEffects:
+          - rid: 3445855439314747412
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
             conditions:
-            - rid: 3445855366584467472
+            - rid: 3445855439314747409
             effects:
             - rid: 3445855366584467473
       - Key: n3
@@ -81,6 +108,9 @@ MonoBehaviour:
           onEnterEffects:
           - rid: 3445855366584467474
           - rid: 3445855366584467476
+          - rid: 3445855439314747410
+          - rid: 3445855439314747411
+          - rid: 3445855439314747417
           - rid: 3445855439314747404
           onExitEffects: []
           nodeTransitionRules:
@@ -93,18 +123,159 @@ MonoBehaviour:
       - Key: n4
         Value:
           id: n4
+          onEnterEffects:
+          - rid: 3445855439314747415
+          - rid: 3445855439314747416
+          - rid: 3445855439314747459
+          - rid: 3445855439314747460
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747413
+            effects:
+            - rid: 3445855439314747414
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747424
+            effects:
+            - rid: 3445855439314747425
+      - Key: n5_did_nothing
+        Value:
+          id: n5_did_nothing
+          onEnterEffects:
+          - rid: 3445855439314747418
+          - rid: 3445855439314747461
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747428
+            effects:
+            - rid: 3445855439314747427
+      - Key: n5_oxygen_mask
+        Value:
+          id: n5_oxygen_mask
+          onEnterEffects:
+          - rid: 3445855439314747470
+          - rid: 3445855439314747471
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 1
+            conditions:
+            - rid: 3445855439314747426
+            - rid: 3445855439314747430
+            effects:
+            - rid: 3445855439314747429
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747431
+            effects:
+            - rid: 3445855439314747432
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747467
+            effects:
+            - rid: 3445855439314747468
+      - Key: n6_low_oxygen
+        Value:
+          id: n6_low_oxygen
+          onEnterEffects:
+          - rid: 3445855439314747442
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747438
+            effects:
+            - rid: 3445855439314747439
+      - Key: n6_ok_oxygen
+        Value:
+          id: n6_ok_oxygen
+          onEnterEffects:
+          - rid: 3445855439314747457
+          - rid: 3445855439314747458
+          - rid: 3445855439314747481
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747446
+            effects:
+            - rid: 3445855439314747447
+      - Key: n7_call
+        Value:
+          id: n7_call
+          onEnterEffects:
+          - rid: 3445855439314747472
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747450
+            effects:
+            - rid: 3445855439314747451
+      - Key: n7_call_finish
+        Value:
+          id: n7_call_finish
+          onEnterEffects:
+          - rid: 3445855439314747479
+          - rid: 3445855439314747456
+          - rid: 3445855439314747453
+          onExitEffects: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747454
+            effects:
+            - rid: 3445855439314747455
+      - Key: n8_scenario_fail
+        Value:
+          id: n8_scenario_fail
           onEnterEffects: []
+          onExitEffects: []
+          nodeTransitionRules: []
+      - Key: n8_scenario_done
+        Value:
+          id: n8_scenario_done
+          onEnterEffects:
+          - rid: 3445855439314747482
           onExitEffects: []
           nodeTransitionRules: []
   staticData:
     documentationGates:
       _serializedList:
-      - Key: gate1
+      - Key: gate_1
         Value:
-          name: 
+          name: gate_1
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
+          - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+      - Key: gate_2
+        Value:
+          name: gate_2
+          requiredFields:
+          - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+          - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
+          - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+          - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
+      - Key: n5_oxygen_mask
+        Value:
+          name: n5_oxygen_mask
+          requiredFields: []
+      - Key: n6_ok_oxygen
+        Value:
+          name: n6_ok_oxygen
+          requiredFields:
+          - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+          - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
+          - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+          - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
+      - Key: n7_call
+        Value:
+          name: n7_call
+          requiredFields: []
     textmap:
       dialogue:
         _serializedList: []
@@ -124,10 +295,6 @@ MonoBehaviour:
       data:
         runOnFail: 0
         nodeID: n2
-    - rid: 3445855366584467472
-      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
-      data:
-        waitTime: 5
     - rid: 3445855366584467473
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -138,19 +305,20 @@ MonoBehaviour:
       data:
         runOnFail: 0
         flag: {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
-        floatValueChange: 4
-        timeUntilApex: 20
+        floatValueChange: 1.2
+        timeUntilApex: 5
+        setValueOnly: 0
     - rid: 3445855366584467476
       type: {class: ChangeFlagEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
         flag: {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
-        floatValue: 1
+        floatValue: 2
         boolValue: 0
     - rid: 3445855439314747401
       type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
       data:
-        gateName: gate1
+        gateName: gate_2
     - rid: 3445855439314747402
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -160,10 +328,296 @@ MonoBehaviour:
       type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        toastText: Documentation gate complete!
+        toastText: The patient is hyperventilating. Continue monitoring their condition.
         color: {r: 1, g: 1, b: 1, a: 1}
     - rid: 3445855439314747404
       type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        documentationGateName: gate1
+        documentationGateName: gate_2
+    - rid: 3445855439314747409
+      type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
+      data:
+        gateName: gate_1
+    - rid: 3445855439314747410
+      type: {class: DeltaBlackboardFloatEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+        floatValueChange: 10
+        timeUntilApex: 3
+        setValueOnly: 0
+    - rid: 3445855439314747411
+      type: {class: DeltaBlackboardFloatEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
+        floatValueChange: 10
+        timeUntilApex: 4
+        setValueOnly: 0
+    - rid: 3445855439314747412
+      type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        documentationGateName: gate_1
+    - rid: 3445855439314747413
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 15
+    - rid: 3445855439314747414
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n5_did_nothing
+    - rid: 3445855439314747415
+      type: {class: DeltaBlackboardFloatEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+        floatValueChange: 20
+        timeUntilApex: 3
+        setValueOnly: 0
+    - rid: 3445855439314747416
+      type: {class: DeltaBlackboardFloatEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+        floatValueChange: -3
+        timeUntilApex: 3
+        setValueOnly: 0
+    - rid: 3445855439314747417
+      type: {class: DeltaBlackboardFloatEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+        floatValueChange: -1
+        timeUntilApex: 2
+        setValueOnly: 0
+    - rid: 3445855439314747418
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: Patient has deteriorated!
+        color: {r: 1, g: 0.31892985, b: 0.2971698, a: 1}
+    - rid: 3445855439314747424
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: ef3c2996c1dff88408b2222cbd1a22be, type: 2}
+        right: {fileID: 0}
+        rightNum: 0
+        rightBool: 1
+        numberComparisonType: 0
+        booleanComparisonType: 0
+    - rid: 3445855439314747425
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n5_oxygen_mask
+    - rid: 3445855439314747426
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
+        right: {fileID: 0}
+        rightNum: 7
+        rightBool: 0
+        numberComparisonType: 3
+        booleanComparisonType: 0
+    - rid: 3445855439314747427
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n6_low_oxygen
+    - rid: 3445855439314747428
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 2
+    - rid: 3445855439314747429
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: The oxygen tank is almost empty!
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855439314747430
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 1
+    - rid: 3445855439314747431
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
+        right: {fileID: 0}
+        rightNum: 0
+        rightBool: 0
+        numberComparisonType: 5
+        booleanComparisonType: 0
+    - rid: 3445855439314747432
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n6_low_oxygen
+    - rid: 3445855439314747438
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 5
+    - rid: 3445855439314747439
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n7_call
+    - rid: 3445855439314747442
+      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        noticeTitle: Critical State
+        noticeText: The patient is in a critical state, as you failed to act in time.
+          Call the doctor to resolve the situation!
+        onButtonPressedEffects:
+        - rid: 3445855439314747443
+    - rid: 3445855439314747443
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n7_call
+    - rid: 3445855439314747446
+      type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
+      data:
+        gateName: n6_ok_oxygen
+    - rid: 3445855439314747447
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n8_scenario_done
+    - rid: 3445855439314747450
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: 41e8ab8158d192747b32e15666c3b8f9, type: 2}
+        right: {fileID: 0}
+        rightNum: 0
+        rightBool: 1
+        numberComparisonType: 0
+        booleanComparisonType: 0
+    - rid: 3445855439314747451
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n7_call_finish
+    - rid: 3445855439314747453
+      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        noticeTitle: Doctor Notified
+        noticeText: A doctor has been notified and the patient has been stabilized.
+          Document your latest observations and submit them to complete the scenario.
+        onButtonPressedEffects: []
+    - rid: 3445855439314747454
+      type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
+      data:
+        gateName: n7_call
+    - rid: 3445855439314747455
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n7_scenario_done
+    - rid: 3445855439314747456
+      type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        documentationGateName: n7_call
+    - rid: 3445855439314747457
+      type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        documentationGateName: n6_ok_oxygen
+    - rid: 3445855439314747458
+      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        noticeTitle: Stabilized
+        noticeText: The patient has been stabilized. Use the EHR to complete your
+          report and submit it to conclude the scenario.
+        onButtonPressedEffects: []
+    - rid: 3445855439314747459
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenTank
+        boolValue: 1
+    - rid: 3445855439314747460
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenMask
+        boolValue: 1
+    - rid: 3445855439314747461
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenMask
+        boolValue: 0
+    - rid: 3445855439314747467
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
+        right: {fileID: 0}
+        rightNum: 50
+        rightBool: 0
+        numberComparisonType: 2
+        booleanComparisonType: 0
+    - rid: 3445855439314747468
+      type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        nodeID: n6_ok_oxygen
+    - rid: 3445855439314747469
+      type: {class: IsInNodeCondition, ns: , asm: Assembly-CSharp}
+      data:
+        nodeName: n5_oxygen_mask
+    - rid: 3445855439314747470
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenTank_Replacement
+        boolValue: 1
+    - rid: 3445855439314747471
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenMask
+        boolValue: 0
+    - rid: 3445855439314747472
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: Call_Doctor
+        boolValue: 1
+    - rid: 3445855439314747477
+      type: {class: ChangeOverTime, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
+        floatValueChangePerFrame: -3
+        minimum: 0
+        maximum: 100
+    - rid: 3445855439314747479
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: Call_Doctor
+        boolValue: 0
+    - rid: 3445855439314747481
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenTank_Replacement
+        boolValue: 0
+    - rid: 3445855439314747482
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: aaaaaaaaaaaaaaaaaaa
+        color: {r: 0.51497644, g: 1, b: 0.495283, a: 1}

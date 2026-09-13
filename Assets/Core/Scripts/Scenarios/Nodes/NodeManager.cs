@@ -50,6 +50,12 @@ public class NodeManager
         return nodeMap.ContainsKey(id);
     }
 
+    public bool IsInNode(string id)
+    {
+        return Exists(id) && activeNode != null && activeNode.id == id;
+    }
+
+
     public void TryTransition(ScenarioExecutor exec, string nodeID)
     {
         if (Exists(nodeID) && nodeMap.TryGetValue(nodeID, out var node))

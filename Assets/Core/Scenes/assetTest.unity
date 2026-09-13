@@ -256,6 +256,177 @@ Transform:
   - {fileID: 1294715454}
   m_Father: {fileID: 108479830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &226545006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226545007}
+  - component: {fileID: 226545012}
+  - component: {fileID: 226545011}
+  - component: {fileID: 226545010}
+  - component: {fileID: 226545009}
+  - component: {fileID: 226545008}
+  m_Layer: 0
+  m_Name: OxygenTank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &226545007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226545006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.152, y: -0.38, z: -3.089}
+  m_LocalScale: {x: 1, y: 2.232, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 610348298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226545008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226545006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionName: OxygenTank
+  uiType: 0
+  onClickObservations: []
+  ruleManager:
+    rules:
+    - triggerOnce: 0
+      conditions:
+      - rid: 3445855439314747408
+      effects:
+      - rid: 3445855439314747406
+    triggerDisabled: []
+  justRun: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 3445855439314747406
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: Low oxygen levels...
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855439314747408
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: 241bb55b3751d224ab1240cb86ad9ad9, type: 2}
+        right: {fileID: 0}
+        rightNum: 0
+        rightBool: 0
+        numberComparisonType: 2
+        booleanComparisonType: 0
+--- !u!114 &226545009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226545006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc989ca255995f46b1769c9b8a53d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &226545010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226545006}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &226545011
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226545006}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &226545012
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226545006}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &233500233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 720fb463300deee408af15390383d21f,
@@ -1130,11 +1301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: PressureReader
   uiType: 13
   onClickObservations: []
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -1839,7 +2012,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 747640927}
+  - {fileID: 226545007}
+  - {fileID: 1597942362}
+  - {fileID: 1151590400}
   - {fileID: 673951235}
+  - {fileID: 1421590687}
   - {fileID: 1899650238}
   - {fileID: 900299320}
   - {fileID: 403506523}
@@ -2031,11 +2208,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: Thermometer
   uiType: 11
   onClickObservations: []
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -2069,7 +2248,7 @@ Transform:
   m_GameObject: {fileID: 673951234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.23400635, z: -0, w: 0.9722351}
-  m_LocalPosition: {x: -6.159, y: 1.08, z: -11.14}
+  m_LocalPosition: {x: -6.159, y: 1.08, z: -15.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2087,34 +2266,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: _
   uiType: 0
   onClickObservations: []
   ruleManager:
-    rules:
-    - triggerOnce: 0
-      conditions:
-      - rid: 3445855439314747399
-      effects:
-      - rid: 3445855439314747405
+    rules: []
     triggerDisabled: []
+  justRun:
+  - rid: 3445855439314747485
   references:
     version: 2
     RefIds:
-    - rid: 3445855439314747399
-      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
-      data:
-        comparisonMode: 1
-        left: {fileID: 11400000, guid: 241bb55b3751d224ab1240cb86ad9ad9, type: 2}
-        right: {fileID: 0}
-        rightNum: 0
-        rightBool: 1
-        numberComparisonType: 2
-        booleanComparisonType: 0
-    - rid: 3445855439314747405
+    - rid: 3445855439314747485
       type: {class: ResolveDocumentationGateEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        documentationGateName: gate1
+        documentationGateName: gate_1
 --- !u!114 &673951237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,11 +2852,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: EHR_computer
   uiType: 7
   onClickObservations: []
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -3354,7 +3523,7 @@ Transform:
   m_GameObject: {fileID: 900299319}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0013656552, y: -0.9874094, z: 0.0071107615, w: -0.15801997}
-  m_LocalPosition: {x: -1.793, y: -1.135, z: -3.212}
+  m_LocalPosition: {x: -1.782, y: -1.135, z: -3.212}
   m_LocalScale: {x: 1.980088, y: 1.980088, z: 1.980088}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3374,19 +3543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onInteracted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InteractionBridge, Assembly-CSharp
-        m_MethodName: OpenUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -3476,11 +3633,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: ECGMonitor
   uiType: 10
   onClickObservations: []
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -3844,12 +4003,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: PatientSkin
   uiType: 0
   onClickObservations:
   - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -4312,6 +4473,177 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150384151}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1151590399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151590400}
+  - component: {fileID: 1151590405}
+  - component: {fileID: 1151590404}
+  - component: {fileID: 1151590403}
+  - component: {fileID: 1151590402}
+  - component: {fileID: 1151590401}
+  m_Layer: 0
+  m_Name: OxygenMask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151590400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151590399}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15199995, y: 0.85, z: -3.089}
+  m_LocalScale: {x: 0.31, y: 0.31, z: 0.31}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 610348298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1151590401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151590399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionName: OxygenMask
+  uiType: 0
+  onClickObservations: []
+  ruleManager:
+    rules:
+    - triggerOnce: 0
+      conditions:
+      - rid: 3445855439314747465
+      effects:
+      - rid: 3445855439314747463
+    triggerDisabled: []
+  justRun: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 3445855439314747463
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: OxygenMaskInUse
+        boolValue: 1
+    - rid: 3445855439314747465
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: 241bb55b3751d224ab1240cb86ad9ad9, type: 2}
+        right: {fileID: 0}
+        rightNum: 0
+        rightBool: 0
+        numberComparisonType: 2
+        booleanComparisonType: 0
+--- !u!114 &1151590402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151590399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc989ca255995f46b1769c9b8a53d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &1151590403
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151590399}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1151590404
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151590399}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1151590405
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151590399}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1171097372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,6 +4976,7 @@ MonoBehaviour:
   modelRenderer: {fileID: 340950664}
   materialSlots: 0700000008000000
   hypoxiaColor: {r: 0.759434, g: 0.759434, b: 1, a: 1}
+  paleColor: {r: 0.9386792, g: 0.9386792, b: 1, a: 1}
   transitionDuration: 6
   skinState: {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
 --- !u!4 &1277215948
@@ -4976,6 +5309,162 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1275110179}
   m_SourcePrefab: {fileID: 100100000, guid: 100bc810685042f46875acc0b010baf7, type: 3}
+--- !u!1 &1421590686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421590687}
+  - component: {fileID: 1421590692}
+  - component: {fileID: 1421590691}
+  - component: {fileID: 1421590690}
+  - component: {fileID: 1421590689}
+  - component: {fileID: 1421590688}
+  m_Layer: 0
+  m_Name: debug (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1421590687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421590686}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.23400635, z: -0, w: 0.9722351}
+  m_LocalPosition: {x: -7.98, y: 1.08, z: -15.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 610348298}
+  m_LocalEulerAnglesHint: {x: 0, y: 27.066, z: 0}
+--- !u!114 &1421590688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421590686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionName: _
+  uiType: 0
+  onClickObservations: []
+  ruleManager:
+    rules: []
+    triggerDisabled: []
+  justRun:
+  - rid: 3445855439314747486
+  references:
+    version: 2
+    RefIds:
+    - rid: 3445855439314747486
+      type: {class: ResolveDocumentationGateEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        documentationGateName: gate_2
+--- !u!114 &1421590689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421590686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc989ca255995f46b1769c9b8a53d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &1421590690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421590686}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1421590691
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421590686}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1421590692
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421590686}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1424216442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,11 +5781,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: OxygenReader
   uiType: 12
   onClickObservations: []
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -5530,6 +6021,178 @@ PrefabInstance:
       addedObject: {fileID: 1469146747}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 720fb463300deee408af15390383d21f, type: 3}
+--- !u!1 &1597942361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1597942362}
+  - component: {fileID: 1597942367}
+  - component: {fileID: 1597942366}
+  - component: {fileID: 1597942365}
+  - component: {fileID: 1597942364}
+  - component: {fileID: 1597942363}
+  m_Layer: 0
+  m_Name: OxygenTank_replacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1597942362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597942361}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.3221658, z: -0, w: 0.9466833}
+  m_LocalPosition: {x: 5.18, y: -0.38, z: -14.36}
+  m_LocalScale: {x: 1, y: 2.232, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 610348298}
+  m_LocalEulerAnglesHint: {x: 0, y: -37.588, z: 0}
+--- !u!114 &1597942363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597942361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionName: OxygenTank_Replacement
+  uiType: 0
+  onClickObservations: []
+  ruleManager:
+    rules:
+    - triggerOnce: 0
+      conditions:
+      - rid: 3445855439314747466
+      effects:
+      - rid: 3445855439314747407
+    triggerDisabled: []
+  justRun: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 3445855439314747407
+      type: {class: ChangeFlagEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
+        floatValue: 100
+        boolValue: 0
+    - rid: 3445855439314747466
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: 241bb55b3751d224ab1240cb86ad9ad9, type: 2}
+        right: {fileID: 0}
+        rightNum: 0
+        rightBool: 0
+        numberComparisonType: 2
+        booleanComparisonType: 0
+--- !u!114 &1597942364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597942361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc989ca255995f46b1769c9b8a53d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &1597942365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597942361}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1597942366
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597942361}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1597942367
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597942361}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1654657363
 GameObject:
   m_ObjectHideFlags: 0
@@ -5805,12 +6468,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: PatientMouth
   uiType: 0
   onClickObservations:
   - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
   ruleManager:
     rules: []
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds: []
@@ -6194,6 +6859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0970414a3fb8f48a826024f558feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionName: Call_Doctor
   uiType: 0
   onClickObservations: []
   ruleManager:
@@ -6203,7 +6869,9 @@ MonoBehaviour:
       - rid: 3445855439314747398
       effects:
       - rid: 3445855439314747397
+      - rid: 3445855439314747475
     triggerDisabled: []
+  justRun: []
   references:
     version: 2
     RefIds:
@@ -6223,6 +6891,13 @@ MonoBehaviour:
         rightBool: 0
         numberComparisonType: 2
         booleanComparisonType: 0
+    - rid: 3445855439314747475
+      type: {class: ChangeFlagEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: {fileID: 11400000, guid: 41e8ab8158d192747b32e15666c3b8f9, type: 2}
+        floatValue: 0
+        boolValue: 1
 --- !u!114 &1899650240
 MonoBehaviour:
   m_ObjectHideFlags: 0

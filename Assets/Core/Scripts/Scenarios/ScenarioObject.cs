@@ -105,7 +105,8 @@ public class ScenarioState
     public float timeElapsed = 0;
     public int currentScore = 0;
 
-    public SerializedDictionary<string, bool> flags = new();
+    public SerializedDictionary<string, bool> initialBoolKeys = new();
+    public SerializedDictionary<string, float> initialNumberKeys = new();
 
     public Vitals vitals;
 
@@ -128,7 +129,7 @@ public class ScenarioState
     {
         this.timeElapsed = timeElapsed;
         this.currentScore = currentScore;
-        this.flags = flags;
+        this.initialBoolKeys = flags;
         this.vitals = vitals;
     }
 
@@ -136,7 +137,7 @@ public class ScenarioState
     {
         this.timeElapsed = other.timeElapsed;
         this.currentScore = other.currentScore;
-        this.flags = other.flags;
+        this.initialBoolKeys = other.initialBoolKeys;
         this.vitals = other.vitals;
     }
 }
@@ -152,6 +153,7 @@ public class Vitals
     public float bodyTemperature;
     public int skinType;
     public float breathRate;
+    public float oxygenTankFuel;
 }
 
 [Serializable]

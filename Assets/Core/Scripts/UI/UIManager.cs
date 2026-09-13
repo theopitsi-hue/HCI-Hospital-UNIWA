@@ -59,7 +59,6 @@ public class UIManager : MonoBehaviour
             callback.Invoke();
             Debug.Log("Notice btn clicked");
             Deactivate(UIType.Notice);
-
             ActivateOnly(UIType.HUD);
         });
     }
