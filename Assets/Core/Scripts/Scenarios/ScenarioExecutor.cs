@@ -109,6 +109,7 @@ public class ScenarioExecutor : MonoBehaviour
 
     private void AddBlackboardValues()
     {
+        //todo: get rid of this ewwwwww!!!!
         Debug.Log("Created blackboard variables.");
         blackboard.RegisterValue(BB.TimeElapsed, new RemoteFloatValue(() =>
         {

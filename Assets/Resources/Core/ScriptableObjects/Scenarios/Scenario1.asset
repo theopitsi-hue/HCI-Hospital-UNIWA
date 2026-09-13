@@ -161,12 +161,6 @@ MonoBehaviour:
           - rid: 3445855439314747471
           onExitEffects: []
           nodeTransitionRules:
-          - triggerOnce: 1
-            conditions:
-            - rid: 3445855439314747426
-            - rid: 3445855439314747430
-            effects:
-            - rid: 3445855439314747429
           - triggerOnce: 0
             conditions:
             - rid: 3445855439314747431
@@ -194,8 +188,8 @@ MonoBehaviour:
           id: n6_ok_oxygen
           onEnterEffects:
           - rid: 3445855439314747457
-          - rid: 3445855439314747458
           - rid: 3445855439314747481
+          - rid: 3445855443851673600
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -241,7 +235,12 @@ MonoBehaviour:
           onEnterEffects:
           - rid: 3445855439314747482
           onExitEffects: []
-          nodeTransitionRules: []
+          nodeTransitionRules:
+          - triggerOnce: 0
+            conditions:
+            - rid: 3445855439314747487
+            effects:
+            - rid: 3445855439314747489
   staticData:
     documentationGates:
       _serializedList:
@@ -260,22 +259,22 @@ MonoBehaviour:
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
-      - Key: n5_oxygen_mask
+      - Key: gate_n6
         Value:
-          name: n5_oxygen_mask
-          requiredFields: []
-      - Key: n6_ok_oxygen
-        Value:
-          name: n6_ok_oxygen
+          name: gate_n6
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
-      - Key: n7_call
+      - Key: gate_n7
         Value:
-          name: n7_call
-          requiredFields: []
+          name: gate_n7
+          requiredFields:
+          - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+          - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
+          - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+          - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
     textmap:
       dialogue:
         _serializedList: []
@@ -414,16 +413,6 @@ MonoBehaviour:
       data:
         runOnFail: 0
         nodeID: n5_oxygen_mask
-    - rid: 3445855439314747426
-      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
-      data:
-        comparisonMode: 1
-        left: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
-        right: {fileID: 0}
-        rightNum: 7
-        rightBool: 0
-        numberComparisonType: 3
-        booleanComparisonType: 0
     - rid: 3445855439314747427
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -433,16 +422,6 @@ MonoBehaviour:
       type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
       data:
         waitTime: 2
-    - rid: 3445855439314747429
-      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        toastText: The oxygen tank is almost empty!
-        color: {r: 1, g: 1, b: 1, a: 1}
-    - rid: 3445855439314747430
-      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
-      data:
-        waitTime: 1
     - rid: 3445855439314747431
       type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
       data:
@@ -484,7 +463,7 @@ MonoBehaviour:
     - rid: 3445855439314747446
       type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
       data:
-        gateName: n6_ok_oxygen
+        gateName: gate_n6
     - rid: 3445855439314747447
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -516,30 +495,22 @@ MonoBehaviour:
     - rid: 3445855439314747454
       type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
       data:
-        gateName: n7_call
+        gateName: gate_n7
     - rid: 3445855439314747455
       type: {class: GoToNodeEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        nodeID: n7_scenario_done
+        nodeID: n8_scenario_done
     - rid: 3445855439314747456
       type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        documentationGateName: n7_call
+        documentationGateName: gate_n7
     - rid: 3445855439314747457
       type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        documentationGateName: n6_ok_oxygen
-    - rid: 3445855439314747458
-      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        noticeTitle: Stabilized
-        noticeText: The patient has been stabilized. Use the EHR to complete your
-          report and submit it to conclude the scenario.
-        onButtonPressedEffects: []
+        documentationGateName: gate_n6
     - rid: 3445855439314747459
       type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -621,3 +592,21 @@ MonoBehaviour:
         runOnFail: 0
         toastText: aaaaaaaaaaaaaaaaaaa
         color: {r: 0.51497644, g: 1, b: 0.495283, a: 1}
+    - rid: 3445855439314747487
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 4
+    - rid: 3445855439314747489
+      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        noticeTitle: 
+        noticeText: 
+        onButtonPressedEffects: []
+    - rid: 3445855443851673600
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: The patient has been stabilized. Use the EHR to complete your
+          report and submit it to conclude the scenario.
+        color: {r: 1, g: 1, b: 1, a: 1}

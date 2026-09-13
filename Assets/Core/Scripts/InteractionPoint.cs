@@ -29,7 +29,8 @@ public class InteractionPoint : MonoBehaviour
         rec.onInteracted.AddListener(OnInteracted);
     }
 
-
+    //curent bug: the ends for some fukin reason loop back to the first node and replay the whole scenario in an instant
+    //actual dogshit who wrote tis
     public virtual void OnInteracted()
     {
         if (!interactionName.Equals("_"))
