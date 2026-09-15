@@ -9,8 +9,9 @@ public class Blackboard
     public SerializedDictionary<string, BlackboardValue> BlackboardVariables = new();
 
 
-    public void SetValue(string name, BlackboardValue bal)
+    public void RegisterValue(string name, BlackboardValue bal)
     {
+        Debug.Log("Registering:" + name + " | " + bal.GetType().Name + "");
         BlackboardVariables[name] = bal;
     }
 

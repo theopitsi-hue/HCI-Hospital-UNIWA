@@ -118,9 +118,28 @@
     "nodes": [
         {
             "id": "n1_start",
-            "type": "message",
-            "text": "Βρίσκεστε στη ΜΕΘ. Ο ασθενής στην κλίνη 1 εμφανίζει ξαφνική δύσπνοια. Το μόνιτορ χτυπάει (SpO2: 88%).",
-            "next_node_id": "n2_initial_decision"
+            "on_enter": {
+                "effects": {
+                    "ui_trigger": {
+                        "type": "message",
+                        "text": "Βρίσκεστε στη ΜΕΘ. Ο ασθενής στην κλίνη 1 εμφανίζει ξαφνική δύσπνοια. Το μόνιτορ χτυπάει (SpO2: 88%)."
+                    }
+                }
+            },
+            "branch": {
+                "n2_initial_decision": {
+                    "conditions": {
+                        "seconds_since_node_entered": {
+                            "greater_than": 5
+                        }
+                    },
+                    "effects": {
+                        "node_transition": {
+                            "node_id": "n2_initial_decision"
+                        }
+                    }
+                }
+            }
         },
         {
             "id": "n2_initial_decision",

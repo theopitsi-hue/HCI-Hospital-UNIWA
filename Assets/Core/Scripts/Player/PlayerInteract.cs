@@ -13,35 +13,44 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(pCam.transform.position, pCam.transform.forward, out var hit, interactMaxDistance))
-        {
-            if (hit.transform != null && hit.transform.TryGetComponent<InteractReceiver>(out var receiver))
-            {
-                if (hovering && receiver != hovering)
-                {
-                    hovering.TriggerHoverExit();
-                }
-                hovering = receiver;
-                hovering.TriggerHoverEnter();
-            }
-            else
-            {
-                if (hovering)
-                {
-                    hovering.TriggerHoverExit();
-                }
-            }
+        InteractReceiver receiver = null;
 
-        }
-        else
+        // Raycast from the center of the camera
+        if (Physics.Raycast(
+            pCam.transform.position,
+            pCam.transform.forward,
+            out RaycastHit hit,
+            interactMaxDistance))
         {
-            if (hovering)
+            // Check the object we hit
+            if (hit.transform.TryGetComponent<InteractReceiver>(out var hitReceiver))
+            {
+                receiver = hitReceiver;
+            }
+        }
+
+        // We are now hovering a different object
+        if (receiver != hovering)
+        {
+            // Stop hovering the old object
+            if (hovering != null)
             {
                 hovering.TriggerHoverExit();
             }
+
+            // Start hovering the new object
+            hovering = receiver;
+
+            if (hovering != null)
+            {
+                hovering.TriggerHoverEnter();
+            }
         }
 
-        if (hovering != null && Input.GetMouseButtonDown(0) && Cursor.visible == false)
+        // Interact only with the object we're CURRENTLY hovering
+        if (hovering != null &&
+            Input.GetMouseButtonDown(0) &&
+            Cursor.visible == false)
         {
             hovering.TriggerInteraction();
         }

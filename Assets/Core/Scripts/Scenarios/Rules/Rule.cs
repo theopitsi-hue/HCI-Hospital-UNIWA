@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-[CreateAssetMenu(fileName = "Rule", menuName = "Scenario/Rule", order = 0)]
-public class Rule : ScriptableObject
+public class Rule
 {
-    public string id;
+    // [SerializeField]
+    private string id;
 
-    [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again. NEEDS the rule to have an ID in order to work properly.")]
+    [Tooltip("Makes this rule trigger ONLY once, no matter if the conditions are met again.")]
     [SerializeField]
     private bool triggerOnce = true;
 
@@ -19,18 +19,23 @@ public class Rule : ScriptableObject
     [SerializeReference, SubclassSelector]
     public List<Effect> effects = new();
 
+    public Rule()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
+
     public bool Evaluate(ScenarioExecutor scenarioExecutor)
     {
         foreach (var con in conditions)
         {
             if (!con.Evaluate(scenarioExecutor))
             {
-                Debug.Log("Rule condition FAILED: " + id);
+                //Debug.Log("Rule condition FAILED: " + id);
                 return false;
             }
         }
-        Debug.Log("Rule condition PASSED: " + id);
-        return true;
+        //        Debug.Log("Rule condition PASSED: " + id);
+        return conditions.Count == 0 ? false : true;
     }
 
     public void ApplyPassEffects(ScenarioExecutor scenarioExecutor)
@@ -43,7 +48,7 @@ public class Rule : ScriptableObject
             }
         }
 
-        Debug.Log("Applied rule effects: " + id);
+        // Debug.Log("Applied rule effects: " + id);
     }
 
     public void ApplyFailEffects(ScenarioExecutor scenarioExecutor)
@@ -56,28 +61,6 @@ public class Rule : ScriptableObject
             }
         }
     }
-
-    // public override bool Equals(object obj)
-    // {
-    //     if (ReferenceEquals(this, obj))
-    //         return true;
-
-    //     if (obj is not Rule other)
-    //         return false;
-
-    //     // Both null or empty IDs are never considered equal
-    //     if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(other.id))
-    //         return false;
-
-    //     return id == other.id;
-    // }
-
-    // public override int GetHashCode()
-    // {
-    //     // Stable hash even if id is null/empty
-    //     return string.IsNullOrEmpty(id) ? 0 : id.GetHashCode();
-    // }
-
     public override string ToString()
     {
         return "Rule(id:" + id + ")";

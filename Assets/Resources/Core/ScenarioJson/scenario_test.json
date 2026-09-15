@@ -1,7 +1,0 @@
-{
-    "condition": {
-        "TimeElapsed": {
-            "greater_than": 10.6
-        }
-    }
-}

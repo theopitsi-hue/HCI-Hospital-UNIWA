@@ -30,37 +30,41 @@ namespace CottageCooking
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            // Cursor.lockState = CursorLockMode.Locked;
+            // Cursor.visible = false;
         }
 
         void Update()
         {
+            if (!GameManager.Instance.uiManager.IsActive(UIManager.UIType.HUD))
+            {
+                return;
+            }
             HandleLook();
             HandleMove();
-            HandleMouseLock();
+            //HandleMouseLock();
         }
 
-        void HandleMouseLock()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (Cursor.lockState == CursorLockMode.Locked)
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                }
-            }
-        }
+        // void HandleMouseLock()
+        // {
+        //     if (Input.GetKeyDown(KeyCode.Escape))
+        //     {
+        //         if (Cursor.lockState == CursorLockMode.Locked)
+        //         {
+        //             Cursor.lockState = CursorLockMode.None;
+        //             Cursor.visible = true;
+        //         }
+        //         else
+        //         {
+        //             Cursor.lockState = CursorLockMode.Locked;
+        //             Cursor.visible = false;
+        //         }
+        //     }
+        // }
 
         void HandleLook()
         {
-            if (Cursor.lockState != CursorLockMode.Locked) return;
+            if (Cursor.lockState != CursorLockMode.Locked || Cursor.visible) return;
 
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -85,13 +89,13 @@ namespace CottageCooking
 
 
 
-            if (controller.isGrounded && velocity.y < 0)
-                velocity.y = -2f;
+            // if (controller.isGrounded && velocity.y < 0)
+            //     velocity.y = -2f;
 
-            if (controller.isGrounded && Input.GetButtonDown("Jump"))
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            // if (controller.isGrounded && Input.GetButtonDown("Jump"))
+            //     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
-            velocity.y += gravity * Time.deltaTime;
+            // velocity.y += gravity * Time.deltaTime;
 
             controller.Move(((move * speed) + velocity) * Time.deltaTime);
         }

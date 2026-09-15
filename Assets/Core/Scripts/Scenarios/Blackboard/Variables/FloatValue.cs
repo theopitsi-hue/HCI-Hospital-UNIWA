@@ -6,7 +6,7 @@ using System;
 public class FloatValue : BlackboardValue
 {
     private float value;
-    public FloatValue() { }
+    public FloatValue(float init = 0) { value = init; }
 
     public override object GetValue() => value;
     public override void SetValue(object i) => value = ((float)i);

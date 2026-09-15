@@ -1,6 +1,7 @@
 
 using System;
 using System.ComponentModel;
+using Newtonsoft.Json;
 using UnityEngine;
 
 [System.Serializable]
@@ -18,6 +19,7 @@ public abstract class Effect
     //called when the condition fails
     public virtual void ApplyFailed(ScenarioExecutor exec)
     {
-
     }
+
+
 }
