@@ -10,8 +10,8 @@ public class Toast : MonoBehaviour
 
     [Header("Fade Settings")]
     [SerializeField] private float fadeInDuration = 0.15f;
-    [SerializeField] private float fadeOutDuration = 0.4f;
-    [SerializeField] private float lifetime = 6f;
+    [SerializeField] private float fadeOutDuration = 0.9f;
+    [SerializeField] private float lifetime = 14f;
 
     public void Setup(string message, Color color)
     {

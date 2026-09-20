@@ -1,12 +1,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using AYellowpaper.SerializedCollections;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
-using NaughtyAttributes;
-using Unity.VisualScripting;
 using System.Text;
 
 [SerializeField]
@@ -130,6 +126,10 @@ public class ScenarioState
         completedGates.Add(gate.name);
 
         for (int i = 0; i < gate.requiredFields.Count; i++)
+        {
+            PossibleMaxScore += 100;
+        }
+        for (int i = 0; i < gate.requiredActionIds.Count; i++)
         {
             PossibleMaxScore += 100;
         }

@@ -94,7 +94,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 8061881863307056248}
   fadeInDuration: 0.15
   fadeOutDuration: 0.4
-  lifetime: 3
+  lifetime: 5
 --- !u!225 &8061881863307056248
 CanvasGroup:
   m_ObjectHideFlags: 0
