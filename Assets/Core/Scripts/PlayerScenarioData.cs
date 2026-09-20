@@ -17,7 +17,7 @@ public class PlayerScenarioData : MonoBehaviour
 
     public void Clear()
     {
-        Debug.Log("Cleared player knowledge!");
+        GameLogger.Log("Cleared player knowledge!");
         knownValues.Clear();
     }
 

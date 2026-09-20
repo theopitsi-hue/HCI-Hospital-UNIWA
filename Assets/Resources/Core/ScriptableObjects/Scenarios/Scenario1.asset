@@ -173,6 +173,7 @@ MonoBehaviour:
           onEnterEffects:
           - rid: 3445855439314747470
           - rid: 3445855439314747471
+          - rid: 3445855609887391758
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -840,4 +841,11 @@ MonoBehaviour:
         runOnFail: 0
         toastText: Check the patient's vitals one more time, then submit another
           report
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855609887391758
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: The oxygen valve displays a low value. Try and find an oxygen
+          tank before it runs out!
         color: {r: 1, g: 1, b: 1, a: 1}

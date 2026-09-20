@@ -50,16 +50,23 @@ public class UIManager : MonoBehaviour
     public void SendUIToast(string text, Color color)
     {
         toastFeed.SpawnToast(text, color);
+        GameLogger.Log("Toast");
+
+        GameLogger.Log(text);
     }
 
     public void SendUINotice(string title, string message, UnityAction callback)
     {
         ActivateOnly(UIType.Notice);
+        GameLogger.Log("Notice");
+
+        GameLogger.Log(title);
+        GameLogger.Log(message);
 
         noticeUI.Setup(title, message, () =>
         {
             callback.Invoke();
-            Debug.Log("Notice btn clicked");
+            GameLogger.Log("Notice btn clicked");
             Deactivate(UIType.Notice);
             ActivateOnly(UIType.HUD);
         });
@@ -89,7 +96,7 @@ public class UIManager : MonoBehaviour
 
             if (uiDictionary.ContainsKey(entry.type))
             {
-                Debug.LogWarning($"Duplicate UI entry for {entry.type}");
+                GameLogger.LogWarning($"Duplicate UI entry for {entry.type}");
                 continue;
             }
 
@@ -118,7 +125,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"UI '{type}' not found.");
+            GameLogger.LogWarning($"UI '{type}' not found.");
         }
     }
 

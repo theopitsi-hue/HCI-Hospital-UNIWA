@@ -138,7 +138,7 @@ public class ScenarioExecutor : MonoBehaviour
         blackboard.RegisterValue("ScenarioCompleted", new BoolValue());
 
         //todo: get rid of this ewwwwww!!!!
-        Debug.Log("Created blackboard variables.");
+        GameLogger.Log("Created blackboard variables.");
         blackboard.RegisterValue(BB.TimeElapsed, new RemoteFloatValue(() =>
         {
             return runtimeState.timeElapsed;
@@ -258,7 +258,7 @@ public class ScenarioExecutor : MonoBehaviour
         runtimeState.activeDocumentationGate = gate;
         hasActiveGate = true;
         OnDocumentationGateSet?.Invoke(gate);
-        Debug.Log("Set docu gate: " + gate);
+        GameLogger.Log("Set docu gate: " + gate);
     }
 
     public DocumentationGate GetActiveDocumentationGate()
@@ -293,7 +293,7 @@ public class ScenarioExecutor : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"No such documentation gate found: '{name}', are you sure it exists in the scenario's static data?");
+            GameLogger.LogError($"No such documentation gate found: '{name}', are you sure it exists in the scenario's static data?");
 
             return false;
         }

@@ -17,18 +17,18 @@ public class BlackboardKey : ScriptableObject
         val = null;
         if (GameManager.Instance.sceneExecutor == null)
         {
-            Debug.Log("SceneExecutor Missing");
+            GameLogger.Log("SceneExecutor Missing");
             return false;
         }
         if (GameManager.Instance.sceneExecutor.blackboard == null)
         {
-            Debug.Log("blackboard Missing");
+            GameLogger.Log("blackboard Missing");
             return false;
         }
         var cal = GameManager.Instance.sceneExecutor.blackboard.GetValue(name);
         if (cal == null)
         {
-            Debug.Log("key Missing");
+            GameLogger.Log("key Missing");
             return false;
         }
         val = GameManager.Instance.sceneExecutor.blackboard.GetValue(name);

@@ -126,7 +126,7 @@ public class ScenarioState
 
     public void MarkGateCompleted(DocumentationGate gate)
     {
-        Debug.Log("Completed documentation gate: " + gate);
+        GameLogger.Log("Completed documentation gate: " + gate);
         completedGates.Add(gate.name);
 
         for (int i = 0; i < gate.requiredFields.Count; i++)
@@ -210,7 +210,7 @@ public class RuleManager
         if (rules.Remove(item))
         {
             triggerDisabled.Add(item);
-            Debug.Log("Disabled rule with id:" + item);
+            GameLogger.Log("Disabled rule with id:" + item);
         }
     }
 }

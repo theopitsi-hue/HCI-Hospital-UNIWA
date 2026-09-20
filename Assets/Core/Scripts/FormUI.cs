@@ -47,7 +47,7 @@ public class FormUI : MonoBehaviour
             OnDocuGateComplete(activeGate);
 
         createReportTitle.text = "Report - Documentation Gate -" + gate.Label;
-        Debug.Log("MADE FIELDS!!");
+        GameLogger.Log("MADE FIELDS!!");
         activeGate = gate;
         //create all fields according to the gate
 
@@ -97,7 +97,7 @@ public class FormUI : MonoBehaviour
 
             GameManager.Instance.sceneExecutor.ClearActiveDocumentationGate(activeGate, true);
 
-            Debug.Log(GameManager.Instance.sceneExecutor.GetScoreReport());
+            GameLogger.Log(GameManager.Instance.sceneExecutor.GetScoreReport());
 
             GameManager.Instance.playerData.Clear();
             GameManager.Instance.uiManager.GoToHUD();

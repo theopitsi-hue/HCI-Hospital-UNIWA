@@ -29,12 +29,12 @@ public class NodeManager
     {
         if (newNode == null)
         {
-            Debug.LogError("NodeManager:GoToNode - Next node '" + newNode + "' is null.");
+            GameLogger.LogError("NodeManager:GoToNode - Next node '" + newNode + "' is null.");
             return;
         }
         if (activeNode != null && newNode.id == activeNode.id)
         {
-            Debug.LogWarning("NodeManager:GoToNode - Cannot transition to a node thats already active.");
+            GameLogger.LogWarning("NodeManager:GoToNode - Cannot transition to a node thats already active.");
 
             return;
         }
@@ -42,7 +42,7 @@ public class NodeManager
         activeNode = newNode;
         activeNode?.OnEnter(exec);
 
-        Debug.Log("Entered node:" + newNode.id);
+        GameLogger.Log("Entered node:" + newNode.id);
         exec.AddNodePathTrack(newNode.id);
     }
 

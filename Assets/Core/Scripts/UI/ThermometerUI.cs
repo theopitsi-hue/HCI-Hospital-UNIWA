@@ -9,7 +9,7 @@ public class ThermometerUI : MachineUI
     public override void Setup(InteractionPoint machine)
     {
         base.Setup(machine);
-        Debug.Log(machine.name);
+        GameLogger.Log(machine.name);
     }
 
     protected override void DoUITick()

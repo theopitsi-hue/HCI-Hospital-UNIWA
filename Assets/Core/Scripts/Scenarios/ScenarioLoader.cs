@@ -38,15 +38,15 @@ public class ScenarioLoader : MonoBehaviour
         if (!Directory.Exists(LoadPath))
         {
             Directory.CreateDirectory(LoadPath);
-            Debug.Log("Created scenario folder: " + LoadPath);
+            GameLogger.Log("Created scenario folder: " + LoadPath);
             return;
         }
 
-        Debug.Log("Searching for Json: " + LoadPath);
+        GameLogger.Log("Searching for Json: " + LoadPath);
 
         string[] files = Directory.GetFiles(LoadPath, "*.json");
 
-        Debug.Log("Found: " + files.Length + " scenario files");
+        GameLogger.Log("Found: " + files.Length + " scenario files");
 
         foreach (string file in files)
         {
@@ -55,7 +55,7 @@ public class ScenarioLoader : MonoBehaviour
             ScenarioObject scenario = ScenarioObject.FromJson(json);
             scenario.scenarioMeta.title += " (JSON)";
             AddScenario(scenario);
-            Debug.Log("Loaded: " + Path.GetFileName(file));
+            GameLogger.Log("Loaded: " + Path.GetFileName(file));
         }
 
 
@@ -75,7 +75,7 @@ public class ScenarioLoader : MonoBehaviour
     {
         if (scenario.scenarioMeta.id == null || scenario.scenarioMeta.id == "")
         {
-            Debug.LogError("Scenario has no id, therefore cannot be loaded.");
+            GameLogger.LogError("Scenario has no id, therefore cannot be loaded.");
             return;
             //todo: add more validity checks
         }

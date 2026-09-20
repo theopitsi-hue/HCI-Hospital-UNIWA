@@ -11,7 +11,7 @@ public class Blackboard
 
     public void RegisterValue(string name, BlackboardValue bal)
     {
-        Debug.Log("Registering:" + name + " | " + bal.GetType().Name + "");
+        GameLogger.Log("Registering:" + name + " | " + bal.GetType().Name + "");
         BlackboardVariables[name] = bal;
     }
 
@@ -21,7 +21,7 @@ public class Blackboard
         {
             return b;
         }
-        Debug.LogError("Blackboard variable doesnt exist: '" + name + "', Have you registered it?");
+        GameLogger.LogError("Blackboard variable doesnt exist: '" + name + "', Have you registered it?");
         return null;
     }
 

@@ -48,7 +48,7 @@ public class MachineUIManagerController : MonoBehaviour
         else if (name == "O2") OpenSpecificPanel(o2Panel);
         else if (name == "BP") OpenSpecificPanel(bpPanel);
         else if (name == "Temp") OpenSpecificPanel(tempPanel);
-        else Debug.LogWarning("Το όνομα " + name + " δεν βρέθηκε!");
+        else GameLogger.LogWarning("Το όνομα " + name + " δεν βρέθηκε!");
     }
 
     public void OpenHrMachine() => OpenSpecificPanel(hrPanel);

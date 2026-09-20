@@ -30,11 +30,11 @@ public class Rule
         {
             if (!con.Evaluate(scenarioExecutor))
             {
-                //Debug.Log("Rule condition FAILED: " + id);
+                //GameLogger.Log("Rule condition FAILED: " + id);
                 return false;
             }
         }
-        //        Debug.Log("Rule condition PASSED: " + id);
+        //        GameLogger.Log("Rule condition PASSED: " + id);
         return conditions.Count == 0 ? false : true;
     }
 
@@ -48,7 +48,7 @@ public class Rule
             }
         }
 
-        // Debug.Log("Applied rule effects: " + id);
+        // GameLogger.Log("Applied rule effects: " + id);
     }
 
     public void ApplyFailEffects(ScenarioExecutor scenarioExecutor)

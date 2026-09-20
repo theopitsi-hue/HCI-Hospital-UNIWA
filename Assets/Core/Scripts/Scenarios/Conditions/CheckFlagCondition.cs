@@ -41,7 +41,7 @@ public class CheckFlagCondition : Condition
                         }
                         else
                         {
-                            Debug.LogError("Key doesnt exist:" + right.name);
+                            GameLogger.LogError("Key doesnt exist:" + right.name);
                         }
                         return false;
                     }
@@ -68,7 +68,7 @@ public class CheckFlagCondition : Condition
                         }
                         else
                         {
-                            Debug.LogError("Key doesnt exist:" + right.name);
+                            GameLogger.LogError("Key doesnt exist:" + right.name);
 
                         }
                         return false;

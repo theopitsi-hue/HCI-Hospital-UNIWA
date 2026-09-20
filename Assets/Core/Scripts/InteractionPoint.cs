@@ -98,7 +98,7 @@ public class InteractionPoint : MonoBehaviour
 
         foreach (var item in justRun)
         {
-            //Debug.Log("bro1");
+            //GameLogger.Log("bro1");
             item.Apply(GameManager.Instance.sceneExecutor);
         }
 
