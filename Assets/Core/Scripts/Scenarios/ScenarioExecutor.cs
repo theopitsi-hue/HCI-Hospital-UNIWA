@@ -23,7 +23,7 @@ public class ScenarioExecutor : MonoBehaviour
     private ScenarioMeta Metadata => activeScenario.scenarioMeta;
     private RuleManager GlobalRuleManager => activeScenario.globalRules;
     private LogInfo LogInfo => activeScenario.logInfo;
-    private Textmap Dialogue => activeScenario.staticData.textmap;
+    public Textmap TextMap => activeScenario.staticData.textmap;
     public ScenarioStaticData activeStaticData => activeScenario.staticData;
 
     [SerializeField]

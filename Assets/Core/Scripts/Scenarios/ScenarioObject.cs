@@ -82,9 +82,7 @@ public class DocumentationField
 [Serializable]
 public class Textmap
 {
-    //todo embelish this
-    public SerializedDictionary<int, string> dialogue = new();
-
+    public SerializedDictionary<string, string> tutorials = new();
 }
 
 [Serializable]

@@ -370,8 +370,97 @@ MonoBehaviour:
           requiredActionIds:
           - call_doctor
     textmap:
-      dialogue:
-        _serializedList: []
+      tutorials:
+        _serializedList:
+        - Key: Movement and Interaction
+          Value: Use <color=#4DA6FF><b>WASD</b></color> to move around the environment.<br><br>Objects
+            that can be interacted with are marked with a <color=#4DA6FF><b>blue
+            outline or blue icon</b></color>. Move close to an interactable object
+            and use the <color=#4DA6FF><b>mouse</b></color> to interact with it.<br><br>Not
+            every interactable object will be available immediately. Some objects
+            have <color=#4DA6FF><b>locked interactions</b></color> that become available
+            later as you progress.<br><br>When exploring, look for <color=#4DA6FF><b>blue
+            outlines and icons</b></color> to identify objects that may provide information
+            or allow you to perform an action.
+        - Key: Pay Attention to Toast Tips
+          Value: Important information will appear in <color=#4DA6FF><b>toast tips
+            at the top of the screen</b></color>.<br><br>These tips can tell you
+            what to do next, explain newly available interactions, or provide information
+            needed to complete the patient's report.<br><br>Read each toast tip carefully.
+            Some instructions may only appear briefly, so <color=#4DA6FF><b>pay attention
+            whenever a new tip appears</b></color>.<br><br>If you are unsure what
+            to do next, check the available interactions and wait for the next relevant
+            tip.
+        - Key: Inspect the Patient
+          Value: The patient's current condition must be determined by <color=#4DA6FF><b>interacting
+            with the patient and medical equipment</b></color>.<br><br>Look for blue
+            outlines or icons around the patient and nearby equipment. Interacting
+            with these objects can reveal information that is not otherwise available.<br><br>For
+            example, you may need to inspect the patient's <color=#4DA6FF><b>hands</b></color>
+            or use equipment such as a <color=#4DA6FF><b>thermometer</b></color>,
+            <color=#4DA6FF><b>thumb oxygen reader</b></color>, or <color=#4DA6FF><b>ventilator</b></color>.<br><br>The
+            information you discover through these interactions is used to complete
+            the patient's EHR accurately.
+        - Key: Complete the EHR
+          Value: Use the <color=#4DA6FF><b>EHR</b></color> to document the patient's
+            current status.<br><br>The EHR contains several <color=#4DA6FF><b>dropdown
+            fields</b></color>. The correct value for each field is determined by
+            information you discover during the scenario.<br><br>Do not guess the
+            values. Instead, <color=#4DA6FF><b>inspect the patient and interact with
+            the relevant equipment</b></color> before selecting an answer.<br><br>For
+            example, a patient's temperature may require you to use the <color=#4DA6FF><b>thermometer</b></color>,
+            while oxygen-related information may require you to use the <color=#4DA6FF><b>thumb
+            oxygen reader</b></color>.<br><br>The goal is to use the information
+            you gather in the environment to select the corresponding values in the
+            EHR.
+        - Key: Gather Information Before Reporting
+          Value: The EHR is designed to test whether you have gathered the patient's
+            information correctly.<br><br>Some answers cannot be determined from
+            the EHR alone. You must first <color=#4DA6FF><b>perform the appropriate
+            interaction</b></color> in the environment.<br><br>If a dropdown contains
+            several possible values, identify which piece of equipment or which patient
+            interaction can provide the required information.<br><br><color=#4DA6FF><b>Interact
+            first, report second.</b></color><br><br>Using the correct information
+            from the environment is necessary to achieve a perfect score.
+        - Key: Document Your Actions
+          Value: Recording the patient's status is only part of the documentation.
+            You must also document <color=#4DA6FF><b>actions you take during the
+            scenario</b></color> when prompted.<br><br>For example, if you put a
+            <color=#4DA6FF><b>mask on the patient</b></color>, follow the prompt
+            to record that action in the appropriate part of the EHR.<br><br>The
+            same applies when you perform other important actions, such as <color=#4DA6FF><b>calling
+            the attending doctor</b></color>.<br><br>When a documentation prompt
+            appears, complete it before continuing. An action that was performed
+            but not documented may affect your score.
+        - Key: Use Medical Equipment
+          Value: "Medical equipment is not only used to perform actions. It can also
+            provide <color=#4DA6FF><b>information required by the EHR</b></color>.<br><br>Look
+            for equipment marked with a <color=#4DA6FF><b>blue outline or icon</b></color>.
+            Interact with the appropriate device to obtain the patient's current
+            values or status.<br><br>Examples include:<br><br><color=#4DA6FF><b>Thermometer</b></color>
+            \u2014 provides temperature information.<br><br><color=#4DA6FF><b>Thumb
+            oxygen reader</b></color> \u2014 provides oxygen-related information.<br><br><color=#4DA6FF><b>Ventilator</b></color>
+            \u2014 provides information about the patient's respiratory support or
+            settings.<br><br><color=#4DA6FF><b>Patient's hands</b></color> \u2014
+            may provide information about the patient's physical status.<br><br>The
+            exact information available depends on the interaction. <color=#4DA6FF><b>Use
+            the information you discover to complete the corresponding EHR fields.</b></color>"
+        - Key: Follow the Complete Workflow
+          Value: A typical scenario follows this workflow:<br><br><color=#4DA6FF><b>1.
+            Explore.</b></color> Use WASD to move around and look for blue outlines
+            and icons.<br><br><color=#4DA6FF><b>2. Inspect.</b></color> Interact
+            with the patient and relevant equipment to gather information.<br><br><color=#4DA6FF><b>3.
+            Perform actions.</b></color> Follow the toast tips and perform any required
+            patient-care actions.<br><br><color=#4DA6FF><b>4. Document actions.</b></color>
+            When prompted, record actions such as applying a mask or calling the
+            attending doctor.<br><br><color=#4DA6FF><b>5. Complete the EHR.</b></color>
+            Use the information you gathered to select the correct dropdown values.<br><br><color=#4DA6FF><b>6.
+            Verify.</b></color> Before finishing, make sure all required patient
+            information and actions have been documented.<br><br><color=#4DA6FF><b>Remember:</b></color>
+            The correct EHR answers are based on what you discover through interactions
+            in the environment. Guessing may allow you to continue, but <color=#4DA6FF><b>only
+            correctly gathering and documenting the information can produce a perfect
+            score.</b></color>
   references:
     version: 2
     RefIds:
