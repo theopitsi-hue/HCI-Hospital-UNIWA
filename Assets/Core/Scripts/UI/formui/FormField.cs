@@ -14,7 +14,9 @@ public class FormField : MonoBehaviour
     public HighlightCorrect highlightCorrect;
     public TMPro.TextMeshProUGUI label;
 
-    public void Initialize(BlackboardKey key, string label, int totalScore, List<string> possibleAwnsers, int rightAwnswerID)
+    public bool allowInvalid = false;
+
+    public void Initialize(BlackboardKey key, string label, int totalScore, List<string> possibleAwnsers, int rightAwnswerID, bool allowInvalid = false)
     {
         this.label.text = label;
         bbKey = key;
@@ -32,7 +34,7 @@ public class FormField : MonoBehaviour
         dropdown.AddOptions(allPossibleAwnsers);
 
         dropdown.onValueChanged.AddListener((i) => { selectedAwnserID = i; });
-
+        this.allowInvalid = allowInvalid;
     }
 
     private void Update()
@@ -45,6 +47,7 @@ public class FormField : MonoBehaviour
 
     public bool PlayerHasObservedAwnser()
     {
+        if (bbKey == null) return false;
         return GameManager.Instance.playerData.KnowsValue(bbKey);
     }
 
@@ -60,6 +63,8 @@ public class FormField : MonoBehaviour
 
     public bool HasValidInformation()
     {
+        if (allowInvalid) return true;
+
         return selectedAwnserID != 0;
     }
 }

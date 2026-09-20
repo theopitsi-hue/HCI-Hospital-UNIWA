@@ -56,6 +56,7 @@ public class DocumentationGate
     public string Label;
     public List<BlackboardKey> requiredFields;
     public List<DocumentationField> awnsers;
+    public List<string> requiredActionIds;
 
     public override string ToString()
     {
@@ -117,6 +118,7 @@ public class ScenarioState
     public SerializedDictionary<string, float> initialNumberKeys = new();
     public List<(int, string)> scoreReasons = new();
     public List<string> nodePathSelected = new();
+    public SerializedDictionary<string, string> possibleActionsToRecord = new();
     public int PossibleMaxScore = 0;
 
     public Vitals vitals;

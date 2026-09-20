@@ -27,17 +27,5 @@ public class PlayerInput : MonoBehaviour
                 GameManager.Instance.uiManager.ActivateOnly(UIManager.UIType.HUD);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!GameManager.Instance.uiManager.IsActive(UIManager.UIType.Form))
-            {
-                GameManager.Instance.uiManager.ActivateOnly(UIManager.UIType.Form);
-            }
-            else
-            {
-                GameManager.Instance.uiManager.ActivateOnly(UIManager.UIType.HUD);
-            }
-        }
     }
 }

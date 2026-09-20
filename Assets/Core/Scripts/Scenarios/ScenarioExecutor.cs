@@ -271,6 +271,7 @@ public class ScenarioExecutor : MonoBehaviour
 
         if (completed)
         {
+            GameManager.Instance.uiManager.SendUIToast("Form Submitted!", Color.green);
             runtimeState.MarkGateCompleted(gate);
         }
         OnDocumentationGateCompleted?.Invoke(gate);
@@ -338,7 +339,7 @@ public class ScenarioExecutor : MonoBehaviour
         }
         return fin;
     }
-    
+
     public int GetTotalPossibleScore()
     {
         return runtimeState.PossibleMaxScore;
@@ -346,7 +347,8 @@ public class ScenarioExecutor : MonoBehaviour
 
     public void AddNodePathTrack(string nodeName)
     {
-        runtimeState.nodePathSelected.Add(nodeName);
+        if (!runtimeState.nodePathSelected.Contains(nodeName))
+            runtimeState.nodePathSelected.Add(nodeName);
     }
 
     public string GetDecisionReport()
@@ -358,5 +360,20 @@ public class ScenarioExecutor : MonoBehaviour
             sb.Append("\n");
         }
         return sb.ToString();
+    }
+
+    public void AddActionToRecord(string actionid, string label)
+    {
+        runtimeState.possibleActionsToRecord.Add(actionid, label);
+    }
+
+    public void ClearActionsToRecord()
+    {
+        runtimeState.possibleActionsToRecord.Clear();
+    }
+
+    public SerializedDictionary<string, string> GetPossibleActionsToRecord()
+    {
+        return runtimeState.possibleActionsToRecord;
     }
 }

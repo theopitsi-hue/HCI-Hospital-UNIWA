@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class FormUI : MonoBehaviour
 {
-    public Button submit;
+    public UnityEngine.UI.Button submit;
     public GameObject fieldPrefab;
     public List<FormField> fields = new();
     public List<String> errorMessages = new();
@@ -41,6 +43,9 @@ public class FormUI : MonoBehaviour
 
     private void OnDocuGateSet(DocumentationGate gate)
     {
+        if (activeGate != null)
+            OnDocuGateComplete(activeGate);
+
         createReportTitle.text = "Report - Documentation Gate -" + gate.Label;
         Debug.Log("MADE FIELDS!!");
         activeGate = gate;
@@ -51,6 +56,14 @@ public class FormUI : MonoBehaviour
         {
             var item = gate.requiredFields[i];
             CreateField(item, PrettifyName(item.name), 100, gate.awnsers[i].awnsers, gate.awnsers[i].correctAwnserId);
+        }
+
+        var possibleActions = GameManager.Instance.sceneExecutor.GetPossibleActionsToRecord();
+        for (int i = 0; i < gate.requiredActionIds.Count; i++)
+        {
+            var id = gate.requiredActionIds[i];
+
+            CreateField(null, "Action Taken", 100, possibleActions.Values.ToList(), possibleActions.Keys.ToList().IndexOf(id), true);
         }
     }
 
@@ -85,22 +98,22 @@ public class FormUI : MonoBehaviour
             GameManager.Instance.sceneExecutor.ClearActiveDocumentationGate(activeGate, true);
 
             Debug.Log(GameManager.Instance.sceneExecutor.GetScoreReport());
+
+            GameManager.Instance.playerData.Clear();
+            GameManager.Instance.uiManager.GoToHUD();
         }
 
     }
 
-    public void CreateField(BlackboardKey key, string label, int totalScore, List<string> possibleAwnsers, int rightAwnswerID)
+    public void CreateField(BlackboardKey key, string label, int totalScore, List<string> possibleAwnsers, int rightAwnswerID, bool allowInvalid = false)
     {
         var nw = Instantiate(fieldPrefab, fieldContainer.transform);
         var formField = nw.GetComponent<FormField>();
-        formField.Initialize(key, label, totalScore, possibleAwnsers, rightAwnswerID);
+        formField.Initialize(key, label, totalScore, possibleAwnsers, rightAwnswerID, allowInvalid);
         fields.Add(formField);
     }
 
-    public void CreateActionField(string actionID, int totalScore, List<string> possibleAwnsers, int rightAwnswerID)
-    {
 
-    }
 
     public bool ValidateFieldInformation()
     {

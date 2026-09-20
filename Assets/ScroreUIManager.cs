@@ -35,11 +35,8 @@ public class ScroreUIManager : MonoBehaviour
 
         int mScore = exec.GetTotalPossibleScore();
         int cScore = exec.GetTotalScore();
-        int prc = Mathf.RoundToInt((float)mScore / (float)cScore);
 
-        if (cScore <= 0) prc = 0;
-
-        scoreTotal.text = $"Total: {cScore}/{mScore} - {prc}%";
+        scoreTotal.text = $"Total: {cScore}/{mScore}";
     }
 
     private void QuitGameF()

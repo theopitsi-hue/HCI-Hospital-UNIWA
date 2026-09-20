@@ -20,6 +20,8 @@ public class InteractionPoint : MonoBehaviour
     [SerializeField]
     public RuleManager ruleManager = new();
 
+    public bool recordOnClick = true;
+
     [SerializeReference, SubclassSelector]
     [Tooltip("Effects to trigger when clicking this.")]
     public List<Effect> justRun = new();
@@ -35,16 +37,43 @@ public class InteractionPoint : MonoBehaviour
         {
             return;
         }
-        if (!GameManager.Instance.sceneExecutor.CanUseHotSpot(interactionName))
+
+
+        bool canInteract = GameManager.Instance.sceneExecutor.CanUseHotSpot(interactionName);
+
+        bool knowsAll = true;
+        if (onClickObservations.Count != 0)
         {
-            GameManager.Instance.uiManager.POIManager.RemovePoint(interactionName);
+            foreach (var item in onClickObservations)
+            {
+                if (!GameManager.Instance.playerData.KnowsValue(item))
+                {
+                    knowsAll = false;
+                }
+            }
         }
         else
         {
-            if (!GameManager.Instance.uiManager.POIManager.HasPoint(interactionName))
+            knowsAll = false;
+        }
+
+        if (canInteract)
+        {
+            if (!knowsAll)
             {
-                GameManager.Instance.uiManager.POIManager.AddPoint(interactionName, transform, Color.white, null);
+                if (!GameManager.Instance.uiManager.POIManager.HasPoint(interactionName))
+                {
+                    GameManager.Instance.uiManager.POIManager.AddPoint(interactionName, transform, Color.white, null);
+                }
             }
+            else
+            {
+                GameManager.Instance.uiManager.POIManager.RemovePoint(interactionName);
+            }
+        }
+        else
+        {
+            GameManager.Instance.uiManager.POIManager.RemovePoint(interactionName);
         }
     }
 
@@ -84,12 +113,15 @@ public class InteractionPoint : MonoBehaviour
         }
         else
         {
-            foreach (var key in onClickObservations)
+            if (recordOnClick)
             {
-                if (!GameManager.Instance.playerData.KnowsValue(key))
+                foreach (var key in onClickObservations)
                 {
-                    GameManager.Instance.playerData.AddKnownValue(key);
-                    GameManager.Instance.uiManager.SendUIToast($"{key.name} has been recorded. Fill it in the EHR field.", Color.white);
+                    if (!GameManager.Instance.playerData.KnowsValue(key))
+                    {
+                        GameManager.Instance.playerData.AddKnownValue(key);
+                        GameManager.Instance.uiManager.SendUIToast($"{key.name} has been recorded. Fill it in the EHR field.", Color.white);
+                    }
                 }
             }
 

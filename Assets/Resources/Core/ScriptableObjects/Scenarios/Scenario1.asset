@@ -35,6 +35,8 @@ MonoBehaviour:
       - Key: OxygenTankFuel
         Value: 40
     nodePathSelected: []
+    possibleActionsToRecord:
+      _serializedList: []
     PossibleMaxScore: 0
     vitals:
       heartRate: 74
@@ -51,6 +53,7 @@ MonoBehaviour:
       Label: 
       requiredFields: []
       awnsers: []
+      requiredActionIds: []
   ActiveHotspots:
     _serializedList:
     - Key: OxygenTank
@@ -120,6 +123,9 @@ MonoBehaviour:
           - rid: 3445855439314747411
           - rid: 3445855439314747417
           - rid: 3445855439314747404
+          - rid: 3445855609887391747
+          - rid: 3445855609887391751
+          - rid: 3445855609887391752
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -198,6 +204,7 @@ MonoBehaviour:
           - rid: 3445855443851673600
           - rid: 3445855439314747457
           - rid: 3445855439314747481
+          - rid: 3445855609887391750
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -224,6 +231,7 @@ MonoBehaviour:
           - rid: 3445855439314747479
           - rid: 3445855439314747456
           - rid: 3445855609887391746
+          - rid: 3445855609887391749
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -272,24 +280,32 @@ MonoBehaviour:
             - 80
             - 97
             correctAwnserId: 2
+          requiredActionIds: []
       - Key: gate_2
         Value:
           name: gate_2
           Label: Condition Escalates
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
-          - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
           awnsers:
-          - awnsers: []
+          - awnsers:
+            - 86
+            - 90
+            - 55
+            correctAwnserId: 1
+          - awnsers:
+            - 93
+            - 98
+            - 84
             correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
+          - awnsers:
+            - 18
+            - 22
+            - 10
+            correctAwnserId: 1
+          requiredActionIds: []
       - Key: gate_n6
         Value:
           name: gate_n6
@@ -300,14 +316,28 @@ MonoBehaviour:
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
           awnsers:
-          - awnsers: []
+          - awnsers:
+            - 70
+            - 75
+            - 108
             correctAwnserId: 0
-          - awnsers: []
+          - awnsers:
+            - Cyanotic Skin Tone
+            - Normal Skin Tone
+            - Pale Skin Tone
+            correctAwnserId: 1
+          - awnsers:
+            - 101
+            - 82
+            - 97
+            correctAwnserId: 2
+          - awnsers:
+            - 15
+            - 25
+            - 9
             correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
+          requiredActionIds:
+          - mask
       - Key: gate_n7
         Value:
           name: gate_n7
@@ -318,14 +348,27 @@ MonoBehaviour:
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
           awnsers:
-          - awnsers: []
+          - awnsers:
+            - 67
+            - 100
+            - 79
+            correctAwnserId: 1
+          - awnsers:
+            - Cyanotic Skin Tone
+            - Pale Skin Tone
             correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
-          - awnsers: []
-            correctAwnserId: 0
+          - awnsers:
+            - 98
+            - 92
+            - 83
+            correctAwnserId: 2
+          - awnsers:
+            - 20
+            - 30
+            - 25
+            correctAwnserId: 2
+          requiredActionIds:
+          - call_doctor
     textmap:
       dialogue:
         _serializedList: []
@@ -677,4 +720,35 @@ MonoBehaviour:
         runOnFail: 0
         toastText: A doctor has been notified and the patient has been Stabilized.
           Complete the final EHR form to finish the scenario.
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855609887391747
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: PatientMouth
+        boolValue: 1
+    - rid: 3445855609887391749
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: PatientSkin
+        boolValue: 1
+    - rid: 3445855609887391750
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: PatientSkin
+        boolValue: 1
+    - rid: 3445855609887391751
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: You notice labored breathing..
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855609887391752
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: Check the patient's vitals one more time, then submit another
+          report
         color: {r: 1, g: 1, b: 1, a: 1}

@@ -311,6 +311,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -713,7 +714,9 @@ MonoBehaviour:
       effects:
       - rid: 3445855439314747397
       - rid: 3445855439314747475
+      - rid: 3445855609887391755
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -741,6 +744,12 @@ MonoBehaviour:
         flag: {fileID: 11400000, guid: 41e8ab8158d192747b32e15666c3b8f9, type: 2}
         floatValue: 0
         boolValue: 1
+    - rid: 3445855609887391755
+      type: {class: RecordActionEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        actionId: call_doctor
+        actionLabel: Called Doctor
 --- !u!114 &280743015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1984,7 +1993,7 @@ Transform:
   m_GameObject: {fileID: 565055522}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: -51.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2101,7 +2110,7 @@ Transform:
   m_GameObject: {fileID: 610348297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.04, y: 1.18, z: 3.76}
+  m_LocalPosition: {x: 1.04, y: 1.18, z: -47.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2288,6 +2297,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun:
   - rid: 3445855439314747485
   references:
@@ -3188,10 +3198,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionName: OxygenReader
   uiType: 12
-  onClickObservations: []
+  onClickObservations:
+  - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 0
   justRun: []
   references:
     version: 2
@@ -3698,6 +3710,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -4029,6 +4042,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun:
   - rid: 3445855439314747486
   references:
@@ -4444,6 +4458,7 @@ MonoBehaviour:
       effects:
       - rid: 3445855439314747463
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -4753,7 +4768,9 @@ MonoBehaviour:
       - rid: 3445855439314747465
       effects:
       - rid: 3445855439314747463
+      - rid: 3445855609887391757
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -4774,6 +4791,12 @@ MonoBehaviour:
         rightBool: 0
         numberComparisonType: 2
         booleanComparisonType: 0
+    - rid: 3445855609887391757
+      type: {class: RecordActionEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        actionId: mask
+        actionLabel: Put mask on patient
 --- !u!114 &1181960627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5679,6 +5702,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 0
   justRun: []
   references:
     version: 2
@@ -5758,6 +5782,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun:
   - rid: 3445855439314747486
   references:
@@ -6411,10 +6436,11 @@ MonoBehaviour:
   interactionName: PatientMouth
   uiType: 0
   onClickObservations:
-  - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
+  - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -7061,6 +7087,7 @@ MonoBehaviour:
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 1
   justRun:
   - rid: 3445855439314747486
   references:
@@ -7918,7 +7945,7 @@ Transform:
   m_GameObject: {fileID: 3311382090220257978}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000026711568, y: 0.000000026673511, z: -0.70660245, w: 0.7076108}
-  m_LocalPosition: {x: -9.632, y: 0.93, z: -3.81}
+  m_LocalPosition: {x: -9.632, y: 0.93, z: -55}
   m_LocalScale: {x: 380.7, y: 380.7, z: 380.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8178,7 +8205,7 @@ Transform:
   m_GameObject: {fileID: 2907198213305519153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -0.13, z: -5.55}
+  m_LocalPosition: {x: 0.3, y: -0.13, z: -56.739998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8520,8 +8547,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427091741301077262}
   m_Mesh: {fileID: 3335724914305450694, guid: 15cd6d964d327664db704e87050a3f4d, type: 3}
---- !u!64 &6587119921600835146
-MeshCollider:
+--- !u!65 &6587119921600835146
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8538,10 +8565,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3335724914305450694, guid: 15cd6d964d327664db704e87050a3f4d, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.78833807, y: 0.40886104, z: 0.3481825}
+  m_Center: {x: -0.019700313, y: -0.0053368816, z: -0.064752094}
 --- !u!4 &6591825585512542898
 Transform:
   m_ObjectHideFlags: 0
@@ -8654,7 +8680,7 @@ PrefabInstance:
     - target: {fileID: 3347600775785920206, guid: 7ba0c6815e91d6b4c8b782648821dc70,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.05
+      value: -61.239998
       objectReference: {fileID: 0}
     - target: {fileID: 3347600775785920206, guid: 7ba0c6815e91d6b4c8b782648821dc70,
         type: 3}
@@ -8946,10 +8972,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionName: ECGMonitor
   uiType: 10
-  onClickObservations: []
+  onClickObservations:
+  - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 0
   justRun: []
   references:
     version: 2
@@ -9083,6 +9111,7 @@ MonoBehaviour:
       effects:
       - rid: 3445855439314747407
     triggerDisabled: []
+  recordOnClick: 1
   justRun: []
   references:
     version: 2
@@ -9219,10 +9248,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionName: Thermometer
   uiType: 11
-  onClickObservations: []
+  onClickObservations:
+  - {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
   ruleManager:
     rules: []
     triggerDisabled: []
+  recordOnClick: 0
   justRun: []
   references:
     version: 2
