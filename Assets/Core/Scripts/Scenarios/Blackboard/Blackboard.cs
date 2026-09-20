@@ -29,4 +29,9 @@ public class Blackboard
     {
         return GetValue(name.name);
     }
+
+    public void Clear()
+    {
+        BlackboardVariables.Clear();
+    }
 }

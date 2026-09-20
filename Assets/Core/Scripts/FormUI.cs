@@ -72,13 +72,13 @@ public class FormUI : MonoBehaviour
         if (NoErrorsFound() && activeGate != null)
         {
             //calc score and submit form, passing the gate.
-            GameManager.Instance.sceneExecutor.AddScore(0, $"Documentation {activeGate.Label} Completed");
+            GameManager.Instance.sceneExecutor.AddScore(0, $"Documentation '{activeGate.Label}' Completed");
             //silly but it works
             foreach (var field in fields)
             {
                 GameManager.Instance.sceneExecutor.AddScore(field.GetScore(),
                 "\t" + field.label.text + " " +
-                (field.HasCorrectSelected() ? "Filled Correctly." : "Filled Incorrectly.")
+                (field.HasCorrectSelected() ? "Filled Correctly" : "Filled Incorrectly")
                 );
             }
 

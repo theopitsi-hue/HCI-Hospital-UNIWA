@@ -64,4 +64,10 @@ public class NodeManager
             GoToNode(exec, node);
         }
     }
+
+    public void Clear()
+    {
+        nodeMap.Clear();
+        activeNode = null;
+    }
 }

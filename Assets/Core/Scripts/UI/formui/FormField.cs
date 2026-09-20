@@ -19,12 +19,12 @@ public class FormField : MonoBehaviour
         this.label.text = label;
         bbKey = key;
         totalScoreReward = totalScore;
-        wrongAwnserScoreDeduct = (totalScore / 3);
+        wrongAwnserScoreDeduct = -(totalScore / 3);
         this.rightAwnserID = rightAwnswerID + 1;
 
         highlightCorrect.redOptionIndex = this.rightAwnserID + 1;
 
-        allPossibleAwnsers.Add("Not Selected.");
+        allPossibleAwnsers.Add("Not Selected");
         allPossibleAwnsers.AddRange(possibleAwnsers);
 
 
@@ -55,7 +55,7 @@ public class FormField : MonoBehaviour
 
     public int GetScore()
     {
-        return HasCorrectSelected() ? rightAwnserID : wrongAwnserScoreDeduct;
+        return HasCorrectSelected() ? totalScoreReward : wrongAwnserScoreDeduct;
     }
 
     public bool HasValidInformation()

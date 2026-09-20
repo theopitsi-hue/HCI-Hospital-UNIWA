@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 using AYellowpaper.SerializedCollections;
+using TMPro;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.Profiling;
 using UnityEngine;
@@ -46,6 +47,9 @@ public class ScenarioExecutor : MonoBehaviour
     public UnityEvent<DocumentationGate> OnDocumentationGateSet;
     public UnityEvent<DocumentationGate> OnDocumentationGateCompleted;
 
+    //completion
+    private bool scenarioCompleted;
+
     private void Awake()
     {
         //print(toPlayScenario.Serialize());
@@ -62,22 +66,41 @@ public class ScenarioExecutor : MonoBehaviour
         //clean up previous scenario?
         tickTimer = 0;
         Tick = 0;
-        runtimeState.timeElapsed = 0;
+        CleanBlackboardValues();
 
 
         //Activate new scenario
         activeScenario = scenario;
         nodeManager.LoadScenarioNodes(this, activeScenario.nodemap);
         runtimeState = new ScenarioState(activeScenario.initialState);
+        runtimeState.timeElapsed = 0;
 
         AddBlackboardValues();
 
         nodeManager.TryTransition(this, activeScenario.nodemap.entryNodeID);
     }
 
+    public void StopScenario()
+    {
+        activeScenario = null;
+        nodeManager.Clear();
+    }
+
+    private void CleanBlackboardValues()
+    {
+        blackboard.Clear();
+    }
+
     private void Update()
     {
         if (activeScenario == null) return;
+
+        scenarioCompleted = (bool)GameManager.Instance.sceneExecutor.blackboard.GetValue("ScenarioCompleted").GetValue();
+        if (scenarioCompleted && GameManager.Instance.loadedLevelScene != null)
+        {
+            GameManager.Instance.uiManager.ActivateOnly(UIManager.UIType.Score);
+            return;
+        }
 
         UpdateTick();
         UpdateRules();
@@ -97,6 +120,7 @@ public class ScenarioExecutor : MonoBehaviour
 
     private void UpdateTick()
     {
+
         tickTimer += Time.deltaTime;
         runtimeState.timeElapsed += Time.deltaTime;
         while (tickTimer >= tickTimerMax)
@@ -111,6 +135,8 @@ public class ScenarioExecutor : MonoBehaviour
 
     private void AddBlackboardValues()
     {
+        blackboard.RegisterValue("ScenarioCompleted", new BoolValue());
+
         //todo: get rid of this ewwwwww!!!!
         Debug.Log("Created blackboard variables.");
         blackboard.RegisterValue(BB.TimeElapsed, new RemoteFloatValue(() =>
@@ -246,8 +272,8 @@ public class ScenarioExecutor : MonoBehaviour
         if (completed)
         {
             runtimeState.MarkGateCompleted(gate);
-            OnDocumentationGateCompleted?.Invoke(gate);
         }
+        OnDocumentationGateCompleted?.Invoke(gate);
 
     }
 
@@ -286,16 +312,12 @@ public class ScenarioExecutor : MonoBehaviour
         foreach (var ss in runtimeState.scoreReasons)
         {
             sb.Append(ss.Item2);
+            sb.Append(" ");
             if (ss.Item1 != 0)
             {
                 if (ss.Item1 > 0)
                 {
                     sb.Append("+");
-
-                }
-                if (ss.Item1 < 0)
-                {
-                    sb.Append("-");
 
                 }
                 sb.Append(ss.Item1);
@@ -307,8 +329,34 @@ public class ScenarioExecutor : MonoBehaviour
         return sb.ToString();
     }
 
+    public int GetTotalScore()
+    {
+        int fin = 0;
+        foreach (var ss in runtimeState.scoreReasons)
+        {
+            fin += ss.Item1;
+        }
+        return fin;
+    }
+    
+    public int GetTotalPossibleScore()
+    {
+        return runtimeState.PossibleMaxScore;
+    }
+
     public void AddNodePathTrack(string nodeName)
     {
         runtimeState.nodePathSelected.Add(nodeName);
+    }
+
+    public string GetDecisionReport()
+    {
+        StringBuilder sb = new();
+        foreach (var ss in runtimeState.nodePathSelected)
+        {
+            sb.Append(ss);
+            sb.Append("\n");
+        }
+        return sb.ToString();
     }
 }

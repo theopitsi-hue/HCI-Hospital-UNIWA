@@ -54,11 +54,14 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        sceneExecutor.StopScenario();
+
         print("Quitting level: " + loadedLevelScene);
 
         uiManager.ActivateOnly(UIManager.UIType.MainMenu);
         SceneManager.UnloadSceneAsync(loadedLevelScene);
         loadedLevelScene = null;
         playerData.Clear();
+        uiManager.POIManager.ClearAllPoints();
     }
 }

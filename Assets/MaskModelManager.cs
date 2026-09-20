@@ -6,6 +6,7 @@ public class MaskModelManager : MonoBehaviour
 {
     public BlackboardKey inUse;
     public GameObject stand;
+    public GameObject stand_cbl;
     public GameObject face;
     // Start is called before the first frame update
     void Start()
@@ -22,11 +23,14 @@ public class MaskModelManager : MonoBehaviour
             {
                 stand.SetActive(false);
                 face.SetActive(true);
+                stand_cbl.SetActive(false);
             }
             else
             {
                 stand.SetActive(true);
                 face.SetActive(false);
+                stand_cbl.SetActive(true);
+
             }
         }
     }

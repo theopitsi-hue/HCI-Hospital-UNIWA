@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
@@ -28,7 +29,19 @@ public class ThermometerUI : MachineUI
         if (!GameManager.Instance.playerData.KnowsValue(keys[0]))
         {
             GameManager.Instance.playerData.AddKnownValue(keys[0]);
-            GameManager.Instance.uiManager.SendUIToast("Temperature has been recorded. Fill it in the EHR field.", Color.white);
+            GameManager.Instance.uiManager.SendUIToast(PrettifyName(keys[0].name)+" has been recorded. Fill it in the EHR field.", Color.white);
         }
+    }
+
+    public static string PrettifyName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return name;
+
+        // Add spaces before capitals: "oxygenSaturation" -> "oxygen Saturation"
+        name = Regex.Replace(name, @"(?<!^)([A-Z])", " $1");
+
+        // Capitalize the first character
+        return char.ToUpper(name[0]) + name.Substring(1);
     }
 }

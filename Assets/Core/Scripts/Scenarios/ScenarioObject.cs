@@ -117,6 +117,7 @@ public class ScenarioState
     public SerializedDictionary<string, float> initialNumberKeys = new();
     public List<(int, string)> scoreReasons = new();
     public List<string> nodePathSelected = new();
+    public int PossibleMaxScore = 0;
 
     public Vitals vitals;
 
@@ -127,6 +128,11 @@ public class ScenarioState
     {
         Debug.Log("Completed documentation gate: " + gate);
         completedGates.Add(gate.name);
+
+        for (int i = 0; i < gate.requiredFields.Count; i++)
+        {
+            PossibleMaxScore += 100;
+        }
     }
 
     public bool IsGateCompleted(DocumentationGate gate)

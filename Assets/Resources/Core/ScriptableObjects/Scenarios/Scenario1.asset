@@ -34,6 +34,8 @@ MonoBehaviour:
       _serializedList:
       - Key: OxygenTankFuel
         Value: 40
+    nodePathSelected: []
+    PossibleMaxScore: 0
     vitals:
       heartRate: 74
       bloodOxygenSaturation: 98
@@ -48,7 +50,7 @@ MonoBehaviour:
       name: 
       Label: 
       requiredFields: []
-      test1: []
+      awnsers: []
   ActiveHotspots:
     _serializedList:
     - Key: OxygenTank
@@ -221,7 +223,7 @@ MonoBehaviour:
           onEnterEffects:
           - rid: 3445855439314747479
           - rid: 3445855439314747456
-          - rid: 3445855439314747453
+          - rid: 3445855609887391746
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -240,13 +242,9 @@ MonoBehaviour:
           id: n8_scenario_done
           onEnterEffects:
           - rid: 3445855439314747482
+          - rid: 3445855609887391745
           onExitEffects: []
-          nodeTransitionRules:
-          - triggerOnce: 0
-            conditions:
-            - rid: 3445855439314747487
-            effects:
-            - rid: 3445855439314747489
+          nodeTransitionRules: []
   staticData:
     documentationGates:
       _serializedList:
@@ -258,12 +256,22 @@ MonoBehaviour:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
-          test1:
-          - key: {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
-            Label: Patient's Heart Rate
-            awnsers: []
+          awnsers:
+          - awnsers:
+            - 70
+            - 74
+            - 68
+            correctAwnserId: 1
+          - awnsers:
+            - 36.4
+            - 37.8
+            - 38.2
             correctAwnserId: 0
-            score: 100
+          - awnsers:
+            - 92
+            - 80
+            - 97
+            correctAwnserId: 2
       - Key: gate_2
         Value:
           name: gate_2
@@ -273,7 +281,15 @@ MonoBehaviour:
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
-          test1: []
+          awnsers:
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
       - Key: gate_n6
         Value:
           name: gate_n6
@@ -283,7 +299,15 @@ MonoBehaviour:
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
-          test1: []
+          awnsers:
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
       - Key: gate_n7
         Value:
           name: gate_n7
@@ -293,7 +317,15 @@ MonoBehaviour:
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
-          test1: []
+          awnsers:
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
+          - awnsers: []
+            correctAwnserId: 0
     textmap:
       dialogue:
         _serializedList: []
@@ -499,14 +531,6 @@ MonoBehaviour:
       data:
         runOnFail: 0
         nodeID: n7_call_finish
-    - rid: 3445855439314747453
-      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        noticeTitle: Doctor Notified
-        noticeText: A doctor has been notified and the patient has been stabilized.
-          Document your latest observations and submit them to complete the scenario.
-        onButtonPressedEffects: []
     - rid: 3445855439314747454
       type: {class: IsDocumentationGateCompleteCondition, ns: , asm: Assembly-CSharp}
       data:
@@ -605,19 +629,8 @@ MonoBehaviour:
       type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        toastText: aaaaaaaaaaaaaaaaaaa
+        toastText: Scenario Completed!
         color: {r: 0.51497644, g: 1, b: 0.495283, a: 1}
-    - rid: 3445855439314747487
-      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
-      data:
-        waitTime: 4
-    - rid: 3445855439314747489
-      type: {class: SendNoticeEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        noticeTitle: 
-        noticeText: 
-        onButtonPressedEffects: []
     - rid: 3445855443851673600
       type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -651,4 +664,17 @@ MonoBehaviour:
         runOnFail: 0
         toastText: The patient is hyperventilating. Use the oxygen mask to help them
           breathe
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855609887391745
+      type: {class: ChangeFlagBasicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        flag: ScenarioCompleted
+        boolValue: 1
+    - rid: 3445855609887391746
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: A doctor has been notified and the patient has been Stabilized.
+          Complete the final EHR form to finish the scenario.
         color: {r: 1, g: 1, b: 1, a: 1}

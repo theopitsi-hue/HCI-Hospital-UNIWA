@@ -1434,4 +1434,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 4938035881385410893}
   redOptionIndex: 2
-  color: {r: 0.088109665, g: 0.5660378, b: 0.088109665, a: 1}
+  color: {r: 0, g: 0.735849, b: 0, a: 1}

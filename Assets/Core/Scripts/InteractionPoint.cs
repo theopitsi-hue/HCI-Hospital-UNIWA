@@ -29,7 +29,25 @@ public class InteractionPoint : MonoBehaviour
         rec.onInteracted.AddListener(OnInteracted);
     }
 
-    //curent bug: the ends for some fukin reason loop back to the first node and replay the whole scenario in an instant
+    private void Update()
+    {
+        if (interactionName.Equals("_") || interactionName == null || interactionName == " ")
+        {
+            return;
+        }
+        if (!GameManager.Instance.sceneExecutor.CanUseHotSpot(interactionName))
+        {
+            GameManager.Instance.uiManager.POIManager.RemovePoint(interactionName);
+        }
+        else
+        {
+            if (!GameManager.Instance.uiManager.POIManager.HasPoint(interactionName))
+            {
+                GameManager.Instance.uiManager.POIManager.AddPoint(interactionName, transform, Color.white, null);
+            }
+        }
+    }
+
     public virtual void OnInteracted()
     {
         if (!interactionName.Equals("_"))

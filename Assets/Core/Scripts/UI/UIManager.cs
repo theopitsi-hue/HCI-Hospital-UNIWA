@@ -22,7 +22,8 @@ public class UIManager : MonoBehaviour
         m_ECG,
         m_Thermometer,
         m_oxygen_reader,
-        m_pressure_reader
+        m_pressure_reader,
+        Score
     }
 
     [Serializable]
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] public ToastFeed toastFeed;
     [SerializeField] public NoticeUI noticeUI;
+    [SerializeField] public POVUIManager POIManager;
 
     public void SendUIToast(string text, Color color)
     {
