@@ -433,18 +433,18 @@ MonoBehaviour:
             appears, complete it before continuing. An action that was performed
             but not documented may affect your score.
         - Key: Use Medical Equipment
-          Value: "Medical equipment is not only used to perform actions. It can also
+          Value: 'Medical equipment is not only used to perform actions. It can also
             provide <color=#4DA6FF><b>information required by the EHR</b></color>.<br><br>Look
             for equipment marked with a <color=#4DA6FF><b>blue outline or icon</b></color>.
-            Interact with the appropriate device to obtain the patient's current
+            Interact with the appropriate device to obtain the patient''s current
             values or status.<br><br>Examples include:<br><br><color=#4DA6FF><b>Thermometer</b></color>
-            \u2014 provides temperature information.<br><br><color=#4DA6FF><b>Thumb
-            oxygen reader</b></color> \u2014 provides oxygen-related information.<br><br><color=#4DA6FF><b>Ventilator</b></color>
-            \u2014 provides information about the patient's respiratory support or
-            settings.<br><br><color=#4DA6FF><b>Patient's hands</b></color> \u2014
-            may provide information about the patient's physical status.<br><br>The
-            exact information available depends on the interaction. <color=#4DA6FF><b>Use
-            the information you discover to complete the corresponding EHR fields.</b></color>"
+            : provides temperature information.<br><br><color=#4DA6FF><b>Thumb oxygen
+            reader</b></color> : provides oxygen-related information.<br><br><color=#4DA6FF><b>Ventilator</b></color>
+            : provides information about the patient''s respiratory support or settings.<br><br><color=#4DA6FF><b>Patient''s
+            hands</b></color> : may provide information about the patient''s physical
+            status.<br><br>The exact information available depends on the interaction.
+            <color=#4DA6FF><b>Use the information you discover to complete the corresponding
+            EHR fields.</b></color>'
         - Key: Follow the Complete Workflow
           Value: A typical scenario follows this workflow:<br><br><color=#4DA6FF><b>1.
             Explore.</b></color> Use WASD to move around and look for blue outlines

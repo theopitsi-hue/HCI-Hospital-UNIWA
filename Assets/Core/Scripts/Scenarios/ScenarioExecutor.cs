@@ -253,6 +253,8 @@ public class ScenarioExecutor : MonoBehaviour
     public void SetActiveDocumentationGate(DocumentationGate gate)
     {
         if (runtimeState.activeDocumentationGate == gate) return;
+        if (runtimeState.IsGateCompleted(gate)) return;
+
         runtimeState.activeDocumentationGate = gate;
         hasActiveGate = true;
         OnDocumentationGateSet?.Invoke(gate);

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public ScenarioLoader loader;
 
     public string loadedLevelScene;
+    public AudioSource globalSoundSource;
 
     private void Awake()
     {

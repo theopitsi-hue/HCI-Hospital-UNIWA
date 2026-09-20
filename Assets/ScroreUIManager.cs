@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class ScroreUIManager : MonoBehaviour
 {
-    public Button BackToMenu;
+    // public Button BackToMenu;
     public Button QuitGame;
 
     public TMP_Text scoreText;
@@ -17,7 +17,7 @@ public class ScroreUIManager : MonoBehaviour
 
     private void Awake()
     {
-        BackToMenu.onClick.AddListener(BackToMenuF);
+        //    BackToMenu.onClick.AddListener(BackToMenuF);
         QuitGame.onClick.AddListener(QuitGameF);
     }
 

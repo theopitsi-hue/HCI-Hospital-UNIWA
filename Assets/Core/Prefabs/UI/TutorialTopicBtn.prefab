@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8297566480286145058}
   - component: {fileID: 2013923110743689325}
   - component: {fileID: 6933024271521918777}
+  - component: {fileID: -8493480577612854376}
   m_Layer: 5
   m_Name: TutorialTopicBtn
   m_TagString: Untagged
@@ -121,6 +122,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-8493480577612854376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133900275265337486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfa2cf0c655c4642b2f8c840dad7b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: bdb9244e6ed0c0941b80d4b6ba2a3f3c, type: 3}
+  minPitch: 0.95
+  maxPitch: 1.05
 --- !u!1 &1685676586714434509
 GameObject:
   m_ObjectHideFlags: 0
