@@ -43,6 +43,7 @@ public class NodeManager
         activeNode?.OnEnter(exec);
 
         Debug.Log("Entered node:" + newNode.id);
+        exec.AddNodePathTrack(newNode.id);
     }
 
     public bool Exists(String id)

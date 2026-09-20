@@ -30,7 +30,6 @@ public class InteractionPoint : MonoBehaviour
     }
 
     //curent bug: the ends for some fukin reason loop back to the first node and replay the whole scenario in an instant
-    //actual dogshit who wrote tis
     public virtual void OnInteracted()
     {
         if (!interactionName.Equals("_"))
@@ -47,22 +46,35 @@ public class InteractionPoint : MonoBehaviour
             GameManager.Instance.uiManager.ActivateOnly(uiType);
         }
 
-        foreach (var key in onClickObservations)
-        {
-            if (!GameManager.Instance.playerData.KnowsValue(key))
-            {
-                GameManager.Instance.playerData.AddKnownValue(key);
-                GameManager.Instance.uiManager.SendUIToast($"{key.name} has been recorded. Fill it in the EHR field.", Color.white);
-            }
-        }
-
         ruleManager.EvaluateAll(GameManager.Instance.sceneExecutor);
 
 
         foreach (var item in justRun)
         {
-            Debug.Log("bro1");
+            //Debug.Log("bro1");
             item.Apply(GameManager.Instance.sceneExecutor);
+        }
+
+        if (interactionName == "OxygenTank")
+        {
+            if (onClickObservations[0].TryGetValue(out var v))
+            {
+                float val = (float)v.GetValue();
+
+                GameManager.Instance.uiManager.SendUIToast("Oxygen left: " + Mathf.RoundToInt(val) + "%", Color.white);
+            }
+        }
+        else
+        {
+            foreach (var key in onClickObservations)
+            {
+                if (!GameManager.Instance.playerData.KnowsValue(key))
+                {
+                    GameManager.Instance.playerData.AddKnownValue(key);
+                    GameManager.Instance.uiManager.SendUIToast($"{key.name} has been recorded. Fill it in the EHR field.", Color.white);
+                }
+            }
+
         }
     }
 }

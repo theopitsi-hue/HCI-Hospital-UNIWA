@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Text;
 using AYellowpaper.SerializedCollections;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.Profiling;
@@ -42,7 +43,8 @@ public class ScenarioExecutor : MonoBehaviour
     //docu gate
     private bool hasActiveGate = false;
     public bool HasActiveDocumentationGate => hasActiveGate;
-
+    public UnityEvent<DocumentationGate> OnDocumentationGateSet;
+    public UnityEvent<DocumentationGate> OnDocumentationGateCompleted;
 
     private void Awake()
     {
@@ -136,24 +138,6 @@ public class ScenarioExecutor : MonoBehaviour
            }
            ));
 
-        blackboard.RegisterValue(BB.BloodPressDiastolic, new RemoteFloatValue(() =>
-                   {
-                       return runtimeState.vitals.bloodPressureDiastolic;
-                   }, x =>
-                   {
-                       runtimeState.vitals.bloodPressureDiastolic = x;
-                   }
-                   ));
-
-        blackboard.RegisterValue(BB.BloodPressSystolic, new RemoteFloatValue(() =>
-            {
-                return runtimeState.vitals.bloodPressureSystolic;
-            }, x =>
-            {
-                runtimeState.vitals.bloodPressureSystolic = x;
-            }
-            ));
-
         blackboard.RegisterValue(BB.Temperature, new RemoteFloatValue(() =>
        {
            return runtimeState.vitals.bodyTemperature;
@@ -242,9 +226,10 @@ public class ScenarioExecutor : MonoBehaviour
 
     public void SetActiveDocumentationGate(DocumentationGate gate)
     {
+        if (runtimeState.activeDocumentationGate == gate) return;
         runtimeState.activeDocumentationGate = gate;
         hasActiveGate = true;
-
+        OnDocumentationGateSet?.Invoke(gate);
         Debug.Log("Set docu gate: " + gate);
     }
 
@@ -259,7 +244,10 @@ public class ScenarioExecutor : MonoBehaviour
         hasActiveGate = false;
 
         if (completed)
+        {
             runtimeState.MarkGateCompleted(gate);
+            OnDocumentationGateCompleted?.Invoke(gate);
+        }
 
     }
 
@@ -285,5 +273,42 @@ public class ScenarioExecutor : MonoBehaviour
     public bool CanUseHotSpot(string interactionName)
     {
         return (bool)blackboard.GetValue(interactionName).GetValue();
+    }
+
+    public void AddScore(int score, string reason)
+    {
+        runtimeState.AddScore(score, reason);
+    }
+
+    public string GetScoreReport()
+    {
+        StringBuilder sb = new();
+        foreach (var ss in runtimeState.scoreReasons)
+        {
+            sb.Append(ss.Item2);
+            if (ss.Item1 != 0)
+            {
+                if (ss.Item1 > 0)
+                {
+                    sb.Append("+");
+
+                }
+                if (ss.Item1 < 0)
+                {
+                    sb.Append("-");
+
+                }
+                sb.Append(ss.Item1);
+                sb.Append(" ");
+            }
+
+            sb.Append("\n");
+        }
+        return sb.ToString();
+    }
+
+    public void AddNodePathTrack(string nodeName)
+    {
+        runtimeState.nodePathSelected.Add(nodeName);
     }
 }

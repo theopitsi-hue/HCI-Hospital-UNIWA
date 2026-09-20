@@ -2,8 +2,6 @@ public static class BB
 {
     public static readonly string AssessmentComplete = "AssessmentComplete";
     public static readonly string BloodOxygenSat = "BloodOxygenSat";
-    public static readonly string BloodPressDiastolic = "BloodPressDiastolic";
-    public static readonly string BloodPressSystolic = "BloodPressSystolic";
     public static readonly string BreathRate = "BreathRate";
     public static readonly string DoctorCalled = "DoctorCalled";
     public static readonly string hasActiveDocumentationGate = "hasActiveDocumentationGate";

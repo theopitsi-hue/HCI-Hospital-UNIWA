@@ -53,7 +53,9 @@ public class ScenarioStaticData
 public class DocumentationGate
 {
     public string name;
+    public string Label;
     public List<BlackboardKey> requiredFields;
+    public List<DocumentationField> awnsers;
 
     public override string ToString()
     {
@@ -68,6 +70,12 @@ public class DocumentationGate
         sb.Append(")");
         return sb.ToString();
     }
+}
+[Serializable]
+public class DocumentationField
+{
+    public List<string> awnsers;
+    public int correctAwnserId = 0;
 }
 
 [Serializable]
@@ -107,6 +115,8 @@ public class ScenarioState
 
     public SerializedDictionary<string, bool> initialBoolKeys = new();
     public SerializedDictionary<string, float> initialNumberKeys = new();
+    public List<(int, string)> scoreReasons = new();
+    public List<string> nodePathSelected = new();
 
     public Vitals vitals;
 
@@ -122,6 +132,11 @@ public class ScenarioState
     public bool IsGateCompleted(DocumentationGate gate)
     {
         return completedGates.Contains(gate.name);
+    }
+
+    public void AddScore(int score, string reason)
+    {
+        scoreReasons.Add((score, reason));
     }
 
 

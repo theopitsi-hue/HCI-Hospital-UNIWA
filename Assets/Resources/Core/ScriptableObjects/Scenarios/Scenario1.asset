@@ -23,7 +23,7 @@ MonoBehaviour:
     - How to do stuff
   initialState:
     timeElapsed: 0
-    currentScore: 100
+    currentScore: 0
     initialBoolKeys:
       _serializedList:
       - Key: OxygenMaskInUse
@@ -33,7 +33,7 @@ MonoBehaviour:
     initialNumberKeys:
       _serializedList:
       - Key: OxygenTankFuel
-        Value: 20
+        Value: 40
     vitals:
       heartRate: 74
       bloodOxygenSaturation: 98
@@ -46,7 +46,9 @@ MonoBehaviour:
       oxygenTankFuel: 25
     activeDocumentationGate:
       name: 
+      Label: 
       requiredFields: []
+      test1: []
   ActiveHotspots:
     _serializedList:
     - Key: OxygenTank
@@ -60,8 +62,6 @@ MonoBehaviour:
     - Key: Call_Doctor
       Value: 0
     - Key: ECGMonitor
-      Value: 1
-    - Key: PressureReader
       Value: 1
     - Key: OxygenReader
       Value: 1
@@ -78,6 +78,11 @@ MonoBehaviour:
       - rid: 3445855439314747469
       effects:
       - rid: 3445855439314747477
+    - triggerOnce: 1
+      conditions:
+      - rid: 3445855598725038084
+      effects:
+      - rid: 3445855598725038082
     triggerDisabled: []
   nodemap:
     entryNodeID: n1_start
@@ -100,6 +105,7 @@ MonoBehaviour:
           - triggerOnce: 0
             conditions:
             - rid: 3445855439314747409
+            - rid: 3445855598725038080
             effects:
             - rid: 3445855366584467473
       - Key: n3
@@ -119,7 +125,6 @@ MonoBehaviour:
             - rid: 3445855439314747401
             effects:
             - rid: 3445855439314747402
-            - rid: 3445855439314747403
       - Key: n4
         Value:
           id: n4
@@ -128,6 +133,7 @@ MonoBehaviour:
           - rid: 3445855439314747416
           - rid: 3445855439314747459
           - rid: 3445855439314747460
+          - rid: 3445855598725038087
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -187,9 +193,9 @@ MonoBehaviour:
         Value:
           id: n6_ok_oxygen
           onEnterEffects:
+          - rid: 3445855443851673600
           - rid: 3445855439314747457
           - rid: 3445855439314747481
-          - rid: 3445855443851673600
           onExitEffects: []
           nodeTransitionRules:
           - triggerOnce: 0
@@ -247,34 +253,47 @@ MonoBehaviour:
       - Key: gate_1
         Value:
           name: gate_1
+          Label: Initial Examination
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 08ee50d6e6e9ce2419d458b01496ea7f, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
+          test1:
+          - key: {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
+            Label: Patient's Heart Rate
+            awnsers: []
+            correctAwnserId: 0
+            score: 100
       - Key: gate_2
         Value:
           name: gate_2
+          Label: Condition Escalates
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
+          test1: []
       - Key: gate_n6
         Value:
           name: gate_n6
+          Label: Condition Worsens
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
+          test1: []
       - Key: gate_n7
         Value:
           name: gate_n7
+          Label: Condition Critical
           requiredFields:
           - {fileID: 11400000, guid: be48c156ad19bc64985ff9dc1163beaa, type: 2}
           - {fileID: 11400000, guid: 13f24ecaf7f9c934f843e07ead558a79, type: 2}
           - {fileID: 11400000, guid: fb7b40c4183fdfd4b9533d4183c51d93, type: 2}
           - {fileID: 11400000, guid: 55d2be2f4ddfe4e42adf76290ec52992, type: 2}
+          test1: []
     textmap:
       dialogue:
         _serializedList: []
@@ -286,7 +305,9 @@ MonoBehaviour:
       data:
         runOnFail: 0
         noticeTitle: Introduction
-        noticeText: The first example scenario, hypoxia stuff!
+        noticeText: In this scenario, you must monitor a patient that reports trouble
+          breathing. Begin with an initial examination and evaluate the patient's
+          condition.
         onButtonPressedEffects:
         - rid: 3445855366584467471
     - rid: 3445855366584467471
@@ -323,12 +344,6 @@ MonoBehaviour:
       data:
         runOnFail: 0
         nodeID: n4
-    - rid: 3445855439314747403
-      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
-      data:
-        runOnFail: 0
-        toastText: The patient is hyperventilating. Continue monitoring their condition.
-        color: {r: 1, g: 1, b: 1, a: 1}
     - rid: 3445855439314747404
       type: {class: SetDocumentationGateEffect, ns: , asm: Assembly-CSharp}
       data:
@@ -609,4 +624,31 @@ MonoBehaviour:
         runOnFail: 0
         toastText: The patient has been stabilized. Use the EHR to complete your
           report and submit it to conclude the scenario.
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855598725038080
+      type: {class: WaitSecondsCondition, ns: , asm: Assembly-CSharp}
+      data:
+        waitTime: 3
+    - rid: 3445855598725038082
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: Oxygen low! Find a reserve oxygen tank!
+        color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 3445855598725038084
+      type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
+      data:
+        comparisonMode: 1
+        left: {fileID: 11400000, guid: c201a9ff5d40845428f87ac0c550d332, type: 2}
+        right: {fileID: 0}
+        rightNum: 10
+        rightBool: 0
+        numberComparisonType: 3
+        booleanComparisonType: 0
+    - rid: 3445855598725038087
+      type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
+      data:
+        runOnFail: 0
+        toastText: The patient is hyperventilating. Use the oxygen mask to help them
+          breathe
         color: {r: 1, g: 1, b: 1, a: 1}
