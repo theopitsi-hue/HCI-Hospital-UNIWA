@@ -318,12 +318,23 @@ public class ScenarioExecutor : MonoBehaviour
             sb.Append(" ");
             if (ss.Item1 != 0)
             {
+                if (ss.Item1 < 0)
+                {
+                    sb.Append("<color=#8B0000>");
+
+                }
+                else
+                {
+                    sb.Append("<color=#006400>");
+                }
                 if (ss.Item1 > 0)
                 {
                     sb.Append("+");
 
                 }
                 sb.Append(ss.Item1);
+                sb.Append("</color>");
+
                 sb.Append(" ");
             }
 
