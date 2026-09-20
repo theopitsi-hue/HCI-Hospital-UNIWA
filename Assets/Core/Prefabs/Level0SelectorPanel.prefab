@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 6389090699096502685}
   - component: {fileID: 7872059510161257993}
   - component: {fileID: 3288311153002564450}
+  - component: {fileID: 2375733379161312510}
   m_Layer: 5
   m_Name: PlayLevelButton
   m_TagString: Untagged
@@ -363,6 +364,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2375733379161312510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416083514994779447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfa2cf0c655c4642b2f8c840dad7b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: bdb9244e6ed0c0941b80d4b6ba2a3f3c, type: 3}
+  minPitch: 0.95
+  maxPitch: 1.05
 --- !u!1 &5880615174840739076
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7872059510161257993}
   text: {fileID: 1344158358492789550}
+  scenarioObject: {fileID: 0}
 --- !u!1 &6765640575040209418
 GameObject:
   m_ObjectHideFlags: 0

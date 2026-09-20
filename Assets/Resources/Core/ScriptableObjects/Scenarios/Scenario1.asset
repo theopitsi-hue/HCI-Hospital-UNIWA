@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioMeta:
     id: example_01
-    title: Example 1
+    title: Hypoxia Examination
     description: The first example
     estimatedDurationMinutes: 10
     difficulty: Easy
