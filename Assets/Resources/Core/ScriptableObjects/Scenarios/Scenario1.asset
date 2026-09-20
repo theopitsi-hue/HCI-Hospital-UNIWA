@@ -70,9 +70,9 @@ MonoBehaviour:
     - Key: Thermometer
       Value: 1
     - Key: PatientMouth
-      Value: 1
+      Value: 0
     - Key: PatientSkin
-      Value: 1
+      Value: 0
   globalRules:
     rules:
     - triggerOnce: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
       type: {class: SendToastEffect, ns: , asm: Assembly-CSharp}
       data:
         runOnFail: 0
-        toastText: Patient has deteriorated!
+        toastText: Patient condition has deteriorated!
         color: {r: 1, g: 0.31892985, b: 0.2971698, a: 1}
     - rid: 3445855439314747424
       type: {class: CheckFlagCondition, ns: , asm: Assembly-CSharp}
